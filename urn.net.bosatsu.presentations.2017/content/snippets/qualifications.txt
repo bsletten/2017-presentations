@@ -1,0 +1,18 @@
+---
+layout: false
+.left-column[
+  ## Speaker Qualifications
+]
+.right-column[
+- Specialize in next-generation technologies
+
+- Author of O'Reilly Videos on Hypermedia, Linking Data, Security and Encryption
+
+- Author of 'Resource-Oriented Architecture Patterns for Webs of Data'
+
+- Teaches and speaks internationally about REST, Semantic Web, Data Science, Machine Learning, GPU Computing, Security, Visualization, Architecture
+
+- Worked in Defense, Finance, Retail, Hospitality, Video Game, Health Care, Telecommunications and Publishing Industries
+
+- International Pop Recording Artist
+]

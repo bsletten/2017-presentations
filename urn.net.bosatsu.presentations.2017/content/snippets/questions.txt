@@ -1,0 +1,17 @@
+---
+background-image: url(/bosatsu/data/images/common/buddha-sky.jpg)
+layout: false
+class: middle
+
+.left-column[
+]
+.right-column[
+<p><span><i class="fa fa-envelope white"> </i></span> brian@bosatsu.net</p>
+<p><span><i class="fa fa-twitter white"> </i></span> @bsletten</p>
+<p><span><i class="fa fa-google-plus white"> </i></span> http://tinyurl.com/bjs-gplus</p>
+<p><span><i class="fa fa-github white"> </i></span> bsletten</p>
+]
+
+
+
+

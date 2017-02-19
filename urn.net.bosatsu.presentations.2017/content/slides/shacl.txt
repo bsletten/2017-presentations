@@ -1,0 +1,703 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#SHACL: The Shape of Things to Come.
+
+---
+#SHACL: The Shape of Things to Come.red[*]
+
+.footnote[.red[*] Not an actual prediction.]
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- SHACL
+
+- Future
+]
+
+---
+name: Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center
+
+<img src="/bosatsu/data/images/shacl/construction.jpg">
+.footnote[
+License: <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+Credit: <a href="https://www.flickr.com/photos/trianglereva/14624638249/in/photolist-ohk6rk-3s8BkN-4YZhpV-bVSYFa-72iw4H-21SdwH-g4e77i-e8stMx-985BRd-aohCij-7jxVnR-fbcgi1-7XHesH-9k3HjU-4YHZk5-axEh1d-4YHZiY-5mH1Md-JuHCF-JuHyF-jP13PX-5DzZRU-rtZn-ggvPj-JuHMK-t2wfE-4RoAeJ-4YHZKw-n3yWt-JuESf-3axdjJ-4YHZGq-EuTub-cm7E4b-5Nc2m2-nW96M7-5KQeQw-fHxcTt-4nEB8S-8im4i5-2xxXj8-c28D9h-aD2dHA-4NSryu-3rtWb-S4uLs-PntEM-nkkGt8-6uqqa-57UeAs">trianglereva</a>
+]
+
+---
+class: center
+
+# Open World Assumption
+
+<img src="/bosatsu/data/images/shacl/spicer.jpg">
+---
+## RDF Statement
+
+```javascript
+@prefix ex: <http://example.com/ns/> .
+
+ex:alice ex:hasChild ex:eve .
+```
+--
+## RDFS Statement
+
+```javascript
+@prefix ex: <http://example.com/ns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:hasChild a rdf:Property ;
+  rdfs:domain ex:Parent ;
+  rdfs:range ex:Child .
+```
+
+---
+## SPARQL
+
+```javascript
+@PREFIX ex: <http://example.com/ns/>
+
+SELECT ?s where {
+  ?s a ex:Parent .
+}
+```
+
+--
+## SPARQL Results (with Reasoning)
+
+```http
++-----------------------------+
+|              s              |
++-----------------------------+
+| http://example.com/ns/alice |
++-----------------------------+
+```
+---
+## SPARQL
+
+```javascript
+@PREFIX ex: <http://example.com/ns/>
+
+SELECT ?s where {
+  ?s a ex:Child .
+}
+```
+
+--
+## SPARQL Results (with Reasoning)
+
+```http
++---------------------------+
+|             s             |
++---------------------------+
+| http://example.com/ns/eve |
++---------------------------+
+```
+---
+## OWL Statement
+
+```javascript
+@prefix ex: <http://example.com/ns/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+ex:isChildOf owl:inverseOf ex:hasChild .
+```
+
+--
+## RDF Statement
+
+```javascript
+@prefix ex: <http://example.com/ns/> .
+
+ex:trent ex:isChildOf ex:alice .
+```
+
+---
+## SPARQL
+
+```javascript
+@PREFIX ex: <http://example.com/ns/>
+
+SELECT ?s where {
+  ?s a ex:Child .
+}
+```
+
+--
+## SPARQL Results (with Reasoning)
+
+```http
++-----------------------------+
+|              s              |
++-----------------------------+
+| http://example.com/ns/eve   |
+| http://example.com/ns/trent |
++-----------------------------+
+```
+---
+## RDF Statement
+
+```http
+@prefix ex: <http://example.com/ns/> .
+
+<http://google.com> ex:isChildOf ex:alice .
+```
+--
+## SPARQL
+
+```javascript
+@PREFIX ex: <http://example.com/ns/>
+
+SELECT ?s where {
+  ?s a ex:Child .
+}
+```
+
+--
+## SPARQL Results (with Reasoning)
+
+```http
++-----------------------------+
+|              s              |
++-----------------------------+
+| http://example.com/ns/eve   |
+| http://example.com/ns/trent |
+| http://google.com           |
++-----------------------------+
+```
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+]
+.right-column[
+- SPARQL Inference Notation (SPIN) [.red[*]]
+
+<img src="/bosatsu/data/images/shacl/spinsquare.png">
+
+.footnote[.red[*] [http://spinrdf.org](http://spinrdf.org)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+]
+.right-column[
+- SPARQL Inference Notation (SPIN) [.red[*]]
+
+```javascript
+ss:Rectangle
+  rdf:type rdfs:Class ;
+  rdfs:label "Rectangle" .
+
+ss:Square
+  rdf:type rdfs:Class ;
+  rdfs:label "Square" ;
+  rdfs:subClassOf ss:Rectangle .
+  
+ss:area
+  rdf:type rdf:Property ;
+  rdfs:label "area" .
+
+ss:height
+  rdf:type rdf:Property ;
+  rdfs:label "height" .
+  
+ss:width
+  rdf:type rdf:Property ;
+  rdfs:label "width" . 
+```
+
+.footnote[.red[*] [http://spinrdf.org](http://spinrdf.org)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+]
+.right-column[
+- SPARQL Inference Notation (SPIN) [.red[*]]
+
+```javascript
+ss:Rectangle
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:text """
+        CONSTRUCT {
+            # Infer ?area as a value of ss:area
+            ?this ss:area ?area .
+        }
+        WHERE {
+            # Get the width of ?this Rectangle
+            ?this ss:width ?width .
+            # Get the height of ?this Rectangle
+            ?this ss:height ?height .
+            # Compute area := width * height
+            BIND ((?width * ?height) AS ?area) .  
+        }
+        """ ;
+    ] .
+```
+
+.footnote[.red[*] [http://spinrdf.org](http://spinrdf.org)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+]
+.right-column[
+- SPARQL Inference Notation (SPIN) [.red[*]]
+
+```javascript
+ss:Square
+  spin:constraint [
+      rdf:type sp:Construct ;
+      sp:text """
+        # Width and height must be equal
+        CONSTRUCT {
+            _:cv a spin:ConstraintViolation ;
+                spin:violationRoot ?this ;
+                spin:violationPath ss:height ;
+                rdfs:label 
+                  "Width and height of a Square must be equal"
+        } 
+        WHERE {
+            ?this ss:width ?width .
+            ?this ss:height ?height .
+            FILTER (?width != ?height) .
+        }
+        """ ;
+    ] .
+```
+
+.footnote[.red[*] [http://spinrdf.org](http://spinrdf.org)]
+]
+
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+]
+.right-column[
+- Open Services for Lifecycle Collaboration(OSLC) Shapes[.red[*]]
+
+```javascript
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix oslc: <http://open-services.net/ns/core#> .
+@prefix oslc_cm: <http://open-services.net/ns/cm#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@base <http://example.com/shape/> .
+
+<oslc-change-request> a oslc:ResourceShape ;
+	dcterms:title 
+    "Creation shape of OSLC Change Request"^^rdf:XMLLiteral ;
+	oslc:describes oslc_cm:ChangeRequest ;
+	oslc:property
+		<oslc-change-request#dcterms-title> ,
+		<oslc-change-request#oslc_cm-status> .
+
+<oslc-change-request#dcterms-title> a oslc:Property ;
+	oslc:propertyDefinition dcterms:title ;
+	oslc:name "title" ;
+	oslc:occurs oslc:Exactly-one .
+
+<oslc-change-request#oslc_cm-status> a oslc:Property ;
+	oslc:propertyDefinition oslc_cm:status ;
+	oslc:name "status" ;
+	oslc:occurs oslc:Zero-or-one ;
+	oslc:allowedValues <status-allowed-values> .
+```
+
+.footnote[.red[*] [https://open-services.net](https://open-services.net)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+]
+.right-column[
+- Open Services for Lifecycle Collaboration(OSLC) Shapes[.red[*]]
+
+```javascript
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix oslc: <http://open-services.net/ns/core#> .
+@prefix oslc_cm: <http://open-services.net/ns/cm#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.com/bugs/2> a oslc_cm:ChangeRequest ;
+	dcterms:title "Wrong arguments"^^rdf:XMLLiteral ;
+	oslc_cm:status "Submitted", "InProgress" ;
+	oslc:instanceShape 
+      <http://example.com/shape/oslc-change-request> .
+```
+
+.footnote[.red[*] [https://open-services.net](https://open-services.net)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+  ### ShEx
+]
+.right-column[
+- Shape Extension (ShEx) [.red[*]]
+
+```javascript
+# schema (ShExC)
+my:UserShape {
+  foaf:name xsd:string
+}
+```
+
+```javascript
+// schema (JSON)
+{
+  my:UserShape: {
+    "type": "Shape",
+    "expression": {
+      "type": "TripleConstraint",
+      "predicate": "foaf:name",  
+      "value": {                 
+        "type": "NodeConstraint",    
+        "datatype": "xsd:string" 
+      }                          
+    }
+  }
+}
+```
+
+.footnote[.red[*] [http://shex.io](http://shex.io)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+  ### ShEx
+]
+.right-column[
+- Shape Extension (ShEx) [.red[*]]
+
+```javascript
+# passing data
+inst:User1
+    foaf:name  "Bob Smith"^^xsd:string .
+```
+
+```javascript
+# failing data
+inst:User2
+    foaf:name  "Joe Jones"^^xsd:string ;
+    foaf:name  "Joseph Jones"^^xsd:string .
+
+inst:User3
+    foaf:name  "Bob Smith"^^xsd:anyURI .
+```
+
+.footnote[.red[*] [http://shex.io](http://shex.io)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+  ### ShEx
+]
+.right-column[
+- Shape Extension (ShEx) [.red[*]]
+
+```javascript
+# schema (ShExC)
+my:IssueShape {
+  ex:state [ex:unassigned ex:assigned];
+  ex:reportedBy @my:UserShape
+}
+
+my:UserShape {
+  foaf:name xsd:string;
+  foaf:mbox IRI+
+}
+```
+
+.footnote[.red[*] [http://shex.io](http://shex.io)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+  ### ShEx
+]
+.right-column[
+- Shape Extension (ShEx) [.red[*]]
+
+```javascript
+# passing data
+PREFIX ex: http://ex.example/#
+PREFIX foaf: http://xmlns.com/foaf/
+PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+
+inst:Issue1 a ex:Issue ;
+    ex:state        ex:unassigned ;
+    ex:reportedBy   inst:User2 .
+
+inst:User2 a foaf:Person ;
+    foaf:name       "Bob Smith" ;
+    foaf:mbox       <mailto:bob@example.org> ;
+    foaf:mbox       <mailto:rs@example.org> .
+```
+
+.footnote[.red[*] [http://shex.io](http://shex.io)]
+]
+
+---
+.left-column[
+  ## Predecessors
+  ### SPIN
+  ### OSLC Resource Shapes
+  ### ShEx
+]
+.right-column[
+- Shape Extension (ShEx) [.red[*]]
+
+```javascript
+# failing data
+PREFIX ex: http://ex.example/#
+PREFIX foaf: http://xmlns.com/foaf/
+PREFIX xsd: http://www.w3.org/2001/XMLSchema#
+
+inst:Issue3 a ex:Issue ;
+    ex:state        ex:unsinged ;
+    ex:reportedBy   inst:User4 .
+
+inst:User4 a foaf:Person ;
+    foaf:name       "Bob Smith", "Robert Smith" ;
+    foaf:mbox       <mailto:bob@example.org> ;
+    foaf:mbox       <mailto:rs@example.org> .
+```
+
+.footnote[.red[*] [http://shex.io](http://shex.io)]
+]
+
+---
+class: center, middle, inverse
+# SHACL
+
+---
+# Shapes Constraint Language (SHACL)
+
+- Core syntax is inspired by OSLC Resource Shapes
+- Extension mechanism is inspired by SPIN/RDFUnit
+- Compact syntax (not yet implemented) inspired by ShEx
+- SHACL Validator will apply a shapes graph to a data graph
+
+---
+class: center
+
+<img src="/bosatsu/data/images/shacl/shapes.png">
+
+.footnote[.red[*] [http://w3c.github.io/data-shapes/shacl/#property-shapes](http://w3c.github.io/data-shapes/shacl/#property-shapes)]
+---
+
+# Data Graph
+
+```javascript
+ex:Alice
+	a ex:Person .
+  
+ex:Bob
+	a ex:Person .
+
+ex:Calvin
+	a ex:Person .
+```
+
+---
+
+# Shape Graph
+
+```javascript
+// Target a specific node in the data graph
+
+ex:PersonShape
+	a sh:NodeShape ;
+	sh:targetNode ex:Alice .
+```
+
+--
+
+```javascript
+// Target all nodes of a specified class in the data graph
+
+ex:PersonShape
+	a sh:NodeShape ;
+	sh:targetClass ex:Person .
+```
+
+--
+
+```javascript
+ex:Doctor rdfs:subClassOf ex:Person .
+ex:Who a ex:Doctor . // Target node
+ex:House a ex:Nephrologist .
+```
+---
+
+# Shape Graph
+
+```javascript
+// Shape Graph
+
+ex:Person
+	a rdfs:Class, sh:NodeShape .
+```
+
+```javascript
+// Data Graph
+
+ex:Alice a ex:Person . // Target node
+ex:NewYork a ex:Place .
+```
+
+---
+
+# sh:targetSubjectsOf
+
+```javascript
+// Shape Graph
+
+ex:TargetSubjectsOfExampleShape
+	a sh:NodeShape ;
+	sh:targetSubjectsOf ex:knows .
+```
+
+```javascript
+// Data Graph
+
+ex:Alice ex:knows ex:Bob . // Target node
+ex:Bob ex:livesIn ex:NewYork .
+```
+
+---
+
+# sh:targetObjectsOf
+
+```javascript
+// Shape Graph
+
+ex:TargetObjectsOfExampleShape
+	a sh:NodeShape ;
+	sh:targetObjectsOf ex:knows .
+```
+
+```javascript
+// Data Graph
+
+ex:Alice ex:knows ex:Bob .
+ex:Bob ex:livesIn ex:NewYork . // Target node
+```
+
+---
+
+# Data Graph
+
+```javascript
+ex:Alice
+	a ex:Person ;
+	ex:child ex:Calvin ;
+	ex:ssn "987-65-432A" .
+  
+ex:Bob
+	a ex:Person ;
+	ex:child ex:Calvin ;
+	ex:ssn "123-45-6789" ;
+	ex:ssn "124-35-6789" .
+  
+ex:Calvin
+	a ex:Person ;
+	ex:school ex:TrinityAnglicanSchool .
+```
+
+---
+
+# Shape Graph
+
+```javascript
+ex:PersonShape
+	a sh:NodeShape ;
+	sh:targetClass ex:Person ;    # Applies to all persons
+	sh:property [
+		sh:path ex:ssn ;     # This property shape is about the values of the ex:ssn property
+		sh:maxCount 1 ;
+		sh:datatype xsd:string ;
+		sh:pattern "^\\d{3}-\\d{2}-\\d{4}$" ;
+	] ;
+	sh:ignoredProperties ( rdf:type ) .
+```
+
+
+---
+
+# Validation Report
+
+```javascript
+[	a sh:ValidationReport ;
+	sh:conforms false ;
+	sh:result
+	[  	a sh:ValidationResult ;
+		sh:resultSeverity sh:Violation ;
+		sh:focusNode ex:Alice ;
+		sh:resultPath ex:ssn ;
+		sh:value "987-65-432A" ;
+		sh:sourceConstraintComponent sh:RegexConstraintComponent ;
+		sh:sourceShape ... blank node on ex:ssn above ... ;
+	] ,
+	[	a sh:ValidationResult ;
+		sh:resultSeverity sh:Violation ;
+		sh:focusNode ex:Bob ;
+		sh:resultPath ex:ssn ;
+		sh:sourceConstraintComponent sh:MaxCountConstraintComponent ;
+		sh:sourceShape ... blank node on ex:ssn above ... ;
+	] 
+] .
+```
+
+---
+
+class: center, middle, inverse
+
+# Future
+---
+
+class: center
+
+<img src="/bosatsu/data/images/common/shrug.jpg">
+
+$a{res:/bosatsu/data/snippets/questions.txt}
