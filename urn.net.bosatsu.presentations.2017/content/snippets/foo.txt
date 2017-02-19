@@ -1,5 +1,0 @@
----
-
-class: center
-
-<img src="/bosatsu/data/images/Iggy-Pop-Shrug.jpg">
