@@ -108,3 +108,23 @@
         float: right;
         padding-top: 1em;
       }
+      
+      /* Reusable styles */
+      .quotation {
+        color: #FFF;
+        font-size: 120%;
+        line-height: 1.4;
+      }
+      
+      .quotation:before {
+        content: open-quote;
+      }
+      
+      .quotation:after {
+        content: close-quote;
+      }
+      
+      .quotation-source {
+        color: #777;
+        font-style: italic;
+      }
