@@ -18,7 +18,7 @@ layout: false
 ]
 
 ---
-name: Introduction
+name: WebAssembly-Introduction
 class: center, middle, inverse
 # Introduction
 
@@ -34,7 +34,7 @@ class: center, middle
 ##[http://webassembly.org/demo/AngryBots/](http://webassembly.org/demo/AngryBots/)
 
 ---
-name: Emscripten
+name: WebAssembly-Emscripten
 class: center, middle, inverse
 # Emscripten
 
@@ -147,7 +147,7 @@ class: center
 
 
 ---
-name: WebAssembly
+name: WebAssembly-WebAssembly
 class: center, middle, inverse
 # WebAssembly
 
@@ -278,7 +278,7 @@ class: center
 <img src="/bosatsu/data/images/webassembly/hello_world_wasm.png">
 
 ---
-name: Future
+name: WebAssembly-Future
 class: center, middle, inverse
 # Future
 
