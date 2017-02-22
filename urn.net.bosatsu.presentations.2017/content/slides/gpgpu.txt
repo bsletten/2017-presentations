@@ -1,0 +1,22 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#CUDA, OpenCL and the GPGPU Revolution
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+]
+
+---
+name: Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/snippets/questions.txt}
