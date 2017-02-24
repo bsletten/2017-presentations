@@ -12,11 +12,49 @@ layout: false
 ]
 .right-column[
 - Introduction
+- Techniques
+- Word2Vec
 ]
 
 ---
-name: Introduction
+name: MLNLP-Introduction
 class: center, middle, inverse
 # Introduction
+
+---
+# Natural Language Processing (NLP) Goals
+
+- Entity and Relationship Extraction
+
+--
+- Linguistic structure
+
+--
+- Machine Translation
+
+--
+- Generative Content
+
+--
+- Question Answering
+
+---
+name: MLNLP-Techniques
+class: center, middle, inverse
+# Some NLP Techniques
+
+---
+# Continuous Bag of Words (CBoW)
+
+---
+# SkipGram
+
+---
+# LSA
+
+---
+name: MLNLP-Word2Vec
+class: center, middle, inverse
+# Word2Vec
 
 $a{res:/bosatsu/data/snippets/questions.txt}
