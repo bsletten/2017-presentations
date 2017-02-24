@@ -19,4 +19,9 @@ name: Introduction
 class: center, middle, inverse
 # Introduction
 
+---
+# Distributional Semantics
+
+.middle[.center[Hello]]
+
 $a{res:/bosatsu/data/snippets/questions.txt}
