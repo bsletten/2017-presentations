@@ -12,16 +12,72 @@ layout: false
 ]
 .right-column[
 - Introduction
+- Techniques
+- Word2Vec
 ]
 
 ---
-name: Introduction
+name: MLNLP-Introduction
 class: center, middle, inverse
 # Introduction
 
 ---
-# Distributional Semantics
+# Natural Language Processing (NLP) Goals
 
-.middle[.center[Hello]]
+- Entity and Relationship Extraction
+
+--
+- Linguistic structure
+
+--
+- Machine Translation
+
+--
+- Generative Content
+
+--
+- Question Answering
+
+---
+# Distributional Semantics
+- __.underline[Distributional hypothesis]__ is based upon the semantic theory of language.red[*].
+
+--
+- "i.e. words that are used and occur in the same contexts tend to purport similar meanings" ([Harris, Z.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFHarris1954))
+
+--
+- "a word is characterized by the company it keeps" ([Firth, John R.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFFirth1957))
+
+--
+- Uses linear algebra for computational and representational purposes
+
+--
+- High-dimensional vectors are built from a corpus
+
+.footnote[.red[*]https://en.wikipedia.org/wiki/Distributional_semantics]
+---
+# Types of Similarity
+- Topical similarity based upon textual regions
+- Paradigmatic similarity based upon co-occurrence
+- Syntagmatic similarity by examining the vectors
+
+---
+name: MLNLP-Techniques
+class: center, middle, inverse
+# Some NLP Techniques
+
+---
+# Continuous Bag of Words (CBoW)
+
+---
+# SkipGram
+
+---
+# LSA
+
+---
+name: MLNLP-Word2Vec
+class: center, middle, inverse
+# Word2Vec
 
 $a{res:/bosatsu/data/snippets/questions.txt}

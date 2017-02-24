@@ -12,11 +12,60 @@ layout: false
 ]
 .right-column[
 - Introduction
+- TensorFlow Basics
+- Distributed TensorFlow
 ]
 
 ---
-name: Introduction
+name: TensorFlow-Introduction
 class: center, middle, inverse
 # Introduction
+
+---
+#About TensorFlow
+- Open source library for numerical computation from Google Brain Team
+
+--
+- Version 1.0 was just released
+
+--
+- Primarily for machine learning and deep neural network research
+
+--
+- Data flow graph-based
+
+--
+- Nodes represent operations
+
+--
+- Tensors flow through the nodes
+
+--
+- Leverages CPUs and/or GPUs
+
+--
+- Ecosystem for graph visualization, serving production models, etc.
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/graph_vis_animation.gif">
+.footnote[
+Credit: <a href="https://www.tensorflow.org/get_started/graph_viz">TensorBoard: Graph Visualization<a/>
+]
+
+---
+class: center, middle
+##[https://www.tensorflow.org/install/](https://www.tensorflow.org/install/)
+
+---
+name: TensorFlow-Basics
+class: center, middle, inverse
+# TensorFlow Basics
+
+---
+name: TensorFlow-Distributed
+class: center, middle, inverse
+# Distributed TensorFlow
 
 $a{res:/bosatsu/data/snippets/questions.txt}
