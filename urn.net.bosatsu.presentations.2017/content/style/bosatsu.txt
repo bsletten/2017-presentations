@@ -57,6 +57,16 @@
         color: #f3f3f3;
         line-height: 0.8em;
       }
+      
+      table {
+        padding: 5px;
+        border-collapse: collapse;
+      }
+      
+      table, th, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+      }
 
       /* Slide-specific styling */
       #slide-inverse .footnote {
@@ -131,6 +141,17 @@
 
       .underline {
         text-decoration: underline;
+      }
+      
+      /* Two-column layout */
+      .just-left-column {
+        width: 20%;
+        float: left;
+        padding-bottom: 5px;
+      }
+      .just-right-column {
+        width: 75%;
+        float: right;
       }
 
 /*      .remark-slide-content:after {
