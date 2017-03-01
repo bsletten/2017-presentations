@@ -12,7 +12,9 @@ layout: false
 ]
 .right-column[
 - Introduction
+- Vector Space Model
 - Word2Vec
+- Naieve Bayes
 ]
 
 ---
@@ -51,6 +53,102 @@ class: center, middle, inverse
 
 --
 - Shift to statistical models in the 1980s
+
+---
+# NLP Difficulties
+
+--
+- Character encoding
+
+--
+- Tokenization
+
+--
+- Part of Speech labeling
+
+--
+- Stemming (e.g. "walking", "walked", "walks")
+
+--
+- Lemmatization (e.g. "operating")
+
+--
+- Sentence/paragraph detection
+
+--
+- Coreference resolution
+
+---
+# Some Open Source NLP Frameworks
+
+| API             | URL                              |
+|-----------------|----------------------------------|
+| GATE            | http://gate.ac.uk                |
+| LingPipe        | http://alias-i.com/lingpipe      |
+| Apache OpenNLP  | http://opennlp.apache.org        |
+| UIMA            | http://uima.apache.org           |
+| Stanford Parser | http://nlp.stanford.edu/software |
+| Mallet          | http://mallet.cs.umass.edu       |
+
+---
+name: MLNLP-VSM
+class: center, middle, inverse
+# Vector Space Model
+
+---
+# Bag of Words
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[
+    "John",
+    "likes",
+    "to",
+    "watch",
+    "movies",
+    "also",
+    "football",
+    "games",
+    "Mary",
+    "too"
+]
+```
+
+--
+```javascript
+(1) [1, 2, 1, 1, 2, 0, 0, 0, 1, 1]
+(2) [1, 1, 1, 1, 0, 1, 1, 1, 0, 0]
+```
+
+---
+# N-gram model
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[
+    "John likes",
+    "likes to",
+    "to watch",
+    "watch movies",
+    "Mary likes",
+    "likes movies",
+    "movies too",
+]
+```
 
 ---
 # Vector Space Model
@@ -233,6 +331,13 @@ class: center, middle
 --
 - Syntagmatic similarity by examining the vectors
 
+
+---
+# t-SNE Visualizations of Word Embeddings
+
+<a href="http://metaoptimize.s3.amazonaws.com/cw-embeddings-ACL2010/embeddings-mostcommon.EMBEDDING_SIZE=50.png">http://tinyurl.com/hpf24ox</a>
+
+
 ---
 # Advantages of VSM
 .footnote[https://en.wikipedia.org/wiki/Vector_space_model]
@@ -333,5 +438,11 @@ class: center, middle, inverse
 
 ---
 # SkipGram
+
+---
+name: MLNLP-NaiveBayes
+class: center, middle, inverse
+# NaiveBayes
+
 
 $a{res:/bosatsu/data/snippets/questions.txt}
