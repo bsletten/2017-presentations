@@ -12,11 +12,17 @@ layout: false
 ]
 .right-column[
 - Introduction
+- Neural Networks
 ]
 
 ---
-name: Introduction
+name: NLP-Introduction
 class: center, middle, inverse
 # Introduction
+
+---
+name: NLP-NeuralNetworks
+class: center, middle, inverse
+# Neural Networks
 
 $a{res:/bosatsu/data/snippets/questions.txt}

@@ -44,7 +44,54 @@ class: center, middle, inverse
 - Leverages CPUs and/or GPUs
 
 --
+- Scalable across computer clusters
+
+--
 - Ecosystem for graph visualization, serving production models, etc.
+
+---
+class: center, middle, inverse
+
+.quotation[TensorFlow’s primary purpose is not to provide out-of-the-box machine learning solutions. Instead, TensorFlow provides an extensive suite of functions and classes that allow users to define models from scratch mathematically. This allows users with the appropriate technical background to create customized, flexible models quickly and intuitively. Additionally, while TensorFlow does have extensive support for ML-specific functionality, it is just as well suited to performing complex mathematical computations.]
+
+.quotation-source[
+Source: TensorFlow For Machine Intelligence: A hands-on introduction to learning algorithms, Abrahams et al.]
+
+---
+# When should I use it?
+
+--
+- Experimenting with new machine learning architectures and approaches
+
+--
+- Operationalizing your experiments
+
+--
+- Iterating on various architectures
+
+--
+- Large-scale distributed models
+
+--
+- Building models for mobile/embedded systems
+
+---
+# What is a Tensor?
+
+--
+- An n-dimensional matrix
+
+--
+- ### `3` (Rank 0)
+
+--
+- ### `[1.,2.,3.]` (Rank 1 - Shape [3])
+
+--
+- ### `[[1.,2.,3.], [4.,5.,6.]]` (Rank 2 - Shape[2, 3])
+
+--
+- ### `[[[1.,2.,3.]], [[7.,8.,9.]]]` (Rank 3 - Shape[2, 1, 3])
 
 ---
 class: center
@@ -62,6 +109,72 @@ class: center, middle
 name: TensorFlow-Basics
 class: center, middle, inverse
 # TensorFlow Basics
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+--
+```bash
+$ python
+Python 2.7.12 (default, Nov 19 2016, 06:48:10) 
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+```
+
+--
+```python
+>>> import tensorflow as tf
+```
+
+--
+```python
+>>> node1 = tf.constant(3.0, tf.float32)
+>>> node2 = tf.constant(4.0)
+>>> print(node1, node2)
+(<tf.Tensor 'Const:0' shape=() dtype=float32>, 
+ <tf.Tensor 'Const_1:0' shape=() dtype=float32>)
+```
+
+--
+```python
+>>> sess = tf.Session()
+2017-02-26 19:08:13.137639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] \
+Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, \
+pci bus id: 0000:01:00.0)
+2017-02-26 19:08:13.137663: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] \
+Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, \
+pci bus id: 0000:02:00.0)
+```
+
+--
+```python
+>>> print(sess.run([node1, node2]))
+[3.0, 4.0]
+```
+
+---
+```python
+>>> node3 = tf.add(node1, node2)
+>>> print("node3: ", node3)
+('node3: ', <tf.Tensor 'Add:0' shape=() dtype=float32>)
+```
+
+--
+```python
+>>> print("sess.run(node3): ",sess.run(node3))
+('sess.run(node3): ', 7.0)
+```
+
+--
+```python
+>>> print("sess.run(node1 + node2): ", sess.run(node1+node2))
+('sess.run(node1 + node2): ', 7.0)
+```
+
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+
+
 
 ---
 name: TensorFlow-Distributed
