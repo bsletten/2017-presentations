@@ -444,5 +444,361 @@ name: MLNLP-NaiveBayes
 class: center, middle, inverse
 # NaiveBayes
 
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-nlp/ml-with-r.jpg">
+
+---
+class: center, middle
+##[https://github.com/dataspelunking/MLwR/](https://github.com/dataspelunking/MLwR/)
+
+---
+```R
+# read the sms data into the sms data frame
+> sms_raw <- read.csv("sms_spam.csv", stringsAsFactors = FALSE)
+```
+
+--
+```R
+# examine the structure of the sms data
+> str(sms_raw)
+'data.frame':   5559 obs. of  2 variables:
+ $ type: chr  "ham" "ham" "ham" "spam" ...
+ $ text: chr  "Hope you are having a good week. Just checking in"
+ "K..give back my thanks."
+ "Am also doing in cbe only. But have to pay."
+ "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT
+  collection. 09066364349 NOW from Landline not to lose out!"
+  | __truncated__ ...
+```
+
+--
+```R
+# convert spam/ham to factor.
+> sms_raw$type <- factor(sms_raw$type)
+```
+
+--
+```R
+# examine the type variable more carefully
+> str(sms_raw$type)
+ Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
+```
+
+--
+```R
+> table(sms_raw$type)
+
+ ham spam 
+4812  747 
+```
+
+---
+```R
+# build a corpus using the text mining (tm) package
+> library(tm)
+Loading required package: NLP
+```
+--
+```R
+> sms_corpus <- VCorpus(VectorSource(sms_raw$text))
+```
+
+--
+```R
+# examine the sms corpus
+> print(sms_corpus)
+<<VCorpus>>
+Metadata:  corpus specific: 0, document level (indexed): 0
+Content:  documents: 5559
+
+```
+
+--
+```R
+> inspect(sms_corpus[1:2])
+<<VCorpus>>
+Metadata:  corpus specific: 0, document level (indexed): 0
+Content:  documents: 2
+
+[[1]]
+<<PlainTextDocument>>
+Metadata:  7
+Content:  chars: 49
+
+[[2]]
+<<PlainTextDocument>>
+Metadata:  7
+Content:  chars: 23
+```
+
+---
+```R
+> as.character(sms_corpus[[1]])
+[1] "Hope you are having a good week. Just checking in"
+```
+
+--
+```R
+> lapply(sms_corpus[1:2], as.character)
+$`1`
+[1] "Hope you are having a good week. Just checking in"
+
+$`2`
+[1] "K..give back my thanks."
+```
+
+--
+```R
+> sms_corpus_clean <- tm_map(sms_corpus, content_transformer(tolower))
+```
+
+--
+```R
+# show the difference between sms_corpus and corpus_clean
+> as.character(sms_corpus[[1]])
+[1] "Hope you are having a good week. Just checking in"
+> as.character(sms_corpus_clean[[1]])
+[1] "hope you are having a good week. just checking in"
+```
+
+--
+```R
+# remove numbers
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removeNumbers)
+# remove stop words
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removeWords, stopwords()) 
+# remove punctuation
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removePunctuation) 
+```
+
+---
+```R
+# tip: create a custom function to replace (rather than remove) punctuation
+> removePunctuation("hello...world")
+[1] "helloworld"
+```
+
+--
+```R
+> replacePunctuation <- function(x) { gsub("[[:punct:]]+", " ", x) }
+> replacePunctuation("hello...world")
+[1] "hello world"
+```
+
+--
+```R
+# illustration of word stemming
+> library(SnowballC)
+> wordStem(c("learn", "learned", "learning", "learns"))
+[1] "learn" "learn" "learn" "learn"
+```
+
+--
+```R
+> sms_corpus_clean <- tm_map(sms_corpus_clean, stemDocument)
+# eliminate unneeded whitespace
+> sms_corpus_clean <- tm_map(sms_corpus_clean, stripWhitespace)
+```
+
+---
+```R
+# examine the final clean corpus
+> lapply(sms_corpus[1:3], as.character)
+$`1`
+[1] "Hope you are having a good week. Just checking in"
+
+$`2`
+[1] "K..give back my thanks."
+
+$`3`
+[1] "Am also doing in cbe only. But have to pay."
+```
+
+--
+```R
+> lapply(sms_corpus_clean[1:3], as.character)
+$`1`
+[1] "hope you are have a good week. just check in"
+
+$`2`
+[1] "k..give back my thanks."
+
+$`3`
+[1] "am also do in cbe only. but have to pay."
+```
+
+---
+```R
+# create a document-term sparse matrix
+> sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
+> sms_dtm
+<<DocumentTermMatrix (documents: 5559, terms: 10856)>>
+Non-/sparse entries: 59144/60289360
+Sparsity           : 100%
+Maximal term length: 48
+Weighting          : term frequency (tf)
+```
+
+--
+```R
+# creating training and test datasets
+> sms_dtm_train <- sms_dtm[1:4169, ]
+> sms_dtm_test  <- sms_dtm[4170:5559, ]
+```
+
+--
+```R
+# also save the labels
+sms_train_labels <- sms_raw[1:4169, ]$type
+sms_test_labels  <- sms_raw[4170:5559, ]$type
+```
+
+--
+```R
+# check that the proportion of spam is similar
+> prop.table(table(sms_train_labels))
+sms_train_labels
+      ham      spam 
+0.8647158 0.1352842 
+
+> prop.table(table(sms_test_labels))
+sms_test_labels
+      ham      spam 
+0.8683453 0.1316547 
+```
+
+---
+```R
+> # word cloud visualization
+> library(wordcloud)
+Loading required package: RColorBrewer
+```
+
+--
+```R
+> wordcloud(sms_corpus_clean, min.freq = 50, random.order = FALSE)
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-1.png">
+
+---
+```R
+# subset the training data into spam and ham groups
+> spam <- subset(sms_raw, type == "spam")
+> ham  <- subset(sms_raw, type == "ham")
+```
+
+--
+```R
+> wordcloud(spam$text, max.words = 40, scale = c(3, 0.5))
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-2.png">
+
+---
+```R
+> wordcloud(ham$text, max.words = 40, scale = c(3, 0.5))
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-3.png">
+
+---
+```R
+> sms_dtm_freq_train <- removeSparseTerms(sms_dtm_train, 0.999)
+```
+
+--
+```R
+> sms_dtm_freq_train
+<<DocumentTermMatrix (documents: 4169, terms: 1306)>>
+Non-/sparse entries: 33250/5411464
+Sparsity           : 99%
+Maximal term length: 24
+Weighting          : term frequency (tf)
+```
+
+--
+```R
+# save frequently-appearing terms to a character vector
+> sms_freq_words <- findFreqTerms(sms_dtm_train, 5)
+```
+
+--
+```R
+> str(sms_freq_words)
+ chr [1:1332] ":-(" ":-)" "!!''." "..." "....." ...
+```
+
+--
+```R
+# create DTMs with only the frequent terms
+> sms_dtm_freq_train <- sms_dtm_train[ , sms_freq_words]
+> sms_dtm_freq_test <- sms_dtm_test[ , sms_freq_words]
+```
+
+---
+```R
+> # convert counts to a factor
+> convert_counts <- function(x) {
++     x <- ifelse(x > 0, "Yes", "No")
++ }
+```
+
+--
+```R
+# apply() convert_counts() to columns of train/test data
+> sms_train <- apply(sms_dtm_freq_train, MARGIN = 2, convert_counts)
+> sms_test  <- apply(sms_dtm_freq_test, MARGIN = 2, convert_counts)
+```
+
+--
+```R
+## Step 3: Training a model on the data ----
+> library(e1071)
+> sms_classifier <- naiveBayes(sms_train, sms_train_labels)
+```
+
+--
+```R
+## Step 4: Evaluating model performance ----
+> sms_test_pred <- predict(sms_classifier, sms_test)
+```
+
+---
+```R
+> library(gmodels)
+> CrossTable(sms_test_pred, sms_test_labels,
++            prop.chisq = FALSE, prop.t = FALSE, prop.r = FALSE,
++            dnn = c('predicted', 'actual'))
+
+ 
+   Cell Contents
+|-------------------------|
+|                       N |
+|           N / Col Total |
+|-------------------------|
+
+ 
+Total Observations in Table:  1390 
+
+ 
+             | actual 
+   predicted |       ham |      spam | Row Total | 
+-------------|-----------|-----------|-----------|
+         ham |      1201 |        31 |      1232 | 
+             |     0.995 |     0.169 |           | 
+-------------|-----------|-----------|-----------|
+        spam |         6 |       152 |       158 | 
+             |     0.005 |     0.831 |           | 
+-------------|-----------|-----------|-----------|
+Column Total |      1207 |       183 |      1390 | 
+             |     0.868 |     0.132 |           | 
+-------------|-----------|-----------|-----------|
+```
 
 $a{res:/bosatsu/data/snippets/questions.txt}
