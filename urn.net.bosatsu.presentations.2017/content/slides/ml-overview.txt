@@ -12,6 +12,7 @@ layout: false
 ]
 .right-column[
 - Introduction
+- Algorithms
 - Neural Networks
 ]
 
@@ -19,6 +20,232 @@ layout: false
 name: NLP-Introduction
 class: center, middle, inverse
 # Introduction
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/WOPR.jpg">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/terminator.jpg">
+
+---
+class: center, middle
+##[ https://youtu.be/rVlhMGQgDkY?t=85](https://youtu.be/rVlhMGQgDkY?t=85)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/watson.jpg">
+
+---
+class: center, middle, inverse
+
+.quotation[The term machine learning refers to the automated detection of meaningful patterns in data.]
+.quotation-source[
+Source: Shavel-Shwartz and Ben-David, "Understanding Machine Learning: From Theory to Algorithms"]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/hume.jpg">
+
+.footnote[David Hume]
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/tycho-brahe.jpg">
+
+.footnote[Tycho Brahe]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/kepler.jpg">
+
+.footnote[Johannes Kepler]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/newton.jpg">
+
+.footnote[Isaac Newton]
+
+
+
+---
+name: NLP-Algorithms
+class: center, middle, inverse
+# Algorithms
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/data-science-process.png">
+
+.footnote[O'Neil and Schutt, "Doing Data Science"]
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/master-algorithm.jpg">
+
+---
+class: center, middle
+
+| Tribe          | Approach                                                              | Master Algorithm                         |
+|----------------|-----------------------------------------------------------------------|------------------------------------------|
+| Evolutionaries | Natural Selection/Deriving Learning Structure                         | Genetic Programming                      |
+| Connectionists | Reverse engineer the brain                                            | Backpropagation                          |
+| Symbolists     | Symbol manipulation from initial knowledge                            | Inverse Deduction                        |
+| Bayesians      | Managing uncertainty, noisy, incomplete and contradictory information | Probabilistic Inference (Bayes' Theorem) |
+| Analogizers    | Recognizing similarities                                              | Support Vector Machines                  |
+
+---
+# Sample Algorithms
+
+--
+- Linear Regression
+
+--
+- k-Nearest Neighbors
+
+--
+- Naive Bayes
+
+--
+- Decision Trees
+
+--
+- Support Vector Machines
+
+---
+name: ML-LinearRegression
+class: center, middle, inverse
+# Linear Regression
+
+---
+class: center, middle, inverse
+
+.quotation[Linear Regression: In statistics, linear regression is an approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X.]
+.quotation-source[
+Source: https://en.wikipedia.org/wiki/Linear_regression]
+
+---
+# Ordinary Least Squares
+
+--
+- Simple Linear Regression
+
+--
+- Fit a straight line through the observed points
+
+--
+- Minimizes the sum of square residuals of the model
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/linear-regression.png">
+
+.footnote[https://commons.wikimedia.org/wiki/File:Linear_regression.svg]
+
+---
+class: center, middle
+
+# Linear Regression
+
+| Pros                                                                             | Cons                                                   |
+|----------------------------------------------------------------------------------|--------------------------------------------------------|
+| Common approach for numeric data                                                 | Strong assumptions about the data                      |
+| Can handle most modeling tasks                                                   | Model form must be specified in advance                |
+| Estimates the strength and size of the relationships among features and outcomes | Does not handle missing data                           |
+|                                                                                  | Only numeric features                                  |
+|                                                                                  | Requires statistical knowledge to understand the model |
+
+
+---
+name: ML-kNearestNeighbors
+class: center, middle, inverse
+# k-Nearest Neighbors
+
+---
+class: center, middle, inverse
+
+.quotation[ k-Nearest Neighbor: a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression.]
+.quotation-source[
+Source: http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm]
+
+---
+class: center, middle
+
+<img height="500px" src="/bosatsu/data/images/ml-overview/KnnClassification.svg"/>
+
+.footnote[http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#/media/File:KnnClassification.svg]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/Data3Classes.png"/>
+
+.footnote[http://commons.wikimedia.org/wiki/File:Data3classes.png]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/Map1NN.png"/>
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map1NN.png]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/Map5NN.png"/>
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map5NN.png]
+
+---
+class: center, middle
+| Pros                                             | Cons                             |
+|--------------------------------------------------|----------------------------------|
+| Simple and effective                             | Does not produce a model         |
+| Makes no assumptions about the data distribution | Efficacy affected by choice of k |
+| Fast training phase                              | Slow classification phase        |
+
+---
+name: ML-NaiveBayes
+class: center, middle, inverse
+# Naive Bayes
+
+--
+- Family of algorithms to produce probabilistic classifiers based on Bayes Theorem
+
+--
+- Requires relatively little training data
+
+--
+- Often used for text/document classification
+
+--
+- Assumes independence of the features
+
+---
+name: ML-Decision Trees
+class: center, middle, inverse
+# Decision Trees
+
+
+---
+name: ML-SupportVectorMachines
+class: center, middle, inverse
+# Support Vector Machines
+
 
 ---
 name: NLP-NeuralNetworks
