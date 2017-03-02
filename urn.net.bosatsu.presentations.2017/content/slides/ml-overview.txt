@@ -236,6 +236,16 @@ class: center, middle, inverse
 - Assumes independence of the features
 
 ---
+# Independent Events
+
+## `$$$$`
+
+--
+
+## `$$$$`
+
+
+---
 name: ML-Decision Trees
 class: center, middle, inverse
 # Decision Trees
