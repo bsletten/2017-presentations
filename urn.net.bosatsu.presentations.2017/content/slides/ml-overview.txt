@@ -223,6 +223,9 @@ name: ML-NaiveBayes
 class: center, middle, inverse
 # Naive Bayes
 
+---
+# Naive Bayes
+
 --
 - Family of algorithms to produce probabilistic classifiers based on Bayes Theorem
 
