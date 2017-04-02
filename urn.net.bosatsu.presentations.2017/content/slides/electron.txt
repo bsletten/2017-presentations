@@ -1,0 +1,622 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Electron : Cross-Platform Desktop Apps Meet the Web
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Basics
+
+- Desktop Integration
+
+- Packaging
+
+- Advanced
+]
+
+---
+name: Electron-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/electron/72544835.jpg">
+
+---
+# Electron
+
+--
+- Formerly Atom Shell
+
+--
+- Developed at GitHub as the basis of Atom Editor
+
+--
+- Cheng Zhao's history: [http://tinyurl.com/hov5eu2](http://tinyurl.com/hov5eu2)
+
+--
+- Combines Node.js and Chromium"
+
+--
+- HTML, CSS and JavaScript
+
+--
+- Support for HTML 5, WebGL, WebRTC, etc.
+
+---
+
+.center[
+<img src="/bosatsu/data/images/electron/npm.png">
+]
+
+.footnote[Developing an Electron Edge]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/electron/processes.png">
+
+---
+# Node Everywhere
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      window.onload = function() {
+        var fs = require('fs')
+        var p = document.createElement('p')
+        p.textContent = fs.readFileSync('foo.txt')
+        document.body.appendChild(p)
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Node, Node Everywhere</h1>
+  </body>
+</html>
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/electron/node-everywhere.png">
+
+---
+class: center, middle
+##[http://electron.atom.io/apps](http://electron.atom.io/apps)
+
+
+---
+name: Electron-Basics
+class: center, middle, inverse
+# Basics
+
+---
+# Hello, World!
+
+```bash
+> npm init
+```
+
+--
+```bash
+> npm install electron-prebuilt --save-dev
+```
+
+--
+### package.json
+
+```javascript
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "Hello, World! Program",
+  "main": "main.js",
+  "author": "You",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.3"
+  }
+}
+```
+
+---
+### index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, Electron World!</h1>
+  </body>
+</html>
+```
+
+--
+### main.js
+
+```javascript
+const {app, BrowserWindow} = require('electron');
+let mainWindow;
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({
+height: 600,
+      width: 800
+  });
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
+});
+```
+
+---
+```bash
+> electron .
+```
+
+--
+```bash
+> ./node_modules/.bin/electron .
+```
+
+--
+<img src="/bosatsu/data/images/electron/hello-world.png">
+
+---
+class: center, middle
+##[http://electron.atom.io/docs/api/browser-window/#class-browserwindow](http://electron.atom.io/docs/api/browser-window/#class-browserwindow)
+
+---
+# Frameless Window
+
+```javascript
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow({width: 800, height: 600, frame: false})
+win.show()
+```
+
+--
+# Hidden Titlebar (macOS Only)
+
+```javascript
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow({titleBarStyle: 'hidden'})
+win.show()
+```
+
+--
+# Transparent Window
+
+```javascript
+const {BrowserWindow} = require('electron')
+let win = new BrowserWindow({transparent: true, frame: false})
+win.show()
+```
+
+---
+# DevTools
+
+### main.js
+
+```javascript
+const {app, BrowserWindow} = require('electron');
+let mainWindow;
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({
+height: 600,
+      width: 800,
+    type: 'textured'
+});
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.openDevTools()
+});
+```
+
+---
+<img src="/bosatsu/data/images/electron/dev-tools.png">
+
+---
+# Preload
+
+### main.js
+
+```javascript
+// https://github.com/adam-lynch/developing-an-electron-edge
+
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
+var mainWindow = null;
+...
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({ width: 800, height: 600,
+    webPreferences: {
+    nodeIntegration: false,
+    preload: __dirname + '/preload.js' // this is our preload script
+}});
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
+});
+```
+
+---
+
+### preload.js
+
+```javascript
+// https://github.com/adam-lynch/developing-an-electron-edge
+window.ipcRenderer = require('electron').ipcRenderer;
+```
+
+--
+
+### index.html
+
+```html
+// https://github.com/adam-lynch/developing-an-electron-edge
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Different Processes</title>
+</head>
+<body>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
+```
+
+---
+
+### index.js
+
+```javascript
+// https://github.com/adam-lynch/developing-an-electron-edge
+window.ipcRenderer.on('pong', (event, arg) => {
+  document.write('<h1>' + arg + '</h1>');
+});
+window.ipcRenderer.send('ping', 'hello');
+```
+
+--
+
+### main.js
+
+```javascript
+// https://github.com/adam-lynch/developing-an-electron-edge
+...
+// listen for the "ping" event
+ipcMain.on('ping', function (event, arg) {
+  if (arg === 'hello') {
+    event.sender.send('pong', 'Hello, World!'); // send back a greeting
+  }
+}); ...
+```
+
+---
+<img src="/bosatsu/data/images/electron/preload.png">
+
+---
+
+# Remote
+### main.js
+
+```javascript
+const {app, BrowserWindow} = require('electron');
+let mainWindow;
+global.sharedObj = {myvar: "hellofrommainjs"};
+app.on('ready', function() {
+  mainWindow = new BrowserWindow({
+      height: 600,
+      width: 800
+  });
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
+});
+```
+
+--
+
+### index.html
+
+```html
+<h1>This demos how to get a myvar from main.js to index.html</h1>
+<script>
+const {remote} = require('electron');
+document.write('<p>myvar: ' + remote.getGlobal('sharedObj').myvar
+  + '</p>');
+</script>
+```
+
+---
+<img src="/bosatsu/data/images/electron/sharedobj.png">
+
+---
+class: center, middle
+##[https://www.youtube.com/watch?v=K-H2amwQ_pU](https://www.youtube.com/watch?v=K-H2amwQ_pU)
+
+
+---
+
+# Multiple Windows
+### package.json
+
+```javascript
+{
+  "name": "multiple-window",
+  "version": "1.0.0",
+  "description": "An example of multiple windows",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "You",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^1.3.8"
+  }
+}
+```
+
+---
+
+### app.js
+```javascript
+const {app, BrowserWindow, ipcMain} = require('electron');
+let mainWindow;
+app.on('ready', function() {
+  mainWindow = new BrowserWindow( {
+width: 800,
+    height: 600
+  })
+  mainWindow.loadURL('file://' + __dirname + '/main.html')
+  ...
+})
+```
+
+--
+### main.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h1>Main Window</h1>
+    <script>require('./main.js')</script>
+  </body>
+</html>
+```
+
+---
+
+### main.js
+
+```javascript
+const {Menu} = require('electron').remote
+const {ipcRenderer} = require('electron')
+var menu = Menu.buildFromTemplate([
+  {
+    label: 'Electron',
+    submenu: [
+      {
+        label: 'Prefs',
+        click: function () {
+          ipcRenderer.send('toggle-prefs')
+        }
+} ]
+} ])
+Menu.setApplicationMenu(menu)
+```
+
+---
+
+### app.js
+
+```javascript
+...
+  var prefsWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: false
+  })
+  prefsWindow.loadURL('file://' + __dirname + '/prefs.html')
+  ipcMain.on('toggle-prefs', function(event, arg) {
+    if(prefsWindow.isVisible())
+      prefsWindow.hide()
+    else
+      prefsWindow.show()
+  })
+})
+```
+
+---
+
+### prefs.html
+
+```javascript
+<!DOCTYPE html>
+...
+  <body>
+    <h1>Prefs Window</h1>
+    <script>
+       const {ipcRenderer} = require('electron')
+       var button = document.createElement('button')
+       button.textContent = 'Hide'
+       button.addEventListener('click', function() {
+         ipcRenderer.send('toggle-prefs')
+       })
+       document.body.appendChild(button)
+    </script>
+  </body>
+</html>
+```
+
+
+---
+name: Electron-DesktopIntegration
+class: center, middle, inverse
+# Desktop Integration
+
+---
+class: center, middle
+##[ http://electron.atom.io/docs/tutorial/desktop-environment-integration/]( http://electron.atom.io/docs/tutorial/desktop-environment-integration/)
+
+
+---
+name: Electron-Packaging
+class: center, middle, inverse
+# Packaging
+
+---
+class: center, middle
+##[https://www.youtube.com/watch?v=dz5SnmBzBXc](https://www.youtube.com/watch?v=dz5SnmBzBXc)
+
+---
+# Packaging Electron Apps
+
+--
+```bash
+> npm install electron-packager --save-dev
+```
+
+--
+```javascript
+{
+  "name": "browser-window",
+  "version": "1.0.0",
+  "description": "Simple Browser Window",
+  "main": "main.js",
+  "author": "You",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3"
+  }
+}
+```
+
+---
+```bash
+> electron-packager . MyApp --platform=darwin --arch=x64 --version=1.4.3
+Packaging app for platform darwin x64 using electron v1.4.3
+Wrote new app to /Users/brian/src/browser-window/MyApp-darwin-x64
+```
+
+--
+
+```javascript
+> open MyApp-darwin-x64/
+```
+
+--
+
+<img src="/bosatsu/data/images/electron/packaged.png">
+
+---
+```javascript
+{
+  "name": "browser-window",
+  "version": "1.0.0",
+  "description": "Simple Browser Window",
+  "main": "main.js",
+  "scripts": {
+    "start" : "electron .",
+    "build" : "electron-packager . MyApp --platform=darwin --arch=x64 --
+version=1.4.3 &&
+    cp d20.icns MyApp-darwin-x64/MyApp.app/Contents/Resources/electron.icns"
+  },
+  "author": "You",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3"
+  }
+}
+```
+
+--
+```bash
+> npm run build
+Packaging app for platform darwin x64 using electron v1.4.3
+Wrote new app to /Users/brian/src/browser-window/MyApp-darwin-x64
+```
+
+--
+```bash
+> open MyApp-darwin-x64/
+```
+
+---
+
+<img src="/bosatsu/data/images/electron/our-icon.png">
+
+---
+
+<img src="/bosatsu/data/images/electron/app-contents.png">
+
+---
+
+```javascript
+{
+  "name": "browser-window",
+...
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . MyApp --platform=darwin --arch=x64 --
+version=1.4.3 && cp d20.icns MyApp-darwin-
+x64/MyApp.app/Contents/Resources/electron.icns",
+    "package": "asar pack MyApp-darwin-x64/MyApp.app/Contents/Resources/app MyApp-
+darwin-x64/MyApp.app/Contents/Resources/app.asar"
+}, ...
+  "devDependencies": {
+    "asar": "^0.12.3",
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3"
+} }
+```
+
+--
+
+```bash
+> npm run package
+browser-window@1.0.0 package /Users/brian/src/browser-window
+asar pack MyApp-darwin-x64/MyApp.app/Contents/Resources/app MyApp-
+darwin-x64/MyApp.app/Contents/Resources/app.asar
+```
+
+--
+
+```bash
+> rm -rf MyApp-darwin-x64/MyApp.app/Contents/Resources/app/
+```
+
+---
+name: Electron-Advanced
+class: center, middle, inverse
+# Advanced
+
+---
+class: center, middle
+##[https://github.com/hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps)
+
+
+---
+class: center, middle
+##[https://github.com/sindresorhus/awesome-electron ](https://github.com/sindresorhus/awesome-electron )
+
+
+
+$a{res:/bosatsu/data/snippets/questions.txt}
+

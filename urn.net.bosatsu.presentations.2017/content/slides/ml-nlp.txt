@@ -12,8 +12,11 @@ layout: false
 ]
 .right-column[
 - Introduction
+
 - Vector Space Model
+
 - Word2Vec
+
 - Naieve Bayes
 ]
 
@@ -434,10 +437,15 @@ class: center, middle, inverse
 # Word2Vec
 
 ---
-# Continuous Bag of Words
+class: center, middle
+
+### http://mccormickml.com/assets/word2vec/Alex_Minnaar_Word2Vec_Tutorial_Part_II_The_Continuous_Bag-of-Words_Model.pdf
 
 ---
-# SkipGram
+class: center, middle
+
+### https://deeplearning4j.org/word2vec.html
+
 
 ---
 name: MLNLP-NaiveBayes

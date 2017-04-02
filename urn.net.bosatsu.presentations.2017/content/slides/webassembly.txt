@@ -12,8 +12,11 @@ layout: false
 ]
 .right-column[
 - Introduction
+
 - Emscripten
+
 - WebAssembly
+
 - Future
 ]
 
@@ -21,6 +24,91 @@ layout: false
 name: WebAssembly-Introduction
 class: center, middle, inverse
 # Introduction
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-1.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-2.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-3.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-4.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-5.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-6.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+# Sample code
+
+```javascript
+function arraySum(arr) {
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+}
+```
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-7.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-8.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-9.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+
+---
+class: center, middle
+##[https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html](https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html)
 
 ---
 class: center, middle, inverse
@@ -31,7 +119,16 @@ Source: [http://webassembly.org](http://webassembly.org)]
 
 ---
 class: center, middle
-##[http://webassembly.org/demo/AngryBots/](http://webassembly.org/demo/AngryBots/)
+##[Qt Wiggly](http://vps2.etotheipiplusone.com:30176/redmine/emscripten-qt-examples/wiggly.html)
+
+---
+class: center, middle
+##[Qt Animated Tiles](http://vps2.etotheipiplusone.com:30176/redmine/emscripten-qt-examples/animatedtiles.html)
+
+
+---
+class: center, middle
+##[http://webassembly.org/demo/](http://webassembly.org/demo/)
 
 ---
 name: WebAssembly-Emscripten
@@ -40,6 +137,8 @@ class: center, middle, inverse
 
 ---
 #What is it?
+
+--
 - Open Source LLVM to Javascript compiler
 
 --
@@ -50,6 +149,25 @@ class: center, middle, inverse
 
 --
 - Compile C/C++-based runtimes into Javascript (Python/Lua)
+
+---
+#Why is it?
+
+--
+- JavaScript engines are fast and getting faster
+
+--
+- People are familiar with other tools and languages
+
+--
+- JavaScript kind of sucks
+
+--
+- Code is compiled into LLVM bitcode which unlocks further optimizations
+
+---
+class: center, middle
+##[Compiling other languages to JS](https://github.com/jashkenas/coffeescript/wiki/List-of-languages-that-compile-to-JS)
 
 ---
 class: center, middle, inverse
@@ -84,10 +202,16 @@ $ ./emcc hello.c
 
 --
 
+### [a.out.js](http://localhost:8080/bosatsu/data/public/webassembly/a.out.js)
+
+--
+
 ```bash
 $ node a.out.js
 hello, world!
 ```
+
+
 ---
 class: center
 
@@ -195,6 +319,54 @@ class: center, middle, inverse
 
 - Also supports non-web embeddings
 
+---
+# Binary Format
+
+--
+- Gzipped source code compresses very nicely
+
+--
+- Experiments demonstrated a 20-30% size reduction of a binary format vs asm.js code
+
+--
+- Parse times of names is slower than binary indices
+
+--
+- Further optimizations are possible
+
+---
+# Binary Layering
+
+--
+- Layer 0: Simple binary encoding of bytecode and data structures
+
+--
+- Layer 1: Structural compression layer .red[*]
+
+--
+- Layer 2: General compression .red[*]
+
+--
+
+.footnote[.red[*] Future feature]
+
+---
+class: center, middle
+##[Text format](http://webassembly.org/docs/text-format/)
+
+---
+class: center, middle
+
+## [http://webassembly.org/docs/jit-library/](http://webassembly.org/docs/jit-library/)
+
+
+---
+class: center, middle
+##[http://webassembly.org/docs/mvp/](http://webassembly.org/docs/mvp/)
+
+---
+class: center, middle
+##[http://webassembly.org/docs/use-cases/](http://webassembly.org/docs/use-cases/)
 
 ---
 #Building Emscripten w/ WebAssembly Support
@@ -281,5 +453,16 @@ class: center
 name: WebAssembly-Future
 class: center, middle, inverse
 # Future
+
+---
+class: center, middle
+
+### https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/
+
+---
+class: center, middle
+
+## [http://webassembly.org/docs/gc/](http://webassembly.org/docs/gc/)
+
 
 $a{res:/bosatsu/data/snippets/questions.txt}

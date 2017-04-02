@@ -68,11 +68,11 @@
          border-collapse: collapse;
       }
 
-      /* Slide-specific styling */
+      /* Slide-specific styling 
       #slide-inverse .footnote {
         bottom: 12px;
         left: 20px;
-      }
+      } */
       #slide-how .slides {
         font-size: 0.9em;
         position: absolute;
@@ -152,6 +152,11 @@
       .just-right-column {
         width: 75%;
         float: right;
+      }
+      
+      .contact {
+         color : white;
+         font-family: 'Ubuntu Mono';
       }
 
 /*      .remark-slide-content:after {

@@ -1,0 +1,158 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Microservices
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- REST : Identity
+
+- REST : Interaction
+
+- REST : Representation
+
+- Microservices
+
+- Designing Microservices
+
+- Operational Microservices
+
+- Patterns
+]
+
+---
+name: US-Microservices-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center, middle, inverse
+
+.quotation[Approximately half of the talks at API conferences start with a variation of this slide: 'we’re doing great, because there are more than 12,000 APIs...']
+.quotation-source[
+Source: Ruben Verborgh
+http://ruben.verborgh.org/blog/2015/02/25/fostering-intelligence-by-enabling-it]
+
+---
+class: center, middle, inverse
+
+.quotation[Personally, I never understood how overgrowth can be a good thing: 12,000 APIs means 12,000 different ways of engaging in machine-to-machine interaction.]
+.quotation-source[
+Source: Ruben Verborgh
+http://ruben.verborgh.org/blog/2015/02/25/fostering-intelligence-by-enabling-it]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rest/proposal.gif">
+
+---
+class: center, middle
+
+# [http://internet-map.net](http://internet-map.net)
+
+---
+class: center
+# Client Server
+
+.middle[<img src="/bosatsu/data/images/rest/architecture-1.png">]
+
+---
+class: center
+
+# Stateless Client Server
+
+<img src="/bosatsu/data/images/rest/architecture-2.png">
+
+---
+class: center
+
+# Stateless Client Server w/ Cache and Uniform Interface
+
+<img src="/bosatsu/data/images/rest/architecture-3.png">
+
+---
+class: center
+
+# Layered Stateless Client Server w/ Cache and Uniform Interface
+
+<img src="/bosatsu/data/images/rest/architecture-4.png">
+
+---
+class: center
+
+# REST on a Slide
+
+<img src="/bosatsu/data/images/rest/architecture-5.png">
+
+.footnote[http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm]
+
+---
+# Modularity
+
+--
+- Reduce complexity via decomposition
+
+--
+- Loose coupling for independence
+
+--
+- High cohesion within the module
+
+--
+- Visible properties via interface
+
+--
+- Information hiding and encapsulation
+
+--
+- Increase modifiability
+
+
+
+---
+name: US-Microservices-Identity
+class: center, middle, inverse
+# REST : Identity
+
+---
+name: US-Microservices-Interaction
+class: center, middle, inverse
+# REST : Interaction
+
+---
+name: US-Microservices-Representation
+class: center, middle, inverse
+# REST : Representation
+
+---
+name: US-Microservices-Microservices
+class: center, middle, inverse
+# Microservices
+
+---
+name: US-Microservices-Designing
+class: center, middle, inverse
+# Designing Microservices
+
+---
+name: US-Microservices-Operational
+class: center, middle, inverse
+# Operational Microservices
+
+---
+name: US-Microservices-Patterns
+class: center, middle, inverse
+# Patterns
+
+
+$a{res:/bosatsu/data/snippets/questions.txt}

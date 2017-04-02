@@ -12,8 +12,13 @@ layout: false
 ]
 .right-column[
 - Introduction
+
 - TensorFlow Basics
-- Distributed TensorFlow
+
+- 'Try TensorFlow'
+
+- Fun with TensorFlow
+
 ]
 
 ---
@@ -135,29 +140,55 @@ Type "help", "copyright", "credits" or "license" for more information.
  <tf.Tensor 'Const_1:0' shape=() dtype=float32>)
 ```
 
---
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
 ```python
 >>> sess = tf.Session()
-2017-02-26 19:08:13.137639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] \
-Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, \
+2017-03-02 19:16:33.627295: I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] 
+Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.01GiB
+2017-03-02 19:16:33.627417: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x29d89f0
+2017-03-02 19:16:33.749592: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-03-02 19:16:33.749891: I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] 
+Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.00GiB
+2017-03-02 19:16:33.752272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 1 
+2017-03-02 19:16:33.752282: I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y Y 
+2017-03-02 19:16:33.752285: I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 1:   Y Y 
+2017-03-02 19:16:33.752675: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] 
+Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, 
 pci bus id: 0000:01:00.0)
-2017-02-26 19:08:13.137663: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] \
-Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, \
+2017-03-02 19:16:33.752682: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] 
+Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, 
 pci bus id: 0000:02:00.0)
 ```
 
---
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
 ```python
 >>> print(sess.run([node1, node2]))
 [3.0, 4.0]
 ```
 
----
+--
 ```python
 >>> node3 = tf.add(node1, node2)
 >>> print("node3: ", node3)
 ('node3: ', <tf.Tensor 'Add:0' shape=() dtype=float32>)
 ```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_add.png">
 
 --
 ```python
@@ -171,14 +202,358 @@ pci bus id: 0000:02:00.0)
 ('sess.run(node1 + node2): ', 7.0)
 ```
 
+
+---
 .footnote[https://www.tensorflow.org/get_started/get_started]
 
+```python
+>>> a = tf.placeholder(tf.float32)
+>>> b = tf.placeholder(tf.float32)
+>>> adder_node = a + b
+```
 
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_adder.png">
+
+--
+```python
+>>> print(sess.run(adder_node, {a: 3, b:4.5}))
+7.5
+>>> print(sess.run(adder_node, {a: [1,3], b: [2, 4]}))
+[ 3.  7.]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> add_and_triple = adder_node * 3.
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_triple.png">
+
+--
+```python
+>>> print(sess.run(add_and_triple, {a: 3, b:4.5}))
+22.5
+```
+
+---
+#TensorBoard!
+
+```python
+>>> import tensorflow as tf
+>>> a = tf.constant(5, name="input_a")
+>>> b = tf.constant(3, name="input_b")
+>>> c = tf.multiply(a, b, name="multiply_c")
+>>> d = tf.add(a,b, name="add_d")
+>>> e = tf.add(c,d, name="add_e")
+>>> sess = tf.Session()
+>>> output = sess.run(e)
+>>> writer = tf.train.SummaryWriter('./my_graph', sess.graph)
+>>> writer.close()
+>>> sess.close()
+```
+
+--
+```bash
+> tensorboard --logdir=my_graph/
+Starting TensorBoard 39 on port 6006
+(You can navigate to http://127.0.0.1:6006)
+```
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/tensorboard.png">
+
+---
+# TensorFlow Data Types
+
+| Type       | Description           | Type         | Description                                                |
+|------------|-----------------------|--------------|------------------------------------------------------------|
+| tf.float32 | 32-bit floating point | tf.uint8     | 8-bit unsigned integer                                     |
+| tf.float64 | 64-bit floating point | tf.string    | String                                                     |
+| tf.int8    | 8-bit signed integer  | tf.bool      | Boolean                                                    |
+| tf.int16   | 16-bit signed integer | tf.complex64 | 32-bit floating point real 32-bit floating point imaginary |
+| tf.int32   | 32-bit signed integer | tf.qint8     | 8-bit signed integer                                       |
+| tf.int64   | 64-bit signed integer | tf.qint32    | 32-bit signed integer                                      |
+---
+```python
+>>> a = tf.placeholder(tf.int16)
+>>> b = tf.placeholder(tf.int16)
+>>> add = tf.add(a, b)
+>>> mul = tf.multiply(a, b)
+>>> sess.run(add, feed_dict={a: 2, b: 3})
+5
+>>> sess.run(mul, feed_dict={a: 2, b: 3})
+6
+```
+
+--
+```python
+>>> matrix1 = tf.constant([[3., 3.]])
+>>> matrix2 = tf.constant([[2.],[2.]])
+>>> product = tf.matmul(matrix1, matrix2)
+>>> result = sess.run(product)
+>>> print(result)
+[[ 12.]]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> W = tf.Variable([.3], tf.float32)
+>>> b = tf.Variable([-.3], tf.float32)
+>>> x = tf.placeholder(tf.float32)
+>>> linear_model = W * x + b
+```
+
+--
+```python
+>>> init = tf.global_variables_initializer()
+>>> sess.run(init)
+```
+
+--
+```python
+>>> print(sess.run(linear_model, {x:[1,2,3,4]}))
+[ 0.          0.30000001  0.60000002  0.90000004]
+```
+
+--
+```python
+>>> y = tf.placeholder(tf.float32)
+>>> squared_deltas = tf.square(linear_model - y)
+>>> loss = tf.reduce_sum(squared_deltas)
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+23.66
+```
+
+--
+```python
+>>> fixW = tf.assign(W, [-1.])
+>>> fixb = tf.assign(b, [1.])
+>>> sess.run([fixW, fixb])
+[array([-1.], dtype=float32), array([ 1.], dtype=float32)]
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+0.0
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> optimizer = tf.train.GradientDescentOptimizer(0.01)
+>>> train = optimizer.minimize(loss)
+```
+
+--
+```python
+>>> sess.run(init) # reset values to incorrect defaults.
+>>> for i in range(1000):
+...   sess.run(train, {x:[1,2,3,4], y:[0,-1,-2,-3]})
+... 
+
+>>> print(sess.run([W, b]))
+[array([-0.9999969], dtype=float32), array([ 0.99999082], dtype=float32)]
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/getting_started_final.png">
+
+---
+name: TensorFlow-Walkthrough
+class: center, middle, inverse
+# 'Try TensorFlow'
+
+---
+class: center, middle
+##[http://bcomposes.com/2015/11/26/simple-end-to-end-tensorflow-examples/](http://bcomposes.com/2015/11/26/simple-end-to-end-tensorflow-examples/)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/linear_data_train.jpg">
 
 
 ---
-name: TensorFlow-Distributed
+```python
+$ python softmax.py --train simdata/linear_data_train.csv 
+--test simdata/linear_data_eval.csv --num_epochs 5 --verbose True
+Initialized!
+
+Training.
+0 1 2 3 4 5 6 7 8 9
+10 11 12 13 14 15 16 17 18 19
+20 21 22 23 24 25 26 27 28 29
+30 31 32 33 34 35 36 37 38 39
+40 41 42 43 44 45 46 47 48 49
+
+Weight matrix.
+[[-1.87038445  1.87038457]
+ [-2.23716712  2.23716712]]
+
+Bias vector.
+[ 1.57296884 -1.57296848]
+
+Applying model to first test instance.
+Point = [[ 0.14756215  0.24351828]]
+Wx+b =  [[ 0.7521798  -0.75217938]]
+softmax(Wx+b) =  [[ 0.81822371  0.18177626]]
+
+Accuracy: 1.0
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/linear_softmax.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/moon_data_train.jpg">
+
+---
+```python
+$ python softmax.py --train simdata/moon_data_train.csv 
+--test simdata/moon_data_eval.csv --num_epochs 100
+Accuracy: 0.861
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/moon_softmax.png">
+
+---
+```python
+$ python hidden.py --train simdata/moon_data_train.csv 
+--test simdata/moon_data_eval.csv --num_epochs 100 --num_hidden 5
+Accuracy: 0.971
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/moon_hidden.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/saturn_data_train.jpg">
+
+---
+```python
+$ python softmax.py --train simdata/saturn_data_train.csv 
+--test simdata/saturn_data_eval.csv --num_epochs 100
+Accuracy: 0.43
+
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/saturn_softmax.png">
+
+---
+```python
+$ python hidden.py --train simdata/saturn_data_train.csv 
+--test simdata/saturn_data_eval.csv --num_epochs 100 --num_hidden 15
+Accuracy: 1.0
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/saturn_hidden.png">
+
+---
+name: TensorFlow-Fun
 class: center, middle, inverse
-# Distributed TensorFlow
+# Fun With TensorFlow
+
+---
+class: center, middle
+##[https://www.tensorflow.org/tutorials/image_recognition](https://www.tensorflow.org/tutorials/image_recognition)
+
+---
+```bash
+> git clone https://github.com/tensorflow/models.git tensorflow-models
+> cd tensorflow-models/tutorials/image/imagenet
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/cropped_panda.jpg">
+
+--
+```bash
+> python classify_image.py 
+>> Downloading inception-2015-12-05.tgz 100.0%
+Successfully downloaded inception-2015-12-05.tgz 88931400 bytes.
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca (score = 0.88493)
+indri, indris, Indri indri, Indri brevicaudatus (score = 0.00878)
+lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens (score = 0.00317)
+custard apple (score = 0.00149)
+earthstar (score = 0.00127)
+
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/712033765.jpg">
+
+--
+```bash
+> python classify_image.py --image_file 712033765.jpg 
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+flamingo (score = 0.84379)
+spoonbill (score = 0.00857)
+black swan, Cygnus atratus (score = 0.00188)
+goose (score = 0.00135)
+black stork, Ciconia nigra (score = 0.00132)
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/pug.jpeg">
+
+--
+```bash
+> python classify_image.py --image_file pug.jpeg 
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+pug, pug-dog (score = 0.71793)
+Brabancon griffon (score = 0.22177)
+French bulldog (score = 0.01942)
+Pekinese, Pekingese, Peke (score = 0.00133)
+Boston bull, Boston terrier (score = 0.00065)
+```
+
+---
+<img style="height: 450px;" src="/bosatsu/data/images/tensorflow/beggars.jpg">
+
+--
+```bash
+> python classify_image.py --image_file Beggars.jpg 
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Norwich terrier (score = 0.86040)
+Norfolk terrier (score = 0.09727)
+Australian terrier (score = 0.01304)
+Lakeland terrier (score = 0.00186)
+cairn, cairn terrier (score = 0.00178)
+```
+
+---
+# Sorting Cucumbers
+
+.center[
+<img src="/bosatsu/data/images/tensorflow/cucumber_classification.jpg">]
+
+.footnote[http://workpiles.com/2016/06/ccb9-prototype2-recognition_system/]
+
+---
+class: center, middle
+##https://youtu.be/oZikw5k_2FM?t=55
+
 
 $a{res:/bosatsu/data/snippets/questions.txt}

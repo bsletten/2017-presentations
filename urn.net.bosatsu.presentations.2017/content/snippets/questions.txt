@@ -7,10 +7,11 @@ class: middle
 ]
 .right-column[
 
-<p><span><i class="fa fa-envelope white"> </i></span> brian@bosatsu.net</p>
-<p><span><i class="fa fa-twitter white"> </i></span> @bsletten</p>
-<p><span><i class="fa fa-google-plus white"> </i></span> http://tinyurl.com/bjs-gplus</p>
-<p><span><i class="fa fa-github white"> </i></span> bsletten</p>
+# Questions
+
+<p class="contact fa-2x"><span><i class="fa fa-envelope white"> </i></span> brian@bosatsu.net</p>
+<p class="contact fa-2x"><span><i class="fa fa-twitter white"> </i></span> @bsletten</p>
+<p class="contact fa-2x"><span ><i class="fa fa-github white"> </i></span> bsletten</p>
 ]
 
 
