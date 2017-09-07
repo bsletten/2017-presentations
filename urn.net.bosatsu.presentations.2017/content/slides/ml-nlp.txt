@@ -26,6 +26,12 @@ class: center, middle, inverse
 # Introduction
 
 ---
+background-image: url(/bosatsu/data/images/ml-nlp/philips.jpg)
+layout: false
+class: middle
+
+
+---
 # Natural Language Processing (NLP) Goals
 - Search and Retrieval
 
@@ -498,8 +504,8 @@ class: center, middle
 ```R
 > table(sms_raw$type)
 
- ham spam 
-4812  747 
+ ham spam
+4812  747
 ```
 
 ---
@@ -576,9 +582,9 @@ $`2`
 # remove numbers
 > sms_corpus_clean <- tm_map(sms_corpus_clean, removeNumbers)
 # remove stop words
-> sms_corpus_clean <- tm_map(sms_corpus_clean, removeWords, stopwords()) 
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removeWords, stopwords())
 # remove punctuation
-> sms_corpus_clean <- tm_map(sms_corpus_clean, removePunctuation) 
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removePunctuation)
 ```
 
 ---
@@ -668,13 +674,13 @@ sms_test_labels  <- sms_raw[4170:5559, ]$type
 # check that the proportion of spam is similar
 > prop.table(table(sms_train_labels))
 sms_train_labels
-      ham      spam 
-0.8647158 0.1352842 
+      ham      spam
+0.8647158 0.1352842
 
 > prop.table(table(sms_test_labels))
 sms_test_labels
-      ham      spam 
-0.8683453 0.1316547 
+      ham      spam
+0.8683453 0.1316547
 ```
 
 ---
@@ -784,28 +790,28 @@ Weighting          : term frequency (tf)
 +            prop.chisq = FALSE, prop.t = FALSE, prop.r = FALSE,
 +            dnn = c('predicted', 'actual'))
 
- 
+
    Cell Contents
 |-------------------------|
 |                       N |
 |           N / Col Total |
 |-------------------------|
 
- 
-Total Observations in Table:  1390 
 
- 
-             | actual 
-   predicted |       ham |      spam | Row Total | 
+Total Observations in Table:  1390
+
+
+             | actual
+   predicted |       ham |      spam | Row Total |
 -------------|-----------|-----------|-----------|
-         ham |      1201 |        31 |      1232 | 
-             |     0.995 |     0.169 |           | 
+         ham |      1201 |        31 |      1232 |
+             |     0.995 |     0.169 |           |
 -------------|-----------|-----------|-----------|
-        spam |         6 |       152 |       158 | 
-             |     0.005 |     0.831 |           | 
+        spam |         6 |       152 |       158 |
+             |     0.005 |     0.831 |           |
 -------------|-----------|-----------|-----------|
-Column Total |      1207 |       183 |      1390 | 
-             |     0.868 |     0.132 |           | 
+Column Total |      1207 |       183 |      1390 |
+             |     0.868 |     0.132 |           |
 -------------|-----------|-----------|-----------|
 ```
 

@@ -1,0 +1,413 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Machine Learning: Natural Language Processing
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Vector Space Model
+
+- Word2Vec
+]
+
+---
+name: MLNLP-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+background-image: url(/bosatsu/data/images/ml-nlp/philips.jpg)
+layout: false
+class: middle
+
+---
+# Natural Language Processing (NLP) Goals
+- Search and Retrieval
+
+--
+- Entity and Relationship Extraction
+
+--
+- Linguistic structure
+
+--
+- Machine Translation
+
+--
+- Generative Content
+
+--
+- Question Answering
+
+---
+# NLP History
+- Early successes in the 1950s in automatic translation
+
+--
+- [SHRDLU](https://en.wikipedia.org/wiki/SHRDLU#Excerpt)
+
+--
+- ELIZA
+
+--
+- Shift to statistical models in the 1980s
+
+--
+- Latent Semantic Analysis
+
+--
+- Machine Learning
+
+---
+name: MLNLP-VSM
+class: center, middle, inverse
+# Vector Space Model
+
+---
+# Bag of Words
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[ "John", "likes", "to", "watch", "movies",
+    "also", "football", "games", "Mary", "too" ]
+```
+
+--
+```javascript
+(1) [1, 2, 1, 1, 2, 0, 0, 0, 1, 1]
+(2) [1, 1, 1, 1, 0, 1, 1, 1, 0, 0]
+```
+
+---
+# N-gram model
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[ "John likes", "likes to", "to watch",
+  "watch movies", "Mary likes",
+  "likes movies", "movies too" ]
+```
+
+---
+# Vector Space Model
+
+## `$$d_j = (w_{1,j},w_{2,j},...w_{t,j})$$`
+
+--
+
+## `$$q = (w_{1,q},w_{2,q},...w_{t,q})$$`
+
+---
+# Euclidean Dot Product
+
+### `$$a \cdot b = \lVert a \rVert \Vert b \rVert  cos \theta$$`
+
+
+--
+
+### `$$cos \theta = \frac{A \cdot B}{\lVert A \rVert \Vert B \rVert}$$`
+
+--
+
+### `$$ = \frac{\sum_{i=1}^n A_iB_i}{ \sqrt{\sum_{i=1}^n A_i^2} \sqrt{\sum_{i=1}^nB_i^2}}$$`
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-nlp/Vector_space_model.jpg">
+
+.footnote[By <a href="//commons.wikimedia.org/w/index.php?title=User:Riclas&amp;action=edit&amp;redlink=1" class="new" title="User:Riclas (page does not exist)">Riclas</a> - <span class="int-own-work" lang="en" xml:lang="en">Own work</span>, <a href="http://creativecommons.org/licenses/by/3.0" title="Creative Commons Attribution 3.0">CC BY 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=9076846">Link</a>]
+
+---
+#Cosine Similarity
+
+### `$$ cos \theta = \frac{d_2 \cdot q}{\lVert d_2 \rVert \lVert q \rVert}$$`
+
+--
+
+### `$$ cos \theta = 1 \implies Identical$$`
+
+--
+
+### `$$ cos \theta = 0 \implies Orthogonal$$`
+
+---
+# Term Frequency
+### `$$tf(t,d) = 1$$`
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+--
+### `$$tf(t,d) = f_{t,d}$$`
+
+--
+### `$$tf(t,d) = 0.5 + 0.5 \cdot \frac{ f_{t,d} }{ max \{  f_{t',d} : t' \in d \} }$$`
+
+---
+# Inverse Document Frequency
+
+### `$$idf(t,D) = log \frac{N}{\lvert \{  d \in D : t \in d \} \rvert}$$`
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+---
+# Term Frequency-Inverse Document Frequency
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+### `$$tfidf(t, d, D) = tf(t,d) \cdot idf(t, D)$$`
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+--
+
+.just-right-column[
+###Term Frequency
+`$$tf("this",d_1) = \frac{1}{5} = 0.2$$`
+`$$tf("this",d_2) = \frac{1}{7} \approx 0.14$$`
+]
+
+--
+
+.just-right-column[
+###Inverse Document Frequency
+`$$idf("this",D) = log \left(\frac{2}{2}\right) = 0$$`
+]
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+.just-right-column[
+###Term Frequency-Inverse Document Frequency
+`$$tfidf("this",d_1) = 0.2 \times 0 = 0$$`
+`$$tfidf("this",d_2) = 0.4 \times 0 = 0$$`
+
+]
+
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+--
+
+.just-right-column[
+###Term Frequency
+`$$tf("example",d_1) = \frac{0}{5} = 0$$`
+`$$tf("example",d_2) = \frac{3}{7} \approx 0.429$$`
+]
+
+--
+
+.just-right-column[
+###Inverse Document Frequency
+`$$idf("example",D) = log \left(\frac{2}{1}\right) = 0.301$$`
+]
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+.just-right-column[
+###Term Frequency-Inverse Document Frequency
+`$$tfidf("example",d_1) \\ = 0 \times 0.301 = 0$$`
+`$$tfidf("example",d_2) \\ = 0.429 \times 0.301 = 0.13$$`
+
+]
+
+---
+# Lonely Words
+- Many NLP systems treated words as isolated indices
+
+--
+- Words are connected
+
+--
+- Similar words are used similarly
+
+---
+# Types of Similarity
+- Topical similarity based upon textual regions
+
+--
+- Paradigmatic similarity based upon co-occurrence
+
+--
+- Syntagmatic similarity by examining the vectors
+
+
+
+---
+# Advantages of VSM
+.footnote[https://en.wikipedia.org/wiki/Vector_space_model]
+
+- Simple models using linear algebra
+
+--
+- Non-binary weights
+
+--
+- Continuous ranges of similarity between documents and queries
+
+--
+- Ranking possibilities based on relevance
+
+--
+- Partial matching
+
+---
+# Limitations of VSM
+.footnote[https://en.wikipedia.org/wiki/Vector_space_model]
+
+- Long documents are poorly represented
+
+--
+- Search keywords must generally be exact
+
+--
+- Documents with similar contexts but different vocabularies yield missing results (synonymy)
+
+--
+- Words with different meaning can yield bad results (polysemy)
+
+--
+- Term ordering is lost
+
+---
+# Distributional Semantics
+- __.underline[Distributional hypothesis]__ is based upon the semantic theory of language.red[*].
+
+.footnote[.red[*]https://en.wikipedia.org/wiki/Distributional_semantics]
+
+
+--
+- "i.e. words that are used and occur in the same contexts tend to purport similar meanings" ([Harris, Z.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFHarris1954))
+
+--
+- "a word is characterized by the company it keeps" ([Firth, John R.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFFirth1957))
+
+--
+- Uses linear algebra for computational and representational purposes
+
+--
+- High-dimensional vectors are built from a corpus
+
+---
+# t-SNE Visualizations of Word Embeddings
+
+<a href="http://metaoptimize.s3.amazonaws.com/cw-embeddings-ACL2010/embeddings-mostcommon.EMBEDDING_SIZE=50.png">http://tinyurl.com/hpf24ox</a>
+
+
+---
+name: MLNLP-Word2Vec
+class: center, middle, inverse
+# Word2Vec
+
+---
+class: center, middle
+
+### [DeepLearning4J Word2Vec Example](https://github.com/deeplearning4j/dl4j-examples/blob/master/dl4j-examples/src/main/java/org/deeplearning4j/examples/nlp/word2vec/Word2VecRawTextExample.java)
+
+---
+class: center, middle
+
+### https://deeplearning4j.org/word2vec.html
+
+$a{res:/bosatsu/data/snippets/questions.txt}

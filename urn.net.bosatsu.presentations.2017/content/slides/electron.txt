@@ -45,7 +45,7 @@ class: center, middle
 - Cheng Zhao's history: [http://tinyurl.com/hov5eu2](http://tinyurl.com/hov5eu2)
 
 --
-- Combines Node.js and Chromium"
+- Combines Node.js and Chromium
 
 --
 - HTML, CSS and JavaScript
@@ -341,6 +341,26 @@ document.write('<p>myvar: ' + remote.getGlobal('sharedObj').myvar
 <img src="/bosatsu/data/images/electron/sharedobj.png">
 
 ---
+
+# Remote
+### main.js
+
+```javascript
+export function getConfig() {
+    return readConfigurationSync();
+}
+```
+
+--
+
+### index.html
+
+```html
+const { getConfig } = require('electron').remote;
+const config = getConfig();
+```
+
+---
 class: center, middle
 ##[https://www.youtube.com/watch?v=K-H2amwQ_pU](https://www.youtube.com/watch?v=K-H2amwQ_pU)
 
@@ -609,6 +629,18 @@ class: center, middle, inverse
 
 ---
 class: center, middle
+## [https://medium.com/developers-writing/building-a-desktop-application-with-electron-204203eeb658](https://medium.com/developers-writing/building-a-desktop-application-with-electron-204203eeb658)
+
+---
+class: center, middle
+## [https://medium.com/@svilen/auto-updating-apps-for-windows-and-osx-using-electron-the-complete-guide-4aa7a50b904c](https://medium.com/@svilen/auto-updating-apps-for-windows-and-osx-using-electron-the-complete-guide-4aa7a50b904c)
+
+---
+class: center, middle
+## [https://engineroom.teamwork.com/serverless-crash-reports-for-electron-apps/](https://engineroom.teamwork.com/serverless-crash-reports-for-electron-apps/)
+
+---
+class: center, middle
 ##[https://github.com/hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps)
 
 
@@ -616,7 +648,15 @@ class: center, middle
 class: center, middle
 ##[https://github.com/sindresorhus/awesome-electron ](https://github.com/sindresorhus/awesome-electron )
 
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/electron/electron-book-1.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/electron/electron-book-2.jpg">
 
 
 $a{res:/bosatsu/data/snippets/questions.txt}
-

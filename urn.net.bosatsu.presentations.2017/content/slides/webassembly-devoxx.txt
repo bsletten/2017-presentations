@@ -26,6 +26,7 @@ class: center, middle, inverse
 # Introduction
 
 ---
+name: WebAssembly-Introduction
 class: center, middle
 ## Web Development vs Software Development
 
@@ -44,84 +45,16 @@ class: center
 Source: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly
 
 ---
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-3a.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+class: center, middle
+##[https://webrtc.github.io/samples](https://webrtc.github.io/samples/src/content/getusermedia/filter/)
 
 ---
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-3b.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+class: center, middle
+##[https://www.cubeslam.com](https://www.cubeslam.com)
 
 ---
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-3.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-4.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-5.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-6.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
----
-# Sample code
-
-```javascript
-function arraySum(arr) {
-  var sum = 0;
-  for (var i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-}
-```
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-7.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-8.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-
-
----
-class: center
-
-<img src="/bosatsu/data/images/webassembly/lin-clark-9.png">
-
-Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+class: center, middle
+##[https://webtorrent.io](https://webtorrent.io)
 
 ---
 class: center, middle, inverse
@@ -220,11 +153,6 @@ int main() {
 ```bash
 $ ./emcc hello.c
 ```
-
---
-
-### [a.out.js](http://localhost:8080/bosatsu/data/public/webassembly/a.out.js)
-
 --
 
 ```bash
@@ -239,51 +167,6 @@ class: center
 # Any Modern Browser
 
 <img src="/bosatsu/data/images/webassembly/hello_world.png">
-
----
-#File I/O
-```c
-#include <stdio.h>
-int main() {
-  FILE *file = fopen("tests/hello_world_file.txt", "rb");
-  if (!file) {
-    printf("cannot open file\n");
-    return 1;
-  }
-  while (!feof(file)) {
-    char c = fgetc(file);
-    if (c != EOF) {
-      putchar(c);
-    }
-  }
-  fclose (file);
-  return 0;
-}
-```
-
---
-
-```bash
-$ ./emcc tests/hello_world_file.cpp -o hello.html
-```
-
----
-class: center
-
-# No Preload of Files
-
-<img src="/bosatsu/data/images/webassembly/hello_world_text_1.png">
-
----
-
-```bash
-$ ./emcc tests/hello_world_file.cpp -o hello.html
-   --preload-file tests/hello_world_file.txt
-```
-
---
-
-.center[<img src="/bosatsu/data/images/webassembly/hello_world_text_2.png">]
 
 ---
 class: center
@@ -359,6 +242,9 @@ class: center, middle, inverse
 # Binary Layering
 
 --
+
+.footnote[.red[*] Future feature]
+
 - Layer 0: Simple binary encoding of bytecode and data structures
 
 --
@@ -366,10 +252,6 @@ class: center, middle, inverse
 
 --
 - Layer 2: General compression .red[*]
-
---
-
-.footnote[.red[*] Future feature]
 
 ---
 #WAST
@@ -486,21 +368,6 @@ EMSDK = /Users/brian/git-others/emsdk/emsdk
 EM_CONFIG = /Users/brian/.emscripten
 EMSCRIPTEN = /Users/brian/git-others/emsdk/emsdk/emscripten/incoming
 ```
-
----
-#Testing the Build
-```bash
-$ emcc -v
-WARNING:root:(Emscripten: system change: 1.37.3|/Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin|3.9 vs 1.37.0|/Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin|3.9, clearing cache)
-INFO:root:(Emscripten: Running sanity checks)
-emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 1.37.3
-clang version 3.9.0 (https://github.com/kripken/emscripten-fastcomp-clang/ 5725e3dd8325570ac9d92924fb1af5db9e879e58) (https://github.com/kripken/emscripten-fastcomp/ 9735be7b8bee9c207f33244fe3c5f85f45094470) (emscripten 1.37.3 : 1.37.3)
-Target: x86_64-apple-darwin16.4.0
-Thread model: posix
-InstalledDir: /Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin
-INFO:root:(Emscripten: Running sanity checks)
-```
-
 ---
 #Hello, World!
 ```c

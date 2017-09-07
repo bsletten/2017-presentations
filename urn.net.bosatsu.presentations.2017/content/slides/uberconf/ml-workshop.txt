@@ -1,0 +1,2425 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Machine Learning: Workshop
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Algorithms
+
+- Neural Networks
+
+- Natural Language Processing
+
+- Word2Vec
+
+- Naive Bayes
+
+- GPU
+
+- TensorFlow
+
+]
+
+---
+name: MLW-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/WOPR.jpg">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/terminator.jpg">
+
+---
+class: center, middle
+##[ https://youtu.be/rVlhMGQgDkY?t=85](https://youtu.be/rVlhMGQgDkY?t=85)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/watson.jpg">
+
+---
+class: center, middle
+<img height="500" src="/bosatsu/data/images/ml-overview/data-growth.png">
+
+---
+class: center, middle, inverse
+
+.quotation[The term machine learning refers to the automated detection of meaningful patterns in data.]
+.quotation-source[
+Source: Shavel-Shwartz and Ben-David, "Understanding Machine Learning: From Theory to Algorithms"]
+
+---
+#Advancement of Machine Learning
+
+--
+- Stock market prediction in the 1980s
+
+--
+- Mining corporate databases in the 1990s (direct marketing, CRM, credit scoring, fraud detection)
+
+--
+- E-commerce (personalization, click analysis)
+
+--
+- 9/11 brought interest to applying ML to fighting terror
+
+--
+- Web 2.0 (social networks, sentiment analysis, etc.)
+
+--
+- Science (molecular biologists and astronomers were early adopters)
+
+--
+- Housing bust freed up a lot of talent
+
+--
+- Big Data
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/hume.jpg">
+
+.footnote[David Hume]
+
+---
+#Inductivist Turkey
+
+.center[<img src="/bosatsu/data/images/ml-overview/turkey.jpg">]
+
+.footnote[CC BY 2.0, https://www.flickr.com/photos/29311691@N05/3577002803]
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/tycho-brahe.jpg">
+
+.footnote[Tycho Brahe]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/kepler.jpg">
+
+.footnote[Johannes Kepler]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/newton.jpg">
+
+.footnote[Isaac Newton]
+
+
+
+---
+name: NLP-Algorithms
+class: center, middle, inverse
+# Algorithms
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/data-science-process.png">
+
+.footnote[O'Neil and Schutt, "Doing Data Science"]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/skinner.jpg"/>
+
+---
+class: center, middle
+<img height="300" src="/bosatsu/data/images/ml-overview/skew-1.png"/>
+
+---
+class: center, middle
+<img height="500" src="/bosatsu/data/images/ml-overview/skew-2.png"/>
+
+---
+class: center, middle
+<img height="300" src="/bosatsu/data/images/ml-overview/correlation-1.png"/>
+
+---
+class: center, middle
+<img height="300" src="/bosatsu/data/images/ml-overview/correlation-2.png"/>
+
+---
+class: center, middle
+<img height="300" src="/bosatsu/data/images/ml-overview/correlation-3.png"/>
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/master-algorithm.jpg">
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/variance-bias.png"/>]
+
+.footnote[Domingos, "Master Algortihm : : How the Quest for the Ultimate Learning Machine Will Remake Our World"]
+---
+class: center, middle
+
+| Tribe          | Approach                                                              | Master Algorithm                         |
+|----------------|-----------------------------------------------------------------------|------------------------------------------|
+| Evolutionaries | Natural Selection/Deriving Learning Structure                         | Genetic Programming                      |
+| Connectionists | Reverse engineer the brain                                            | Backpropagation                          |
+| Symbolists     | Symbol manipulation from initial knowledge                            | Inverse Deduction                        |
+| Bayesians      | Managing uncertainty, noisy, incomplete and contradictory information | Probabilistic Inference (Bayes' Theorem) |
+| Analogizers    | Recognizing similarities                                              | Support Vector Machines                  |
+
+---
+# Sample Algorithms
+
+--
+- Linear Regression
+
+--
+- k-Nearest Neighbors
+
+--
+- Naive Bayes
+
+--
+- Decision Trees
+
+--
+- Support Vector Machines
+
+---
+class: center, middle, inverse
+
+.quotation[Linear Regression: In statistics, linear regression is an approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X.]
+.quotation-source[
+Source: https://en.wikipedia.org/wiki/Linear_regression]
+
+---
+# Ordinary Least Squares
+
+--
+- Simple Linear Regression
+
+--
+- Fit a straight line through the observed points
+
+--
+- Minimizes the sum of square residuals of the model
+
+---
+.center[
+<img src="/bosatsu/data/images/ml-overview/linear-regression.png">
+]
+
+.footnote[https://commons.wikimedia.org/wiki/File:Linear_regression.svg]
+
+---
+class: center, middle
+
+# Linear Regression
+
+| Pros                                                                             | Cons                                                   |
+|----------------------------------------------------------------------------------|--------------------------------------------------------|
+| Common approach for numeric data                                                 | Strong assumptions about the data                      |
+| Can handle most modeling tasks                                                   | Model form must be specified in advance                |
+| Estimates the strength and size of the relationships among features and outcomes | Does not handle missing data                           |
+|                                                                                  | Only numeric features                                  |
+|                                                                                  | Requires statistical knowledge to understand the model |
+
+---
+class: center, middle
+
+##[http://tinyurl.com/y87k93vh](http://tinyurl.com/y87k93vh)
+
+
+---
+class: center, middle, inverse
+
+.quotation[ k-Nearest Neighbor: a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression.]
+.quotation-source[
+Source: http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm]
+
+---
+
+.center[<img height="500px" src="/bosatsu/data/images/ml-overview/KnnClassification.svg"/>]
+
+.footnote[http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#/media/File:KnnClassification.svg]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Data3Classes.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Data3classes.png]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Map1NN.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map1NN.png]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Map5NN.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map5NN.png]
+
+---
+class: center, middle
+
+| Pros                                             | Cons                             |
+|--------------------------------------------------|----------------------------------|
+| Simple and effective                             | Does not produce a model         |
+| Makes no assumptions about the data distribution | Efficacy affected by choice of k |
+| Fast training phase                              | Slow classification phase        |
+
+---
+class: center, middle
+
+##[http://tinyurl.com/yb5z6cvc](http://tinyurl.com/yb5z6cvc)
+
+---
+# Naive Bayes
+
+--
+- Family of algorithms to produce probabilistic classifiers based on Bayes Theorem
+
+--
+- Requires relatively little training data
+
+--
+- Often used for text/document classification
+
+--
+- Assumes independence of the features
+
+---
+
+--
+### `$$P(A), P(B)$$`
+
+--
+### `$$P(A \cap B) = P(A) \cdot P(B)$$`
+
+--
+### `$$P(A | B) = \frac { P(A \cap B) }{ P(B) }$$`
+
+--
+### `$$P(A | B) = \frac { P(A \cap B) }{ P(B) } = \frac{P(B|A)P(A)} {P(B)}$$`
+
+--
+### `$$P(spam|Viagra) = \frac { P(Viagra|spam) \cdot P(spam) } { P(Viagra) }$$`
+
+---
+class: center, middle
+
+| Pros                                                      | Cons                                                              |
+|-----------------------------------------------------------|-------------------------------------------------------------------|
+| Simple and effective                                      | Assumption of the independence of features is usually wrong       |
+| Does well with noisy and missing data                     | Doesn't work well with lots of numeric features                   |
+| Works well with arbitrary sizes of training data          | Estimated probabilities aren't as reliable as the classifications |
+| Easy to produce the estimated probability for predictions |                                                                    |
+
+
+---
+# Decision Trees
+
+--
+- Tree structure-based classifier
+
+--
+- Models relationships between features and outputs
+
+--
+- Easy to explain to users
+
+--
+- Can be turned into external representation beyond the classifier
+
+--
+- Supports both classification and regression
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/dt-1.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Decision_tree_learning]
+
+---
+
+| Pros                                       | Cons                                                                      |
+|--------------------------------------------|---------------------------------------------------------------------------|
+| Useful classifier for most problems        | Can be biased toward feature splits with several levels                   |
+| Automated learning process                 | Easy to misfit the model                                                  |
+| Supports numeric, nominal and missing data | Small changes in the training data can have been impact on decision logic |
+| Works with large and small data sets       | Large trees may be hard to interpret                                      |
+| Easily interpreted                         |                                                                           |
+| Efficient                                  |                                                                           |
+
+---
+class: center, middle, inverse
+
+.quotation[[a] support vector machine constructs a hyperplane or set of hyperplanes in a high- or infinite-dimensional space, which can be used for classification, regression, or other tasks]
+.quotation-source[
+Source: https://en.wikipedia.org/wiki/Support_vector_machine]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/svm-1.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Support_vector_machine]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/svm-2.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Support_vector_machine]
+
+
+---
+name: MLW-NeuralNetworks
+class: center, middle, inverse
+# Neural Networks
+
+---
+#Modeling Neurons
+
+--
+- Walter Pitts and Warren McCulloch in 1943
+
+--
+
+<img src="/bosatsu/data/images/ml-overview/Artificial_neuron.png"/>
+
+.footnote[CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=125222]
+
+--
+
+### `$$y_k = \phi \left( \sum_{j=0}^m w_{kj}x_j\right)$$`
+
+---
+#Perceptrons
+
+--
+- Frank Rosenblatt in late 1950s
+
+--
+
+<img src="/bosatsu/data/images/ml-overview/perceptron.png"/>
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/perceptrons-1.png"/>
+
+--
+### `$$2x + 3y = 6$$`
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/perceptrons-2.png"/>
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/neural_network_example.png"/>
+
+
+---
+class: center, middle
+## http://neuralnetworksanddeeplearning.com/chap1.html
+
+---
+class: center, middle
+## http://colah.github.io/posts/2015-08-Backprop/
+## http://cs231n.github.io/optimization-2/
+
+
+
+---
+class: center, middle
+##[https://github.com/dennybritz/nn-from-scratch](https://github.com/dennybritz/nn-from-scratch)
+
+---
+
+```bash
+# Create and activate new virtual environment (optional)
+virtualenv venv
+source venv/bin/activate
+# Install requirements
+pip install -r requirements.txt
+# Start the notebook server
+jupyter notebook
+```
+
+--
+```python
+# Package imports
+import matplotlib.pyplot as plt
+import numpy as np
+import sklearn
+import sklearn.datasets
+import sklearn.linear_model
+import matplotlib
+```
+
+--
+```python
+# Generate a dataset and plot it
+np.random.seed(0)
+X, y = sklearn.datasets.make_moons(200, noise=0.20)
+plt.scatter(X[:,0], X[:,1], s=40, c=y, cmap=plt.cm.Spectral)
+```
+
+---
+
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/nn-1.png"/>
+
+---
+```python
+# Train the logistic regeression classifier
+clf = sklearn.linear_model.LogisticRegressionCV()
+clf.fit(X, y)
+```
+
+--
+```python
+# Helper function to plot a decision boundary.
+# If you don't fully understand this function don't worry, it just generates the contour plot below.
+def plot_decision_boundary(pred_func):
+    # Set min and max values and give it some padding
+    x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+    y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+    h = 0.01
+    # Generate a grid of points with distance h between them
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+    # Predict the function value for the whole gid
+    Z = pred_func(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    # Plot the contour and training examples
+    plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
+    plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
+```
+
+--
+```python
+# Plot the decision boundary
+plot_decision_boundary(lambda x: clf.predict(x))
+plt.title("Logistic Regression")
+```
+
+---
+
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/nn-2.png"/>
+
+---
+
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/nn-3-layer-network.png"/>
+
+---
+
+```python
+num_examples = len(X) # training set size
+nn_input_dim = 2 # input layer dimensionality
+nn_output_dim = 2 # output layer dimensionality
+
+# Gradient descent parameters (I picked these by hand)
+epsilon = 0.01 # learning rate for gradient descent
+reg_lambda = 0.01 # regularization strength
+```
+
+--
+
+```python
+# Helper function to evaluate the total loss on the dataset
+def calculate_loss(model):
+    W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
+    # Forward propagation to calculate our predictions
+    z1 = X.dot(W1) + b1
+    a1 = np.tanh(z1)
+    z2 = a1.dot(W2) + b2
+    exp_scores = np.exp(z2)
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+    # Calculating the loss
+    corect_logprobs = -np.log(probs[range(num_examples), y])
+    data_loss = np.sum(corect_logprobs)
+    # Add regulatization term to loss (optional)
+    data_loss += reg_lambda/2 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
+    return 1./num_examples * data_loss
+```
+
+---
+```python
+# Helper function to predict an output (0 or 1)
+def predict(model, x):
+    W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
+    # Forward propagation
+    z1 = x.dot(W1) + b1
+    a1 = np.tanh(z1)
+    z2 = a1.dot(W2) + b2
+    exp_scores = np.exp(z2)
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+    return np.argmax(probs, axis=1)
+```
+
+---
+```python
+# This function learns parameters for the neural network and returns the model.
+# - nn_hdim: Number of nodes in the hidden layer
+# - num_passes: Number of passes through the training data for gradient descent
+# - print_loss: If True, print the loss every 1000 iterations
+def build_model(nn_hdim, num_passes=20000, print_loss=False):
+
+    # Initialize the parameters to random values. We need to learn these.
+    np.random.seed(0)
+    W1 = np.random.randn(nn_input_dim, nn_hdim) / np.sqrt(nn_input_dim)
+    b1 = np.zeros((1, nn_hdim))
+    W2 = np.random.randn(nn_hdim, nn_output_dim) / np.sqrt(nn_hdim)
+    b2 = np.zeros((1, nn_output_dim))
+
+    # This is what we return at the end
+    model = {}
+
+    # Gradient descent. For each batch...
+    for i in xrange(0, num_passes):
+
+        # Forward propagation
+        z1 = X.dot(W1) + b1
+        a1 = np.tanh(z1)
+        z2 = a1.dot(W2) + b2
+        exp_scores = np.exp(z2)
+        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+
+        ...
+```
+
+---
+```python
+        ...
+
+        # Backpropagation
+        delta3 = probs
+        delta3[range(num_examples), y] -= 1
+        dW2 = (a1.T).dot(delta3)
+        db2 = np.sum(delta3, axis=0, keepdims=True)
+        delta2 = delta3.dot(W2.T) * (1 - np.power(a1, 2))
+        dW1 = np.dot(X.T, delta2)
+        db1 = np.sum(delta2, axis=0)
+
+        # Add regularization terms (b1 and b2 don't have regularization terms)
+        dW2 += reg_lambda * W2
+        dW1 += reg_lambda * W1
+
+        # Gradient descent parameter update
+        W1 += -epsilon * dW1
+        b1 += -epsilon * db1
+        W2 += -epsilon * dW2
+        b2 += -epsilon * db2
+
+        # Assign new parameters to the model
+        model = { 'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2}
+
+        # Optionally print the loss.
+        # This is expensive because it uses the whole dataset, so we don't want to do it too often.
+        if print_loss and i % 1000 == 0:
+          print "Loss after iteration %i: %f" %(i, calculate_loss(model))
+
+    return model
+```
+
+---
+```python
+# Build a model with a 3-dimensional hidden layer
+model = build_model(3, print_loss=True)
+
+Loss after iteration 0: 0.432387
+Loss after iteration 1000: 0.068947
+Loss after iteration 2000: 0.068936
+Loss after iteration 3000: 0.071218
+Loss after iteration 4000: 0.071253
+Loss after iteration 5000: 0.071278
+Loss after iteration 6000: 0.071293
+Loss after iteration 7000: 0.071303
+Loss after iteration 8000: 0.071308
+Loss after iteration 9000: 0.071312
+Loss after iteration 10000: 0.071314
+Loss after iteration 11000: 0.071315
+Loss after iteration 12000: 0.071315
+Loss after iteration 13000: 0.071316
+Loss after iteration 14000: 0.071316
+Loss after iteration 15000: 0.071316
+Loss after iteration 16000: 0.071316
+Loss after iteration 17000: 0.071316
+Loss after iteration 18000: 0.071316
+Loss after iteration 19000: 0.071316
+```
+
+--
+```python
+# Plot the decision boundary
+plot_decision_boundary(lambda x: predict(model, x))
+plt.title("Decision Boundary for hidden layer size 3")
+```
+---
+
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/nn-3.png"/>
+
+---
+```python
+plt.figure(figsize=(16, 32))
+hidden_layer_dimensions = [1, 2, 3, 4, 5, 20, 50]
+for i, nn_hdim in enumerate(hidden_layer_dimensions):
+    plt.subplot(5, 2, i+1)
+    plt.title('Hidden Layer size %d' % nn_hdim)
+    model = build_model(nn_hdim)
+    plot_decision_boundary(lambda x: predict(model, x))
+plt.show()
+```
+
+---
+
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/nn-4.png"/>
+
+
+---
+class: center, middle
+
+<img height="500" src="/bosatsu/data/images/ml-overview/deeplearning.png"/>
+
+---
+class: center, middle
+
+.footnote[http://people.csail.mit.edu/hongzi/content/publication_img/drl.png]
+
+<img height="300" src="/bosatsu/data/images/ml-overview/drl.png"/>
+
+---
+name: MLW-NLP-Introduction
+class: center, middle, inverse
+# Natural Language Processing
+
+---
+background-image: url(/bosatsu/data/images/ml-nlp/philips.jpg)
+layout: false
+class: middle
+
+
+---
+# Natural Language Processing (NLP) Goals
+- Search and Retrieval
+
+--
+- Entity and Relationship Extraction
+
+--
+- Linguistic structure
+
+--
+- Machine Translation
+
+--
+- Generative Content
+
+--
+- Question Answering
+
+---
+# NLP History
+- Early successes in the 1950s in automatic translation
+
+--
+- [SHRDLU](https://en.wikipedia.org/wiki/SHRDLU#Excerpt)
+
+--
+- ELIZA
+
+--
+- Shift to statistical models in the 1980s
+
+---
+# NLP Difficulties
+
+--
+- Character encoding
+
+--
+- Tokenization
+
+--
+- Part of Speech labeling
+
+--
+- Stemming (e.g. "walking", "walked", "walks")
+
+--
+- Lemmatization (e.g. "operating")
+
+--
+- Sentence/paragraph detection
+
+--
+- Coreference resolution
+
+---
+# Some Open Source NLP Frameworks
+
+| API             | URL                              |
+|-----------------|----------------------------------|
+| GATE            | http://gate.ac.uk                |
+| LingPipe        | http://alias-i.com/lingpipe      |
+| Apache OpenNLP  | http://opennlp.apache.org        |
+| UIMA            | http://uima.apache.org           |
+| Stanford Parser | http://nlp.stanford.edu/software |
+| Mallet          | http://mallet.cs.umass.edu       |
+
+---
+# Bag of Words
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[
+    "John",
+    "likes",
+    "to",
+    "watch",
+    "movies",
+    "also",
+    "football",
+    "games",
+    "Mary",
+    "too"
+]
+```
+
+--
+```javascript
+(1) [1, 2, 1, 1, 2, 0, 0, 0, 1, 1]
+(2) [1, 1, 1, 1, 0, 1, 1, 1, 0, 0]
+```
+
+---
+# N-gram model
+
+```text
+(1) John likes to watch movies. Mary likes movies too.
+(2) John also likes to watch football games.
+```
+
+.footnote[https://en.wikipedia.org/wiki/Bag-of-words_model]
+
+--
+```javascript
+[
+    "John likes",
+    "likes to",
+    "to watch",
+    "watch movies",
+    "Mary likes",
+    "likes movies",
+    "movies too",
+]
+```
+
+---
+# Vector Space Model
+
+## `$$d_j = (w_{1,j},w_{2,j},...w_{t,j})$$`
+
+--
+
+## `$$q = (w_{1,q},w_{2,q},...w_{t,q})$$`
+
+---
+# Euclidean Dot Product
+
+### `$$a \cdot b = \lVert a \rVert \Vert b \rVert  cos \theta$$`
+
+
+--
+
+### `$$cos \theta = \frac{A \cdot B}{\lVert A \rVert \Vert B \rVert}$$`
+
+--
+
+### `$$ = \frac{\sum_{i=1}^n A_iB_i}{ \sqrt{\sum_{i=1}^n A_i^2} \sqrt{\sum_{i=1}^nB_i^2}}$$`
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-nlp/Vector_space_model.jpg">
+
+.footnote[By <a href="//commons.wikimedia.org/w/index.php?title=User:Riclas&amp;action=edit&amp;redlink=1" class="new" title="User:Riclas (page does not exist)">Riclas</a> - <span class="int-own-work" lang="en" xml:lang="en">Own work</span>, <a href="http://creativecommons.org/licenses/by/3.0" title="Creative Commons Attribution 3.0">CC BY 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=9076846">Link</a>]
+
+---
+#Cosine Similarity
+
+### `$$ cos \theta = \frac{d_2 \cdot q}{\lVert d_2 \rVert \lVert q \rVert}$$`
+
+--
+
+### `$$ cos \theta = 1 \implies Identical$$`
+
+--
+
+### `$$ cos \theta = 0 \implies Orthogonal$$`
+
+---
+# Term Frequency
+### `$$tf(t,d) = 1$$`
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+--
+### `$$tf(t,d) = f_{t,d}$$`
+
+--
+### `$$tf(t,d) = 0.5 + 0.5 \cdot \frac{ f_{t,d} }{ max \{  f_{t',d} : t' \in d \} }$$`
+
+---
+# Inverse Document Frequency
+
+### `$$idf(t,D) = log \frac{N}{\lvert \{  d \in D : t \in d \} \rvert}$$`
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+---
+# Term Frequency-Inverse Document Frequency
+
+.footnote[https://en.wikipedia.org/wiki/Tf–idf]
+
+### `$$tfidf(t, d, D) = tf(t,d) \cdot idf(t, D)$$`
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+--
+
+.just-right-column[
+###Term Frequency
+`$$tf("this",d_1) = \frac{1}{5} = 0.2$$`
+`$$tf("this",d_2) = \frac{1}{7} \approx 0.14$$`
+]
+
+--
+
+.just-right-column[
+###Inverse Document Frequency
+`$$idf("this",D) = log \left(\frac{2}{2}\right) = 0$$`
+]
+
+--
+
+.just-right-column[
+###Term Frequency-Inverse Document Frequency
+`$$tfidf("this",d_1) = 0.2 \times 0 = 0$$`
+`$$tfidf("this",d_2) = 0.4 \times 0 = 0$$`
+
+]
+
+---
+
+.just-left-column[
+###Document 1
+
+| Term   | Term Count |
+|--------|------------|
+| this   | 1          |
+| is     | 1          |
+| a      | 2          |
+| sample | 1          |
+
+###Document 2
+
+| Term    | Term Count |
+|---------|------------|
+| this    | 1          |
+| is      | 1          |
+| another | 2          |
+| example | 3          |
+]
+
+--
+
+.just-right-column[
+###Term Frequency
+`$$tf("example",d_1) = \frac{0}{5} = 0$$`
+`$$tf("example",d_2) = \frac{3}{7} \approx 0.429$$`
+]
+
+--
+
+.just-right-column[
+###Inverse Document Frequency
+`$$idf("example",D) = log \left(\frac{2}{1}\right) = 0.301$$`
+]
+
+--
+
+.just-right-column[
+###Term Frequency-Inverse Document Frequency
+`$$tfidf("example",d_1) = 0 \times 0.301 = 0$$`
+`$$tfidf("example",d_2) = 0.429 \times 0.301 = 0.13$$`
+
+]
+
+---
+# Lonely Words
+- Many NLP systems treated words as isolated indices
+
+--
+- Words are connected
+
+--
+- Similar words are used similarly
+
+---
+# Types of Similarity
+- Topical similarity based upon textual regions
+
+--
+- Paradigmatic similarity based upon co-occurrence
+
+--
+- Syntagmatic similarity by examining the vectors
+
+
+---
+# t-SNE Visualizations of Word Embeddings
+
+<a href="http://metaoptimize.s3.amazonaws.com/cw-embeddings-ACL2010/embeddings-mostcommon.EMBEDDING_SIZE=50.png">http://tinyurl.com/hpf24ox</a>
+
+
+---
+# Advantages of VSM
+.footnote[https://en.wikipedia.org/wiki/Vector_space_model]
+
+- Simple models using linear algebra
+
+--
+- Non-binary weights
+
+--
+- Continuous ranges of similarity between documents and queries
+
+--
+- Ranking possibilities based on relevance
+
+--
+- Partial matching
+
+---
+# Limitations of VSM
+.footnote[https://en.wikipedia.org/wiki/Vector_space_model]
+
+- Long documents are poorly represented
+
+--
+- Search keywords must generally be exact
+
+--
+- Documents with similar contexts but different vocabularies yield missing results (synonymy)
+
+--
+- Words with different meaning can yield bad results (polysemy)
+
+--
+- Term ordering is lost
+
+---
+# Distributional Semantics
+- __.underline[Distributional hypothesis]__ is based upon the semantic theory of language.red[*].
+
+.footnote[.red[*]https://en.wikipedia.org/wiki/Distributional_semantics]
+
+
+--
+- "i.e. words that are used and occur in the same contexts tend to purport similar meanings" ([Harris, Z.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFHarris1954))
+
+--
+- "a word is characterized by the company it keeps" ([Firth, John R.](https://en.wikipedia.org/wiki/Distributional_semantics#CITEREFFirth1957))
+
+--
+- Uses linear algebra for computational and representational purposes
+
+--
+- High-dimensional vectors are built from a corpus
+
+---
+# Latent Semantic Analysis
+
+--
+- Construct a term-document matrix
+
+--
+- Find a low-rank approximation
+
+--
+ - Matrix is too big
+
+--
+ - Matrix is too noisy
+
+--
+ - Matrix is too sparse
+
+---
+# LSA Uses
+
+--
+- Document classification
+
+--
+- Cross language retrieval
+
+--
+- Solutions to synonymy and polysemy
+
+--
+- Convert queries into the low-dimensional matrix to find documents
+
+
+
+---
+name: MLW-Word2Vec
+class: center, middle, inverse
+# Word2Vec
+
+---
+class: center, middle
+
+### http://mccormickml.com/assets/word2vec/Alex_Minnaar_Word2Vec_Tutorial_Part_II_The_Continuous_Bag-of-Words_Model.pdf
+
+---
+class: center, middle
+
+### https://deeplearning4j.org/word2vec.html
+
+
+---
+name: MLW-NaiveBayes
+class: center, middle, inverse
+# NaiveBayes
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-nlp/ml-with-r.jpg">
+
+---
+class: center, middle
+##[https://github.com/dataspelunking/MLwR/](https://github.com/dataspelunking/MLwR/)
+
+---
+```R
+# read the sms data into the sms data frame
+> sms_raw <- read.csv("sms_spam.csv", stringsAsFactors = FALSE)
+```
+
+--
+```R
+# examine the structure of the sms data
+> str(sms_raw)
+'data.frame':   5559 obs. of  2 variables:
+ $ type: chr  "ham" "ham" "ham" "spam" ...
+ $ text: chr  "Hope you are having a good week. Just checking in"
+ "K..give back my thanks."
+ "Am also doing in cbe only. But have to pay."
+ "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT
+  collection. 09066364349 NOW from Landline not to lose out!"
+  | __truncated__ ...
+```
+
+--
+```R
+# convert spam/ham to factor.
+> sms_raw$type <- factor(sms_raw$type)
+```
+
+--
+```R
+# examine the type variable more carefully
+> str(sms_raw$type)
+ Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
+```
+
+--
+```R
+> table(sms_raw$type)
+
+ ham spam
+4812  747
+```
+
+---
+```R
+# build a corpus using the text mining (tm) package
+> library(tm)
+Loading required package: NLP
+```
+--
+```R
+> sms_corpus <- VCorpus(VectorSource(sms_raw$text))
+```
+
+--
+```R
+# examine the sms corpus
+> print(sms_corpus)
+<<VCorpus>>
+Metadata:  corpus specific: 0, document level (indexed): 0
+Content:  documents: 5559
+
+```
+
+--
+```R
+> inspect(sms_corpus[1:2])
+<<VCorpus>>
+Metadata:  corpus specific: 0, document level (indexed): 0
+Content:  documents: 2
+
+[[1]]
+<<PlainTextDocument>>
+Metadata:  7
+Content:  chars: 49
+
+[[2]]
+<<PlainTextDocument>>
+Metadata:  7
+Content:  chars: 23
+```
+
+---
+```R
+> as.character(sms_corpus[[1]])
+[1] "Hope you are having a good week. Just checking in"
+```
+
+--
+```R
+> lapply(sms_corpus[1:2], as.character)
+$`1`
+[1] "Hope you are having a good week. Just checking in"
+
+$`2`
+[1] "K..give back my thanks."
+```
+
+--
+```R
+> sms_corpus_clean <- tm_map(sms_corpus, content_transformer(tolower))
+```
+
+--
+```R
+# show the difference between sms_corpus and corpus_clean
+> as.character(sms_corpus[[1]])
+[1] "Hope you are having a good week. Just checking in"
+> as.character(sms_corpus_clean[[1]])
+[1] "hope you are having a good week. just checking in"
+```
+
+--
+```R
+# remove numbers
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removeNumbers)
+# remove stop words
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removeWords, stopwords())
+# remove punctuation
+> sms_corpus_clean <- tm_map(sms_corpus_clean, removePunctuation)
+```
+
+---
+```R
+# tip: create a custom function to replace (rather than remove) punctuation
+> removePunctuation("hello...world")
+[1] "helloworld"
+```
+
+--
+```R
+> replacePunctuation <- function(x) { gsub("[[:punct:]]+", " ", x) }
+> replacePunctuation("hello...world")
+[1] "hello world"
+```
+
+--
+```R
+# illustration of word stemming
+> library(SnowballC)
+> wordStem(c("learn", "learned", "learning", "learns"))
+[1] "learn" "learn" "learn" "learn"
+```
+
+--
+```R
+> sms_corpus_clean <- tm_map(sms_corpus_clean, stemDocument)
+# eliminate unneeded whitespace
+> sms_corpus_clean <- tm_map(sms_corpus_clean, stripWhitespace)
+```
+
+---
+```R
+# examine the final clean corpus
+> lapply(sms_corpus[1:3], as.character)
+$`1`
+[1] "Hope you are having a good week. Just checking in"
+
+$`2`
+[1] "K..give back my thanks."
+
+$`3`
+[1] "Am also doing in cbe only. But have to pay."
+```
+
+--
+```R
+> lapply(sms_corpus_clean[1:3], as.character)
+$`1`
+[1] "hope you are have a good week. just check in"
+
+$`2`
+[1] "k..give back my thanks."
+
+$`3`
+[1] "am also do in cbe only. but have to pay."
+```
+
+---
+```R
+# create a document-term sparse matrix
+> sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
+> sms_dtm
+<<DocumentTermMatrix (documents: 5559, terms: 10856)>>
+Non-/sparse entries: 59144/60289360
+Sparsity           : 100%
+Maximal term length: 48
+Weighting          : term frequency (tf)
+```
+
+--
+```R
+# creating training and test datasets
+> sms_dtm_train <- sms_dtm[1:4169, ]
+> sms_dtm_test  <- sms_dtm[4170:5559, ]
+```
+
+--
+```R
+# also save the labels
+sms_train_labels <- sms_raw[1:4169, ]$type
+sms_test_labels  <- sms_raw[4170:5559, ]$type
+```
+
+--
+```R
+# check that the proportion of spam is similar
+> prop.table(table(sms_train_labels))
+sms_train_labels
+      ham      spam
+0.8647158 0.1352842
+
+> prop.table(table(sms_test_labels))
+sms_test_labels
+      ham      spam
+0.8683453 0.1316547
+```
+
+---
+```R
+> # word cloud visualization
+> library(wordcloud)
+Loading required package: RColorBrewer
+```
+
+--
+```R
+> wordcloud(sms_corpus_clean, min.freq = 50, random.order = FALSE)
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-1.png">
+
+---
+```R
+# subset the training data into spam and ham groups
+> spam <- subset(sms_raw, type == "spam")
+> ham  <- subset(sms_raw, type == "ham")
+```
+
+--
+```R
+> wordcloud(spam$text, max.words = 40, scale = c(3, 0.5))
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-2.png">
+
+---
+```R
+> wordcloud(ham$text, max.words = 40, scale = c(3, 0.5))
+```
+
+--
+<img src="/bosatsu/data/images/ml-nlp/wc-3.png">
+
+---
+```R
+> sms_dtm_freq_train <- removeSparseTerms(sms_dtm_train, 0.999)
+```
+
+--
+```R
+> sms_dtm_freq_train
+<<DocumentTermMatrix (documents: 4169, terms: 1306)>>
+Non-/sparse entries: 33250/5411464
+Sparsity           : 99%
+Maximal term length: 24
+Weighting          : term frequency (tf)
+```
+
+--
+```R
+# save frequently-appearing terms to a character vector
+> sms_freq_words <- findFreqTerms(sms_dtm_train, 5)
+```
+
+--
+```R
+> str(sms_freq_words)
+ chr [1:1332] ":-(" ":-)" "!!''." "..." "....." ...
+```
+
+--
+```R
+# create DTMs with only the frequent terms
+> sms_dtm_freq_train <- sms_dtm_train[ , sms_freq_words]
+> sms_dtm_freq_test <- sms_dtm_test[ , sms_freq_words]
+```
+
+---
+```R
+> # convert counts to a factor
+> convert_counts <- function(x) {
++     x <- ifelse(x > 0, "Yes", "No")
++ }
+```
+
+--
+```R
+# apply() convert_counts() to columns of train/test data
+> sms_train <- apply(sms_dtm_freq_train, MARGIN = 2, convert_counts)
+> sms_test  <- apply(sms_dtm_freq_test, MARGIN = 2, convert_counts)
+```
+
+--
+```R
+## Step 3: Training a model on the data ----
+> library(e1071)
+> sms_classifier <- naiveBayes(sms_train, sms_train_labels)
+```
+
+--
+```R
+## Step 4: Evaluating model performance ----
+> sms_test_pred <- predict(sms_classifier, sms_test)
+```
+
+---
+```R
+> library(gmodels)
+> CrossTable(sms_test_pred, sms_test_labels,
++            prop.chisq = FALSE, prop.t = FALSE, prop.r = FALSE,
++            dnn = c('predicted', 'actual'))
+
+
+   Cell Contents
+|-------------------------|
+|                       N |
+|           N / Col Total |
+|-------------------------|
+
+
+Total Observations in Table:  1390
+
+
+             | actual
+   predicted |       ham |      spam | Row Total |
+-------------|-----------|-----------|-----------|
+         ham |      1201 |        31 |      1232 |
+             |     0.995 |     0.169 |           |
+-------------|-----------|-----------|-----------|
+        spam |         6 |       152 |       158 |
+             |     0.005 |     0.831 |           |
+-------------|-----------|-----------|-----------|
+Column Total |      1207 |       183 |      1390 |
+             |     0.868 |     0.132 |           |
+-------------|-----------|-----------|-----------|
+```
+
+---
+name: MLW-GPU
+class: center, middle, inverse
+# GPUs
+
+---
+background-image: url(/bosatsu/data/images/gpgpu/moore.jpg)
+class: center, middle
+
+.footnote[https://newsroom.intel.com/editorials/moores-law-setting-the-record-straight/]
+
+
+---
+class: center, middle, inverse
+
+.quotation[What Andy giveth, Bill taketh away...]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-02.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-00.png">
+
+.footnote[http://www.gotw.ca/publications/concurrency-ddj.htm]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-01.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/freelunch-03.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-04.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/edge-00.jpg">
+
+.footnote[https://www.energomonitor.com/insight/edge-computing-fog-computing-benefits-of-fogging/]
+
+---
+class: center, middle, inverse
+
+.quotation[Mainstream hardware is becoming permanently parallel, heterogeneous, and distributed. These changes are permanent, and so will permanently affect the way we have to write performance-intensive code on mainstream architectures.]
+.quotation-source[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle, inverse
+
+.quotation[The GPU is being leaned on more heavily than it ever has before. With the right algorithm, you can get 10 times the performance per watt with a GPU on machine learning than you can with a CPU.]
+.quotation-source[Patrick Moorhead, https://www.wired.com/2017/04/apples-making-gpu-control-destiny/]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/cuda-architecture.png">
+
+.quotation-source["Professional CUDA C Programming"]
+
+---
+```cpp
+#include <stdio.h>
+
+__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+  helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+```cpp
+#include <stdio.h>
+
+*__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+  helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+```cpp
+#include <stdio.h>
+
+__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+* helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+class: center, middle
+
+```cpp
+  helloFromGPU <<<1, 10>>>();
+```
+
+<img src="/bosatsu/data/images/gpgpu/block-grid-01.png">
+
+---
+```bash
+$ nvcc helloworld.cu -o helloworld
+```
+--
+```bash
+$ ./helloworld
+Hello, World from the CPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+```
+
+---
+class: center, middle
+
+```cpp
+  helloFromGPU <<<2, 8>>>();
+```
+
+<img src="/bosatsu/data/images/gpgpu/block-grid-02.png">
+
+---
+
+# CUDA Program Structure
+
+1. Allocate GPU memory
+
+--
+2. Copy data from CPU memory to GPU memory
+
+--
+3. Invoke the CUDA kernel
+
+--
+4. Copy data from GPU memory to CPU memory
+
+--
+5. Free GPU memory
+
+---
+
+# Kernel Rules
+
+1. Only access device memory
+
+--
+2. void return type
+
+--
+3. Fixed argument list
+
+--
+4. No static variables
+
+--
+5. No function pointers
+
+--
+6. Asychronous
+
+---
+```cpp
+void sumArraysOnHost(float *A,
+                     float *B,
+                     float *C,
+                     const int N)
+{
+  for( int idx = 0; idx < N; idx++ ) {
+    C[idx] = A[idx] + B[idx];
+  }
+}
+```
+
+--
+```cpp
+__global__ void sumArraysOnGPU(float *A,
+                               float *B,
+                               float *C)
+{
+*  int i = threadIdx.x;
+  C[i] = A[i] + B[i];
+}
+```
+
+---
+```cpp
+int main(int argc, char **argv) {
+   int dev = 0;
+   cudaSetDevice(dev);
+
+   int nElem = 32;
+
+   size_t nBytes = nElem * sizeof(float);
+
+   float *h_A, *h_b, *hostRef, *gpuRef;
+   h_A = (float *) malloc(nBytes);
+   h_B = (float *) malloc(nBytes);
+   gpuRef = (float *) malloc(nBytes);
+   ...
+}
+```
+
+---
+```cpp
+   ...
+   initialData(h_A, nElem);
+   initialData(h_B, nElem);
+
+   memset(gpuRef, 0, nBytes);
+
+   float *d_A, *d_B, *d_c;
+   cudaMalloc((float **) &d_A, nBytes);
+   cudaMalloc((float **) &d_B, nBytes);
+   cudaMalloc((float **) &d_C, nBytes);
+
+   cudaMemcpy(d_A, h_A, nBytes,
+     cudaMemcpyHostToDevice);
+   cudaMemcpy(d_B, h_B, nBytes,
+     cudaMemcpyHostToDevice);
+
+   ...
+```
+
+---
+```cpp
+   ...
+   dim3 block (nElem);
+   dim3 grid (nElem/block.x);
+
+   sumArraysOnGPU<<< grid, block >>>
+      (d_A, d_B, d_C);
+
+   cudaMemcpy(gpuRef, d_C, nBytes,
+     cudaMemcpyDeviceToHost);
+
+   cudaFree(d_A);
+   cudaFree(d_B);
+   cudaFree(d_C);
+
+   free(h_A);
+   free(h_B);
+   free(gpuRef);
+
+   return(0);
+}
+```
+
+---
+class: center, middle
+
+<img height="500" src="/bosatsu/data/images/gpgpu/opencl-logo.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/metal.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/vulkan.png">
+
+---
+class: center, middle
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rvCD9FaTKCA" frameborder="0" allowfullscreen></iframe>
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/spir.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/opencl-2017.jpg">
+
+.quotation-source["Khronos Group, IWOCL 2017"]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/webgpu.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/webgl2.png">
+
+---
+# The Beast
+
+<video height="400px" loop="true" autoplay="true" src="https://d1vhcvzji58n1j.cloudfront.net/assets/products/bonw12/360-7dabd8187b.mp4"/>
+
+.footnote[https://system76.com/laptops/bonobo]
+
+---
+class: center, middle
+# AWS GPU Instances
+
+<img height="500" src="/bosatsu/data/images/gpgpu/aws-gpu.png">
+
+---
+class: center, middle
+# Apple eGPU Developer Kit
+
+<img height="500" src="/bosatsu/data/images/gpgpu/apple-egpu.png">
+
+
+---
+name: MLW-TensorFlow
+class: center, middle, inverse
+# TensorFlow
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/data-science-process.png">
+
+.footnote[O'Neil and Schutt, "Doing Data Science"]
+
+---
+#About TensorFlow
+- Open source library for numerical computation from Google Brain Team
+
+--
+- Version 1.0 was just released
+
+--
+- Primarily for machine learning and deep neural network research
+
+--
+- Data flow graph-based
+
+--
+- Nodes represent operations
+
+--
+- Tensors flow through the nodes
+
+--
+- Leverages CPUs and/or GPUs
+
+--
+- Scalable across computer clusters
+
+--
+- Ecosystem for graph visualization, serving production models, etc.
+
+---
+class: center, middle, inverse
+
+.quotation[TensorFlow’s primary purpose is not to provide out-of-the-box machine learning solutions. Instead, TensorFlow provides an extensive suite of functions and classes that allow users to define models from scratch mathematically. This allows users with the appropriate technical background to create customized, flexible models quickly and intuitively. Additionally, while TensorFlow does have extensive support for ML-specific functionality, it is just as well suited to performing complex mathematical computations.]
+
+.quotation-source[
+Source: TensorFlow For Machine Intelligence: A hands-on introduction to learning algorithms, Abrahams et al.]
+
+---
+# When should I use it?
+
+--
+- Experimenting with new machine learning architectures and approaches
+
+--
+- Operationalizing your experiments
+
+--
+- Iterating on various architectures
+
+--
+- Large-scale distributed models
+
+--
+- Building models for mobile/embedded systems
+
+---
+# What is a Tensor?
+
+--
+- An n-dimensional matrix
+
+--
+- ### `3` (Rank 0)
+
+--
+- ### `[1.,2.,3.]` (Rank 1 - Shape [3])
+
+--
+- ### `[[1.,2.,3.], [4.,5.,6.]]` (Rank 2 - Shape[2, 3])
+
+--
+- ### `[[[1.,2.,3.]], [[7.,8.,9.]]]` (Rank 3 - Shape[2, 1, 3])
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/graph_vis_animation.gif">
+.footnote[
+Credit: <a href="https://www.tensorflow.org/get_started/graph_viz">TensorBoard: Graph Visualization<a/>
+]
+
+---
+class: center, middle
+##[https://www.tensorflow.org/install/](https://www.tensorflow.org/install/)
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+--
+```bash
+$ python
+Python 2.7.12 (default, Nov 19 2016, 06:48:10)
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+```
+
+--
+```python
+>>> import tensorflow as tf
+```
+
+--
+```python
+>>> node1 = tf.constant(3.0, tf.float32)
+>>> node2 = tf.constant(4.0)
+>>> print(node1, node2)
+(<tf.Tensor 'Const:0' shape=() dtype=float32>,
+ <tf.Tensor 'Const_1:0' shape=() dtype=float32>)
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> sess = tf.Session()
+Found device 0 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.01GiB
+...
+Found device 1 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.00GiB
+...
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> print(sess.run([node1, node2]))
+[3.0, 4.0]
+```
+
+--
+```python
+>>> node3 = tf.add(node1, node2)
+>>> print("node3: ", node3)
+('node3: ', <tf.Tensor 'Add:0' shape=() dtype=float32>)
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_add.png">
+
+--
+```python
+>>> print("sess.run(node3): ",sess.run(node3))
+('sess.run(node3): ', 7.0)
+```
+
+--
+```python
+>>> print("sess.run(node1 + node2): ", sess.run(node1+node2))
+('sess.run(node1 + node2): ', 7.0)
+```
+
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> a = tf.placeholder(tf.float32)
+>>> b = tf.placeholder(tf.float32)
+>>> adder_node = a + b
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_adder.png">
+
+--
+```python
+>>> print(sess.run(adder_node, {a: 3, b:4.5}))
+7.5
+>>> print(sess.run(adder_node, {a: [1,3], b: [2, 4]}))
+[ 3.  7.]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> add_and_triple = adder_node * 3.
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_triple.png">
+
+--
+```python
+>>> print(sess.run(add_and_triple, {a: 3, b:4.5}))
+22.5
+```
+
+---
+#TensorBoard!
+
+```python
+>>> import tensorflow as tf
+>>> a = tf.constant(5, name="input_a")
+>>> b = tf.constant(3, name="input_b")
+>>> c = tf.multiply(a, b, name="multiply_c")
+>>> d = tf.add(a,b, name="add_d")
+>>> e = tf.add(c,d, name="add_e")
+>>> sess = tf.Session()
+>>> output = sess.run(e)
+>>> writer = tf.train.SummaryWriter('./my_graph', sess.graph)
+>>> writer.close()
+>>> sess.close()
+```
+
+--
+```bash
+> tensorboard --logdir=my_graph/
+Starting TensorBoard 39 on port 6006
+(You can navigate to http://127.0.0.1:6006)
+```
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/tensorboard.png">
+
+---
+# TensorFlow Data Types
+
+| Type       | Description           | Type         | Description                                                |
+|------------|-----------------------|--------------|------------------------------------------------------------|
+| tf.float32 | 32-bit floating point | tf.uint8     | 8-bit unsigned integer                                     |
+| tf.float64 | 64-bit floating point | tf.string    | String                                                     |
+| tf.int8    | 8-bit signed integer  | tf.bool      | Boolean                                                    |
+| tf.int16   | 16-bit signed integer | tf.complex64 | 32-bit floating point real 32-bit floating point imaginary |
+| tf.int32   | 32-bit signed integer | tf.qint8     | 8-bit signed integer                                       |
+| tf.int64   | 64-bit signed integer | tf.qint32    | 32-bit signed integer                                      |
+---
+```python
+>>> a = tf.placeholder(tf.int16)
+>>> b = tf.placeholder(tf.int16)
+>>> add = tf.add(a, b)
+>>> mul = tf.multiply(a, b)
+>>> sess.run(add, feed_dict={a: 2, b: 3})
+5
+>>> sess.run(mul, feed_dict={a: 2, b: 3})
+6
+```
+
+--
+```python
+>>> matrix1 = tf.constant([[3., 3.]])
+>>> matrix2 = tf.constant([[2.],[2.]])
+>>> product = tf.matmul(matrix1, matrix2)
+>>> result = sess.run(product)
+>>> print(result)
+[[ 12.]]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> W = tf.Variable([.3], tf.float32)
+>>> b = tf.Variable([-.3], tf.float32)
+>>> x = tf.placeholder(tf.float32)
+>>> linear_model = W * x + b
+```
+
+--
+```python
+>>> init = tf.global_variables_initializer()
+>>> sess.run(init)
+```
+
+--
+```python
+>>> print(sess.run(linear_model, {x:[1,2,3,4]}))
+[ 0.          0.30000001  0.60000002  0.90000004]
+```
+
+--
+```python
+>>> y = tf.placeholder(tf.float32)
+>>> squared_deltas = tf.square(linear_model - y)
+>>> loss = tf.reduce_sum(squared_deltas)
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+23.66
+```
+
+--
+```python
+>>> fixW = tf.assign(W, [-1.])
+>>> fixb = tf.assign(b, [1.])
+>>> sess.run([fixW, fixb])
+[array([-1.], dtype=float32), array([ 1.], dtype=float32)]
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+0.0
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> optimizer = tf.train.GradientDescentOptimizer(0.01)
+>>> train = optimizer.minimize(loss)
+```
+
+--
+```python
+>>> sess.run(init) # reset values to incorrect defaults.
+>>> for i in range(1000):
+...   sess.run(train, {x:[1,2,3,4], y:[0,-1,-2,-3]})
+...
+
+>>> print(sess.run([W, b]))
+[array([-0.9999969], dtype=float32), array([ 0.99999082], dtype=float32)]
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/getting_started_final.png">
+
+---
+class: center, middle
+
+## https://www.tensorflow.org/get_started/mnist/beginners
+
+---
+class: center, middle
+##[http://bcomposes.com/2015/11/26/simple-end-to-end-tensorflow-examples/](http://bcomposes.com/2015/11/26/simple-end-to-end-tensorflow-examples/)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/linear_data_train.jpg">
+
+
+---
+```python
+$ python softmax.py --train simdata/linear_data_train.csv
+--test simdata/linear_data_eval.csv --num_epochs 5 --verbose True
+Initialized!
+
+Training.
+0 1 2 3 4 5 6 7 8 9
+10 11 12 13 14 15 16 17 18 19
+20 21 22 23 24 25 26 27 28 29
+30 31 32 33 34 35 36 37 38 39
+40 41 42 43 44 45 46 47 48 49
+
+Weight matrix.
+[[-1.87038445  1.87038457]
+ [-2.23716712  2.23716712]]
+
+Bias vector.
+[ 1.57296884 -1.57296848]
+
+Applying model to first test instance.
+Point = [[ 0.14756215  0.24351828]]
+Wx+b =  [[ 0.7521798  -0.75217938]]
+softmax(Wx+b) =  [[ 0.81822371  0.18177626]]
+
+Accuracy: 1.0
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/linear_softmax.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/moon_data_train.jpg">
+
+---
+```python
+$ python softmax.py --train simdata/moon_data_train.csv
+--test simdata/moon_data_eval.csv --num_epochs 100
+Accuracy: 0.861
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/moon_softmax.png">
+
+---
+```python
+$ python hidden.py --train simdata/moon_data_train.csv
+--test simdata/moon_data_eval.csv --num_epochs 100 --num_hidden 5
+Accuracy: 0.971
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/moon_hidden.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/saturn_data_train.jpg">
+
+---
+```python
+$ python softmax.py --train simdata/saturn_data_train.csv
+--test simdata/saturn_data_eval.csv --num_epochs 100
+Accuracy: 0.43
+
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/saturn_softmax.png">
+
+---
+```python
+$ python hidden.py --train simdata/saturn_data_train.csv
+--test simdata/saturn_data_eval.csv --num_epochs 100 --num_hidden 15
+Accuracy: 1.0
+```
+
+--
+
+<img style="height: 500px;" src="/bosatsu/data/images/tensorflow/saturn_hidden.png">
+
+---
+class: center, middle
+##[https://www.tensorflow.org/tutorials/image_recognition](https://www.tensorflow.org/tutorials/image_recognition)
+
+---
+```bash
+> git clone https://github.com/tensorflow/models.git tensorflow-models
+> cd tensorflow-models/tutorials/image/imagenet
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/cropped_panda.jpg">
+
+--
+```bash
+> python classify_image.py
+>> Downloading inception-2015-12-05.tgz 100.0%
+Successfully downloaded inception-2015-12-05.tgz 88931400 bytes.
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca (score = 0.88493)
+indri, indris, Indri indri, Indri brevicaudatus (score = 0.00878)
+lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens (score = 0.00317)
+custard apple (score = 0.00149)
+earthstar (score = 0.00127)
+
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/712033765.jpg">
+
+--
+```bash
+> python classify_image.py --image_file 712033765.jpg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+flamingo (score = 0.84379)
+spoonbill (score = 0.00857)
+black swan, Cygnus atratus (score = 0.00188)
+goose (score = 0.00135)
+black stork, Ciconia nigra (score = 0.00132)
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/pug.jpeg">
+
+--
+```bash
+> python classify_image.py --image_file pug.jpeg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+pug, pug-dog (score = 0.71793)
+Brabancon griffon (score = 0.22177)
+French bulldog (score = 0.01942)
+Pekinese, Pekingese, Peke (score = 0.00133)
+Boston bull, Boston terrier (score = 0.00065)
+```
+
+---
+<img style="height: 450px;" src="/bosatsu/data/images/tensorflow/beggars.jpg">
+
+--
+```bash
+> python classify_image.py --image_file Beggars.jpg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Norwich terrier (score = 0.86040)
+Norfolk terrier (score = 0.09727)
+Australian terrier (score = 0.01304)
+Lakeland terrier (score = 0.00186)
+cairn, cairn terrier (score = 0.00178)
+```
+
+---
+# Sorting Cucumbers
+
+.center[
+<img src="/bosatsu/data/images/tensorflow/cucumber_classification.jpg">]
+
+.footnote[http://workpiles.com/2016/06/ccb9-prototype2-recognition_system/]
+
+---
+class: center, middle
+##https://youtu.be/oZikw5k_2FM?t=55
+
+---
+class: center, middle
+##https://cloud.google.com/products/machine-learning/
+
+---
+name: MLW-BOOKS
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/cuda-book-00.jpg">
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/gpgpu/cuda-book-01.jpg">
+
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/gpgpu/cuda-book-02.jpg">
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/gpgpu/opencl-book-00.png">
+
+
+$a{meta:bosatsu:common:questions}

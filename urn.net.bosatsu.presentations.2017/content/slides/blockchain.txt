@@ -1,0 +1,57 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Blockchain
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Bitcoin
+
+- Ethereum
+
+- Hyperledger
+
+- Chain
+
+- Blockstream
+]
+
+---
+name: Blockchain-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+name: Blockchain-Bitcoin
+class: center, middle, inverse
+# Bitcoin
+
+---
+name: Blockchain-Ethereum
+class: center, middle, inverse
+# Ethereum
+
+---
+name: Blockchain-Hyperledger
+class: center, middle, inverse
+# Hyperledger
+
+---
+name: Blockchain-Chain
+class: center, middle, inverse
+# Chain
+
+---
+name: Blockchain-Blockstream
+class: center, middle, inverse
+# Blockstream
+
+$a{res:/bosatsu/data/snippets/questions.txt}
