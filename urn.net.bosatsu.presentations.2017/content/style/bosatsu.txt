@@ -28,7 +28,10 @@
         background: #e7e8e2;
         border-radius: 5px;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code, .remark-inline-code {
+         font-family: 'Ubuntu Mono';
+         font-size: 20px;
+      }
       .remark-code-line-highlighted     { background-color: #999999; }
       .pull-left {
         float: left;
@@ -57,18 +60,18 @@
         color: #f3f3f3;
         line-height: 0.8em;
       }
-      
+
       table {
         padding: 5px;
         border-collapse: collapse;
       }
-      
+
       table, th, td {
          border: 1px solid black;
          border-collapse: collapse;
       }
 
-      /* Slide-specific styling 
+      /* Slide-specific styling
       #slide-inverse .footnote {
         bottom: 12px;
         left: 20px;
@@ -142,7 +145,7 @@
       .underline {
         text-decoration: underline;
       }
-      
+
       /* Two-column layout */
       .just-left-column {
         width: 20%;
@@ -153,7 +156,7 @@
         width: 75%;
         float: right;
       }
-      
+
       .contact {
          color : white;
          font-family: 'Ubuntu Mono';

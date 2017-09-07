@@ -9,6 +9,7 @@
 			<argument name="preserveComments">true</argument>
 			<argument name="style">res:/content/style/bosatsu.txt</argument>
 			<argument name="slides">res:/content/slides/[[arg:file]].txt</argument>
+			<argument name="title" method="as-string">arg:file</argument>
 		</request>
 		<header name="mime">text/html</header>
 	</endpoint>
@@ -20,13 +21,21 @@
 			<identifier>res:/content/[[arg:file]]</identifier>
 		</request>
 	</endpoint>
-  
+
   <!-- reusable bits -->
-  
+
   <endpoint>
-    <id>bosatsu:common:qualifications</id>
-    <request>
-      <identifier>res:/bosatsu/data/snippets/qualifications.txt</identifier>
-    </request>
+    <grammar>bosatsu:common:qualifications</grammar>
+		<request>
+			<identifier>res:/bosatsu/data/snippets/qualifications.txt</identifier>
+		</request>
   </endpoint>
+
+	<endpoint>
+		<id>bosatsu:common:questions</id>
+		<grammar>res:/bosatsu/content/questions</grammar>
+		<request>
+			<identifier>res:/bosatsu/data/snippets/questions.txt</identifier>
+		</request>
+	</endpoint>
 </config>

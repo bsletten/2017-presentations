@@ -1,5 +1,5 @@
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script> 
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
 <script>
   var hljs = remark.highlighter.engine;
 </script>
@@ -8,9 +8,10 @@
   var slideshow = remark.create({
       highlightStyle: 'github',
       highlightLanguage: 'remark',
-      highlightLines: true
+      highlightLines: true,
+      highlightSpans: true
     }) ;
-    
+
     // Setup MathJax
     MathJax.Hub.Config({
         tex2jax: {
