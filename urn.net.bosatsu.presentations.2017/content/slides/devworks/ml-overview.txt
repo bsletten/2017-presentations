@@ -1,0 +1,152 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Machine Learning Overview
+
+---
+class: center, middle 
+layout: false
+
+### What is Machine Learning?
+
+---
+class: center, middle, inverse
+
+.quotation[The term machine learning refers to the automated detection of meaningful patterns in data.]
+.quotation-source[
+Source: Shavel-Shwartz and Ben-David, "Understanding Machine Learning: From Theory to Algorithms"]
+
+---
+class: middle
+
+```java
+public class AlarmSystem {
+  public static void main(String [] args) {
+     Sensor s = Sensor.getInstance("front-door");
+     
+     if(s.isTriggered() && 
+        s.getState() == SensorState.INTRUDER &&
+        s.getAlertTime() < SensorLimits.FIVE_MINUTES) {
+        AlertSystem.alert(Local.POLICE, s.getAccount().getAddress());
+      }
+  }
+}
+```
+
+---
+class: center, middle 
+
+<img style="height: 450px;" src="/bosatsu/data/images/tensorflow/beggars.jpg">
+
+####Freyja and Loki
+
+---
+class: center, middle 
+layout: false
+
+### Why are we talking about Machine Learning?
+
+---
+#Advancement of Machine Learning
+
+--
+- Stock market prediction in the 1980s
+
+--
+- Mining corporate databases in the 1990s (direct marketing, CRM, credit scoring, fraud detection)
+
+--
+- E-commerce (personalization, click analysis)
+
+--
+- 9/11 brought interest to applying ML to fighting terror
+
+--
+- Web 2.0 (social networks, sentiment analysis, etc.)
+
+--
+- Science (molecular biologists and astronomers were early adopters)
+
+--
+- Housing bust freed up a lot of talent
+
+--
+- Big Data
+
+---
+class: center, middle 
+layout: false
+
+### What role will Machine Learning play?
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/master-algorithm.jpg">
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/hume.jpg">
+####David Hume
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/turkey.jpg">
+####Inductivist Turkey
+######CC BY 2.0, https://www.flickr.com/photos/29311691@N05/3577002803
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/tycho-brahe.jpg">
+
+####Tycho Brahe
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/kepler.jpg">
+
+####Johannes Kepler
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/newton.jpg">
+
+####Isaac Newton
+
+---
+class: center, middle 
+layout: false
+
+### How do you do Machine Learning?
+
+---
+#Successful Machine Learning Initiatives
+
+--
+- Good, quality data
+
+--
+- Sufficient amounts of it
+
+--
+- Feature engineering/extraction
+
+--
+- Dimensionality reduction
+
+--
+- Analysis phase
+
+---
+class: center, middle
+
+#Unsupervised Learning
+
+<img src="/bosatsu/data/images/ml-overview/Cluster.svg">
+
