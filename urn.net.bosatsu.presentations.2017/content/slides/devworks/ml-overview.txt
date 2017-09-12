@@ -5,7 +5,7 @@ class: center, middle, inverse
 #Machine Learning Overview
 
 ---
-class: center, middle 
+class: center, middle
 layout: false
 
 ### What is Machine Learning?
@@ -24,8 +24,8 @@ class: middle
 public class AlarmSystem {
   public static void main(String [] args) {
      Sensor s = Sensor.getInstance("front-door");
-     
-     if(s.isTriggered() && 
+
+     if(s.isTriggered() &&
         s.getState() == SensorState.INTRUDER &&
         s.getAlertTime() < SensorLimits.FIVE_MINUTES) {
         AlertSystem.alert(Local.POLICE, s.getAccount().getAddress());
@@ -35,14 +35,14 @@ public class AlarmSystem {
 ```
 
 ---
-class: center, middle 
+class: center, middle
 
 <img style="height: 450px;" src="/bosatsu/data/images/tensorflow/beggars.jpg">
 
 ####Freyja and Loki
 
 ---
-class: center, middle 
+class: center, middle
 layout: false
 
 ### Why are we talking about Machine Learning?
@@ -75,7 +75,7 @@ layout: false
 - Big Data
 
 ---
-class: center, middle 
+class: center, middle
 layout: false
 
 ### What role will Machine Learning play?
@@ -120,7 +120,7 @@ class: center, middle
 ####Isaac Newton
 
 ---
-class: center, middle 
+class: center, middle
 layout: false
 
 ### How do you do Machine Learning?
@@ -148,5 +148,4 @@ class: center, middle
 
 #Unsupervised Learning
 
-<img src="/bosatsu/data/images/ml-overview/Cluster.svg">
-
+<img src="/bosatsu/data/images/ml-overview/cluster.svg">
