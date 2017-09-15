@@ -76,6 +76,12 @@ layout: false
 
 ---
 class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/GrowthOfDataVsDataAnalysts.png">
+##### http://www.delphianalytics.net/wp-content/uploads/2013/04/GrowthOfDataVsDataAnalysts.png
+
+---
+class: center, middle
 layout: false
 
 ### What role will Machine Learning play?
@@ -121,27 +127,26 @@ class: center, middle
 
 ---
 class: center, middle
+
+<img style="height: 300px;" src="/bosatsu/data/images/ml-overview/ml-deduction.svg">
+
+##### [http://www.cs.joensuu.fi/~whamalai/skc/ml.html](http://www.cs.joensuu.fi/~whamalai/skc/ml.html)
+
+
+---
+class: center, middle
 layout: false
 
 ### How do you do Machine Learning?
 
 ---
-#Successful Machine Learning Initiatives
+name: DevWorks-ML-Datascience
+class: center, middle
+# Introduction
 
---
-- Good, quality data
+<img style="height: 400px;" src="/bosatsu/data/images/ml-overview/data-science-process.png">
 
---
-- Sufficient amounts of it
-
---
-- Feature engineering/extraction
-
---
-- Dimensionality reduction
-
---
-- Analysis phase
+#####O'Neil and Schutt, "Doing Data Science"
 
 ---
 class: center, middle
@@ -149,3 +154,11 @@ class: center, middle
 #Unsupervised Learning
 
 <img src="/bosatsu/data/images/ml-overview/cluster.svg">
+
+
+---
+class: center, middle
+
+#Supervised Learning
+
+<img style="height: 400px;" src="/bosatsu/data/images/ml-overview/neural_network_example.png"/>
