@@ -1,0 +1,52 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Inside TLS
+
+$a{res:/bosatsu/data/snippets/qualifications.txt}
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Handshake
+
+- Attacks
+
+- Testing
+
+- Future
+]
+
+---
+name: TLS-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+name: TLS-Handshake
+class: center, middle, inverse
+# TLS Handshake
+
+---
+name: TLS-Attacks
+class: center, middle, inverse
+# TLS Attacks
+
+---
+name: TLS-Testing
+class: center, middle, inverse
+# TLS Testing
+
+---
+name: TLS-Future
+class: center, middle, inverse
+# TLS Future
+
+
+
+$a{res:/bosatsu/data/snippets/questions.txt}
