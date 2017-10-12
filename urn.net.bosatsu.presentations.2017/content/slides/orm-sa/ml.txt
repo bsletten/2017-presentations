@@ -1,0 +1,41 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Scaling and Operationalizing Machine Learning Solutions
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Optimizing
+
+- Serving
+
+- GPU
+
+- Distribution
+
+- Z-axis
+
+]
+
+---
+name: ORM-SA-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/data-science-process.png">
+
+.footnote[O'Neil and Schutt, "Doing Data Science"]
+
+$a{meta:bosatsu:common:questions}
