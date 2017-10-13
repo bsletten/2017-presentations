@@ -14,7 +14,7 @@ layout: false
 .right-column[
 - Introduction
 
-- Optimizing
+- Optimization
 
 - Serving
 
@@ -36,6 +36,118 @@ class: center, middle
 
 <img src="/bosatsu/data/images/ml-overview/data-science-process.png">
 
-.footnote[O'Neil and Schutt, "Doing Data Science"]
+##### O'Neil and Schutt, "Doing Data Science"
+
+---
+name: ORM-SA-Optimization
+class: center, middle, inverse
+# Optimization
+
+---
+name: ORM-SA-Serving
+class: center, middle, inverse
+# Serving
+
+---
+class: center, middle, inverse
+
+.quotation[Machine-learned models are often parts of complex systems comprising a large number of data sources and interacting components, which are commonly entangled together. This creates large surfaces on which bugs can grow and unexpected interactions can develop, potentially to the detriment of end-user experiences via the degradation of the machine-learned model.]
+.quotation-source[TFX: A TensorFlow-based production scale machine learning platform, Baylor et al., KDD'17]
+---
+class: center, middle
+
+<img style="height: 300px;" src="/bosatsu/data/images/orm-sa/tfx-1.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/orm-sa/tfx-2.jpg">
+
+---
+name: ORM-SA-GPU
+class: center, middle, inverse
+# GPU
+
+---
+background-image: url(/bosatsu/data/images/gpgpu/moore.jpg)
+class: center, middle
+
+.footnote[https://newsroom.intel.com/editorials/moores-law-setting-the-record-straight/]
+
+
+---
+class: center, middle, inverse
+
+.quotation[What Andy giveth, Bill taketh away...]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-02.png">
+
+##### https://herbsutter.com/welcome-to-the-jungle/
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-00.png">
+
+##### http://www.gotw.ca/publications/concurrency-ddj.htm
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-01.png">
+
+##### https://herbsutter.com/welcome-to-the-jungle/
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/freelunch-03.png">
+
+##### https://herbsutter.com/welcome-to-the-jungle/
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-04.png">
+
+##### https://herbsutter.com/welcome-to-the-jungle/
+
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/edge-00.jpg">
+
+##### https://www.energomonitor.com/insight/edge-computing-fog-computing-benefits-of-fogging/
+
+---
+class: center, middle, inverse
+
+.quotation[Mainstream hardware is becoming permanently parallel, heterogeneous, and distributed. These changes are permanent, and so will permanently affect the way we have to write performance-intensive code on mainstream architectures.]
+.quotation-source[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/orm-sa/ml-gpu.png">
+
+##### "Deep Learning for Computer Architects", Reagen, Adolf, Whatmough, Wei, Brooks
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/opencl-2017.jpg">
+
+##### "Khronos Group, IWOCL 2017"
+
+---
+name: ORM-SA-Distribution
+class: center, middle, inverse
+# Distribution
 
 $a{meta:bosatsu:common:questions}
