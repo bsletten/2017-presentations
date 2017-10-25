@@ -1,0 +1,89 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Blockchain
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Encryption
+
+- Bitcoin
+
+- Blockchain
+
+- Ethereum
+
+- Chain
+
+- Hyperledger
+
+- State of Bitcoin
+]
+
+---
+name: Blockchain-Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/slides/blockchain/intro.txt}
+
+---
+name: Blockchain-Encryption
+class: center, middle, inverse
+# Encryption
+
+$a{res:/bosatsu/data/slides/blockchain/encryption.txt}
+
+---
+name: Blockchain-Bitcoin
+class: center, middle, inverse
+# Bitcoin
+
+$a{res:/bosatsu/data/slides/blockchain/bitcoin.txt}
+
+---
+name: Blockchain-Blockchain
+class: center, middle, inverse
+# Blockchain
+
+$a{res:/bosatsu/data/slides/blockchain/blockchain.txt}
+
+---
+name: Blockchain-Ethereum
+class: center, middle, inverse
+# Ethereum
+
+$a{res:/bosatsu/data/slides/blockchain/ethereum.txt}
+
+---
+name: Blockchain-Chain
+class: center, middle, inverse
+# Chain
+
+$a{res:/bosatsu/data/slides/blockchain/chain.txt}
+
+---
+name: Blockchain-Hyperledger
+class: center, middle, inverse
+# Hyperledger
+
+$a{res:/bosatsu/data/slides/blockchain/hyperledger.txt}
+
+---
+name: Blockchain-State-of-Bitcoin
+class: center, middle, inverse
+# State of Bitcoin
+
+$a{res:/bosatsu/data/slides/blockchain/state-of-bitcoin.txt}
+
+
+$a{meta:bosatsu:common:questions}
