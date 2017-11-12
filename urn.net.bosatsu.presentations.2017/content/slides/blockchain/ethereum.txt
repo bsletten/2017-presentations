@@ -1,2 +1,18 @@
 ---
 # Ethereum
+
+
+---
+class: center, middle
+
+# https://ethstats.net
+
+---
+class: center, middle
+
+# https://ethernodes.org
+
+---
+class: center, middle
+
+# https://etherlisten.com

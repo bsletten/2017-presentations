@@ -1,2 +1,114 @@
 ---
-# Blockchain
+class: center, middle, inverse
+
+.quotation[A blockchain is a fully-distributed, peer-to-peer software network which makes use of cryptography to securely host applications, store data, and easily transfer digital instruments of value that represent real-world money.]
+.quotation-source[Introducing Ethereum and Solidity: Foundations of Cryptocurrency and Blockchain Programming for Beginners]
+
+---
+class: center, middle, inverse
+
+.quotation[In the abstract, open source blockchain networks such as Ethereum and Bitcoin are kits that allow you to pop up an economic system in software, complete with account management and a native unit of exchange to pass between accounts.]
+.quotation-source[Introducing Ethereum and Solidity: Foundations of Cryptocurrency and Blockchain Programming for Beginners]
+
+---
+class: center, middle, inverse
+
+.quotation[A blockchain can be thought of as a database that is distributed, or duplicated, across many computers. The innovation represented by the word blockchain is the specific ability of this network database to reconcile the order of transactions, even when a few nodes on the network receive transactions in various order.]
+.quotation-source[Introducing Ethereum and Solidity: Foundations of Cryptocurrency and Blockchain Programming for Beginners]
+
+---
+class: center, middle, inverse
+
+.quotation[[it’s] the first native digital medium for value, just as the internet was the first native digital medium for information.]
+.quotation-source[Blockchain Revolution]
+
+class: center, middle, inverse
+
+.quotation[The blockchain is fundamentally a new paradigm for organizing activity with less friction and more efficiency, and at a much greater scale than current paradigms.]
+.quotation-source[Blockchain]
+
+---
+# Blockchain Benefits
+
+--
+* Direct and/or indirect cost savings
+
+--
+* Higher speed via reduced delays
+
+--
+* Transparency
+
+--
+* Better privacy
+
+--
+* Lower risk
+
+--
+* Equitable access
+
+--
+* Efficiency of processing and reporting
+
+--
+* Higher profits and growth
+
+---
+# Blockchain Beyond Bitcoin (From "Blockchain Revolution")
+
+--
+* Peer-to-peer sharing economy by disintermediating the disintermediators
+
+--
+* Speeding up the financial system and expanding the participant list
+
+--
+* Protecting economic rights globally
+
+--
+* Ending the remittance ripoff
+
+--
+* Cut off bureaucracy and corruption in foreign aid
+
+--
+* Feeding the creators of value first
+
+--
+* Reconfiguring corporations
+
+--
+* Fulfilling the Internet of Things vision
+
+--
+* Increasing transparency and participation in government
+
+---
+class: center, middle, inverse
+.quotation[If business, government, and civil society innovators get this right, we will move from an Internet driven primarily by the falling costs of search, coordination, data collection, and decision making— where the name of the game was monitoring, mediating, and monetizing information and transactions on the Web— to one driven by the falling costs of bargaining,policing, and enforcing social and commercial agreements, where the name of the game will be integrity, security, collaboration, the privacy of all transactions, and the creation and distribution of value.]
+.quotation-source[Blockchain Revolution: How the Technology Behind Bitcoin Is Changing Money, Business, and the World]
+
+---
+# Principles
+
+--
+1. Networked Integrity
+
+--
+2. Distributed Power
+
+--
+3. Value as Incentive
+
+--
+4. Security
+
+--
+5. Privacy
+
+--
+6. Rights Preservation
+
+--
+7. Inclusion

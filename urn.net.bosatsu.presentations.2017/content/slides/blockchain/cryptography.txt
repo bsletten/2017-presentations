@@ -1,0 +1,475 @@
+---
+class: center, middle, inverse
+
+.quotation[Cryptography or cryptology (from Greek κρυπτός kryptós, "hidden, secret"; and γράφειν graphein, "writing", or -λογία -logia, "study", respectively[1]) is the practice and study of techniques for secure communication in the presence of third parties called adversaries.[2]]
+.quotation-source[https://en.wikipedia.org/wiki/Cryptography]
+
+---
+# Bitcoin's Cryptography
+
+--
+* Cryptographically secure hashes
+
+--
+* Digital signatures
+
+---
+# Hashing Function
+
+--
+* Arbitrary input size to a fixed output size
+
+--
+* 'Swiss Army Knife' of cryptography
+
+--
+* Used for
+
+--
+ * Message integrity checks
+
+--
+ * Code-signing
+
+--
+ * Storing passwords
+
+--
+ * Authentication (when keyed)
+
+---
+# Cryptographic Hashing Properties
+
+--
+* Computationally unfeasible to reverse a hash
+
+--
+* Computationally unfeasible to generate a message for a given hash
+
+--
+* Computationally unfeasible to find two inputs that generate the same hash
+
+---
+# MD5
+
+--
+* Message digest algorithm designed by Ron Rivest in 1991
+
+--
+* Produces a 128-bit hash value
+
+--
+* Based on the Merkle-Damgård construction
+
+--
+* Totally broken for cryptographic purposes
+
+--
+* Unsuitable for password storage
+
+--
+* Fine for fingerprint purposes
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/blockchain/merkle-damgard.png"/>
+
+---
+```java
+import java.security.*;
+
+public class MD5 {
+// http://stackoverflow.com/a/9855338
+final protected static char[] hexArray = "0123456789abcdef".toCharArray();
+  public static String bytesToHex(byte[] bytes) {
+    char[] hexChars = new char[bytes.length * 2];
+    for ( int j = 0; j < bytes.length; j++ ) {
+      int v = bytes[j] & 0xFF;
+      hexChars[j * 2] = hexArray[v >>> 4];
+      hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+    }
+  return new String(hexChars);
+  }
+
+  public static void main(String [] args) throws Exception {
+    String password = "password";
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(password.getBytes());
+    byte[] bytes = md.digest();
+    System.out.println("MD5: " + bytesToHex(bytes));
+  }
+}
+```
+
+--
+```text
+MD5: 5f4dcc3b5aa765d61d8327deb882cf99
+```
+
+---
+```java
+import java.security.*;
+
+public class MD5wSalt {
+  ...
+  public static void main(String [] args) throws Exception {
+    String password = "password";
+    String salt;
+
+    SecureRandom sr = SecureRandom.getInstance("SHA1PRNG);
+    byte[] saltBytes = new byte[32];
+    sr.nextBytes(saltBytes);
+
+    System.out.println("SALT: " + saltBytes.toString());
+
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(saltBytes);
+    byte [] bytes = md.digest(password.getBytes());
+    System.out.println("MD5: " + bytesToHex(bytes));
+  }
+}
+```
+
+--
+```text
+SALT: [B@479e0994
+MD5: 8533ccede57a0afba6ad47724eeaf389
+```
+--
+
+```text
+SALT: [B@5162ab9
+MD5: 7e8c7b7ae7fc5a05af9388aaa27725a7
+```
+
+--
+```text
+SALT: [B@724eda4a
+MD5: eff2f0fcd32e84ea19d808797e298577
+```
+
+---
+# MD5 Problems
+
+--
+* Not collision-resistant
+
+--
+* Not suitable for cryptographic purposes
+
+--
+* Pairs of documents and certificates can be generated with the same hash
+
+--
+* Flame malware forged Windows code-signing certificate with an MD5 collision
+
+---
+# Secure Hash Algorithm 1 (SHA-1)
+
+--
+* Cryptographic hash function designed by the NSA
+
+--
+* Produces a 160-bit hash value
+
+--
+* Historically used with TLS, PGP, SSH, S/MIME and IPsec
+
+--
+* Used for content-based addressing in Git
+
+---
+# SHA-1 Problems
+
+--
+* Not collision-resistant
+
+--
+* No longer suitable for cryptographic purposes
+
+--
+* A partial collision is estimated to cost $2000
+
+--
+* A full attack would cost $75-120K on EC2 CPU/GPUs
+
+--
+* Recommend replacing with SHA-2 or SHA-3
+
+--
+* Browsers no longer support SHA-1 certificates
+
+---
+# Secure Hash Algorithm 2 (SHA-2)
+
+--
+* Family of cryptographic hash functions designed by the NSA
+
+--
+* Produces hash values of 224, 256, 384 or 512 bits
+
+--
+* Used with TLS, PGP, SSH, S/MIME and IPsec
+
+--
+* Used for authenticating Debian GNU/Linux packages
+
+--
+* Used extensively with Bitcoin
+
+--
+* So far not shown to suffer from the same weakened collision properties of SHA-1
+
+
+---
+```text
+> cat message.txt
+Meet me tomorrow for dinner at Carpe Vino.
+```
+
+--
+```text
+> shasum -a 256 message.txt
+36f0b87161b4aa29c391b442ca33077eaa2978517ddc181867ff26a5453f6dff  message.txt
+```
+
+--
+```text
+> shasum -a 256 message.txt
+431cdced80831b73afc1f4e755d38d77f0b4137ee5a9ec0e381cbffc53f3aafa  message.txt
+```
+
+--
+```text
+> echo "password" | hexdump
+0000000 70 61 73 73 77 6f 72 64 0a
+0000009
+```
+
+--
+```text
+> echo "passwore" | hexdump
+0000000 70 61 73 73 77 6f 72 65 0a
+0000009
+```
+
+--
+```text
+> echo "password" | shasum -a 256
+6b3a55e0261b0304143f805a24924d0c1c44524821305f31d9277843b8a10f4e  -
+```
+
+--
+```text
+> echo "passwore" | shasum -a 256
+c78e8a700401d1cded1ee2c8e89d9e1d772783bd2c29e8304bd9ead3cc46b5ca  -
+```
+
+---
+```text
+> cat passwords.txt
+bsletten:f33ae3bc9a22cd7564990a794789954409977013966fb1a8f43c35776b833a95
+mstine:ea68dfe0e410e1dd01ae83585c0a4a8b9998f7e72ca2ed5e48b675fe0c2e4dea
+tlberglund:ad135c1ba370bd27e2e031c2765822c8a6af7b86d6b24627da3a9ab3564747bd
+```
+
+--
+```text
+// fishshell syntax
+> for i in secretmagicword password 12345;
+       grep (echo "$i" | shasum -a 256 | cut -c1-40) passwords.txt ; end
+bsletten:f33ae3bc9a22cd7564990a794789954409977013966fb1a8f43c35776b833a95
+```
+---
+class: center, middle
+
+<img style="height: 300px;" src="/bosatsu/data/images/blockchain/collisions.png"/>
+
+.footnote["Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction"]
+
+---
+
+--
+# `$$ 2^{256} \text{ possible outputs}$$`
+
+--
+# `$$ 2^{256} + 1 \text{ hashes in the worst case}$$`
+
+--
+# `$$ 2^{130} + 1 \text{ choices yields a 99.8% chance of collision due to the Birthday Paradox}$$`
+
+--
+# `$$ \text{10,000 H/s would take } 10^{27} \text{ years to perform } 2^{128} \text{hashes}$$`
+
+---
+class: center, middle
+
+<img style="height: 350px;" src="/bosatsu/data/images/blockchain/hash-pointer.png"/>
+
+.footnote["Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction"]
+
+---
+class: center, middle
+
+<img style="height: 350px;" src="/bosatsu/data/images/blockchain/blockchain.png"/>
+
+.footnote["Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction"]
+
+---
+class: center, middle
+
+<img style="height: 450px;" src="/bosatsu/data/images/blockchain/merkle-tree.png"/>
+
+.footnote["Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction"]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/merkle-pom.png"/>
+
+
+---
+# Elliptical Curve Digital Signature Algorithm (ECDSA)
+
+--
+* Digital signature algorithm used by Bitcoin to validate transactions
+
+--
+* Based upon public/private key pairs
+
+--
+* Prevents tampering with transaction details
+
+--
+* Demonstrates ownership of bitcoin
+
+---
+# Elliptical Curves
+
+--
+
+## `$$y^2 = x^3 + ax + b$$`
+
+--
+
+## `$$4a^3 + 27b^2 \neq 0$$`
+
+--
+## `$$\{(x,y) \in \mathbb{R}^2 | y^2 = x^3 + ax + b, 4a^3 + 27b^2 \neq 0\} \cup \{0\} $$`
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/ec.png"/>
+
+.footnote[http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/blockchain/ec-animated.gif"/>
+
+.footnote[http://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/]
+
+---
+# Signature
+
+# `$$ Sig = F_{sig}(F_{hash}(m), dA)$$`
+
+--
+
+# `$$ Sig = R, S $$`
+
+--
+* Establish parameters for the curve (a, b, p, N, G)
+
+--
+* Pick a point on the curve
+
+--
+* Pick a random number d (private key)
+
+--
+* Use these to find another point of the curve (public key)
+
+--
+## `$$ H = dG $$`
+
+---
+class: center, middle
+# Secp256k1
+
+## `$$p = 2^{256} - 2^{32} - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1$$`
+
+## `$$y^2 = x^3 + ax + b, a = 0, b = 7$$`
+
+## `$$y^2 = x^3 + 7$$`
+
+<img style="height: 300px;" src="/bosatsu/data/images/blockchain/Secp256k1.png"/>
+
+
+---
+# Generate Signature
+
+--
+* SHA1 hash of message H(m)
+
+--
+* Pick temporary random k (ephemeral private key)
+
+--
+* Generate temporary P (ephemeral public key)
+
+--
+## `$$ P = kG $$`
+
+--
+## `$$ R = x_P $$`
+
+--
+* dA = signing private key
+
+--
+## `$$ S = k^{-1} (Hash(m) + dA * R) \text{ mod p} $$`
+
+---
+# Verify Signature
+
+* HA = public signing key
+## `$$ P = S^{-1} * Hash(m) * G + S^{-1} * R * HA$$`
+
+* Signature is valid if
+## `$$ x_P == R $$`
+
+---
+```python
+Curve: secp256k1
+Private key: 0x9f4c9eb899bd86e0e83ecca659602a15b2edb648e2ae4ee4a256b17bb29a1a1e
+Public key: (0xabd9791437093d377ca25ea974ddc099eafa3d97c7250d2ea32af6a1556f92a,
+             0x3fe60f6150b6d87ae8d64b78199b13f26977407c801f233288c97ddc4acca326)
+
+Message: b'Hello!'
+Signature: (0xddcb8b5abfe46902f2ac54ab9cd5cf205e359c03fdf66ead1130826f79d45478,
+            0x551a5b2cd8465db43254df998ba577cb28e1ee73c5530430395e4fba96610151)
+Verification: signature matches
+
+Message: b'Hi there!'
+Verification: invalid signature
+
+Message: b'Hello!'
+Public key: (0xc40572bb38dec72b82b3efb1efc8552588b8774149a32e546fb703021cf3b78a,
+             0x8c6e5c5a9c1ea4cad778072fe955ed1c6a2a92f516f02cab57e0ba7d0765f8bb)
+Verification: invalid signature
+```
+
+.center[.footnote[https://github.com/andreacorbellini/ecc/blob/master/scripts/ecdsa.py]]
+
+---
+class: center, middle
+
+## http://www.bbc.co.uk/news/technology-12116051
+
+--
+
+## https://xkcd.com/221/

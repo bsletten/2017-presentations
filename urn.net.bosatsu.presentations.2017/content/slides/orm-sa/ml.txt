@@ -4,6 +4,8 @@ class: center, middle, inverse
 ---
 #Scaling and Operationalizing Machine Learning Solutions
 
+## Brian Sletten, Bosatsu Consulting, Inc.
+
 $a{bosatsu:common:qualifications}
 
 ---
@@ -14,15 +16,13 @@ layout: false
 .right-column[
 - Introduction
 
+- GPU
+
 - Optimization
 
 - Serving
 
-- GPU
-
-- Distribution
-
-- Z-axis
+- Books
 
 ]
 
@@ -34,34 +34,129 @@ class: center, middle, inverse
 ---
 class: center, middle
 
+# https://www.buzzfeed.com/ariellecalderon/things-that-were-totally-normal-in-1999
+
+---
+class: center, middle
+
 <img src="/bosatsu/data/images/ml-overview/data-science-process.png">
 
 ##### O'Neil and Schutt, "Doing Data Science"
 
 ---
-name: ORM-SA-Optimization
 class: center, middle, inverse
-# Optimization
 
----
-name: ORM-SA-Serving
-class: center, middle, inverse
-# Serving
+.quotation[The new baseline: so far you’ve embraced automated testing, continuous integration, continuous delivery, perhaps continuous deployment, and you have the sophistication to rollout new changes in a gradual manner, monitor behaviour, and stop or rollback when a problem is detected.]
+.quotation-source[https://blog.acolyer.org/2017/10/03/tfx-a-tensorflow-based-production-scale-machine-learning-platform/]
 
 ---
 class: center, middle, inverse
 
-.quotation[Machine-learned models are often parts of complex systems comprising a large number of data sources and interacting components, which are commonly entangled together. This creates large surfaces on which bugs can grow and unexpected interactions can develop, potentially to the detriment of end-user experiences via the degradation of the machine-learned model.]
-.quotation-source[TFX: A TensorFlow-based production scale machine learning platform, Baylor et al., KDD'17]
----
-class: center, middle
-
-<img style="height: 300px;" src="/bosatsu/data/images/orm-sa/tfx-1.jpg">
+.quotation[From a high level perspective, a machine learning package is a tool for mixing data sources together. That is, machine learning models are machines for creating entanglement and making the isolation of improvements effetively impossible.]
+.quotation-source[Machine Learning: The High Interest Credit Card of Technical Debt, Sculley et al.]
 
 ---
-class: center, middle
+# Consequences
+- CACE
+- Adding removing features
+- Tweaking hyperparameters
+- May require isolating models and serving ensembles
 
-<img style="height: 500px;" src="/bosatsu/data/images/orm-sa/tfx-2.jpg">
+---
+class: center, middle, inverse
+
+.quotation[In practice, this all too often means that shipping the first version of a machine learning system is easy, but that making subsequent improvements is unexpectedly hard.]
+.quotation-source[Machine Learning: The High Interest Credit Card of Technical Debt, Sculley et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[All those machine learning models you’ve been optimising need to be trained, validated and served somehow. You need a machine learning platform.]
+.quotation-source[https://blog.acolyer.org/2017/10/03/tfx-a-tensorflow-based-production-scale-machine-learning-platform/]
+
+---
+# Requirements
+
+- Building one platform for multiple learning tasks
+- Support for continuous training
+- Human feedback
+- Production quality
+
+---
+# Performance Requirements
+
+- Low latency
+- High throughput
+
+---
+# Execution Model Requirements
+
+- Dynamic task creation
+- Heterogeneous tasks
+- Arbitrary dataflow dependencies
+
+---
+# Practical Requirements
+
+- Transparent fault tolerance
+- Debuggability and profiling
+
+---
+# Suggestions
+
+- Treat data as assets
+- Capture data anomalies early
+- Automate data validation
+- Treat data errors like you do code errors
+- Support continuous training
+- Reliable and scalable deployments
+
+---
+#About TensorFlow
+- Open source library for numerical computation from Google Brain Team
+- Version 1.3 was just released
+- Primarily for machine learning and deep neural network research
+- Data flow graph-based
+- Nodes represent operations
+- Tensors flow through the nodes
+- Leverages CPUs and/or GPUs
+- Scalable across computer clusters
+- Ecosystem for graph visualization, serving production models, etc.
+
+---
+class: center, middle, inverse
+
+.quotation[TensorFlow’s primary purpose is not to provide out-of-the-box machine learning solutions. Instead, TensorFlow provides an extensive suite of functions and classes that allow users to define models from scratch mathematically. This allows users with the appropriate technical background to create customized, flexible models quickly and intuitively. Additionally, while TensorFlow does have extensive support for ML-specific functionality, it is just as well suited to performing complex mathematical computations.]
+
+.quotation-source[
+Source: TensorFlow For Machine Intelligence: A hands-on introduction to learning algorithms, Abrahams et al.]
+
+---
+# When should I use it?
+
+- Experimenting with new machine learning architectures and approaches
+- Operationalizing your experiments
+- Iterating on various architectures
+- Large-scale distributed models
+- Building models for mobile/embedded systems
+
+---
+# What is a Tensor?
+
+- An n-dimensional matrix
+- ### `3` (Rank 0)
+- ### `[1.,2.,3.]` (Rank 1 - Shape [3])
+- ### `[[1.,2.,3.], [4.,5.,6.]]` (Rank 2 - Shape[2, 3])
+- ### `[[[1.,2.,3.]], [[7.,8.,9.]]]` (Rank 3 - Shape[2, 1, 3])
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/graph_vis_animation.gif">
+.footnote[
+Credit: <a href="https://www.tensorflow.org/get_started/graph_viz">TensorBoard: Graph Visualization<a/>
+]
+
 
 ---
 name: ORM-SA-GPU
@@ -132,6 +227,118 @@ class: center, middle, inverse
 .quotation-source[https://herbsutter.com/welcome-to-the-jungle/]
 
 ---
+class: middle, center
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/cuda.jpg">
+
+---
+
+# CUDA Program Structure
+
+1. Allocate GPU memory
+2. Copy data from CPU memory to GPU memory
+3. Invoke the CUDA kernel
+4. Copy data from GPU memory to CPU memory
+5. Free GPU memory
+
+---
+
+# Kernel Rules
+
+1. Only access device memory
+2. void return type
+3. Fixed argument list
+4. No static variables
+5. No function pointers
+6. Asychronous
+
+---
+```cpp
+void sumArraysOnHost(float *A,
+                     float *B,
+                     float *C,
+                     const int N)
+{
+  for( int idx = 0; idx < N; idx++ ) {
+    C[idx] = A[idx] + B[idx];
+  }
+}
+```
+
+```cpp
+__global__ void sumArraysOnGPU(float *A,
+                               float *B,
+                               float *C)
+{
+*  int i = threadIdx.x;
+  C[i] = A[i] + B[i];
+}
+```
+
+---
+```cpp
+int main(int argc, char **argv) {
+   int dev = 0;
+   cudaSetDevice(dev);
+
+   int nElem = 32;
+
+   size_t nBytes = nElem * sizeof(float);
+
+   float *h_A, *h_b, *hostRef, *gpuRef;
+   h_A = (float *) malloc(nBytes);
+   h_B = (float *) malloc(nBytes);
+   gpuRef = (float *) malloc(nBytes);
+   ...
+}
+```
+
+---
+```cpp
+   ...
+   initialData(h_A, nElem);
+   initialData(h_B, nElem);
+
+   memset(gpuRef, 0, nBytes);
+
+   float *d_A, *d_B, *d_c;
+   cudaMalloc((float **) &d_A, nBytes);
+   cudaMalloc((float **) &d_B, nBytes);
+   cudaMalloc((float **) &d_C, nBytes);
+
+   cudaMemcpy(d_A, h_A, nBytes,
+     cudaMemcpyHostToDevice);
+   cudaMemcpy(d_B, h_B, nBytes,
+     cudaMemcpyHostToDevice);
+
+   ...
+```
+
+---
+```cpp
+   ...
+   dim3 block (nElem);
+   dim3 grid (nElem/block.x);
+
+   sumArraysOnGPU<<< grid, block >>>
+      (d_A, d_B, d_C);
+
+   cudaMemcpy(gpuRef, d_C, nBytes,
+     cudaMemcpyDeviceToHost);
+
+   cudaFree(d_A);
+   cudaFree(d_B);
+   cudaFree(d_C);
+
+   free(h_A);
+   free(h_B);
+   free(gpuRef);
+
+   return(0);
+}
+```
+
+---
 class: center, middle
 
 <img style="height: 500px;" src="/bosatsu/data/images/orm-sa/ml-gpu.png">
@@ -141,13 +348,198 @@ class: center, middle
 ---
 class: center, middle
 
+<img height="500" src="/bosatsu/data/images/gpgpu/opencl-logo.png">
+
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/metal.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/vulkan.png">
+
+---
+class: center, middle
+
 <img height="400" src="/bosatsu/data/images/gpgpu/opencl-2017.jpg">
 
 ##### "Khronos Group, IWOCL 2017"
 
 ---
-name: ORM-SA-Distribution
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/webgpu.png">
+
+
+
+---
+name: ORM-SA-Optimization
 class: center, middle, inverse
+# Optimization
+
+---
+# File Formats for Training
+
+- TFRecord is a binary file of serialized data
+- Protobuf-based
+- Create with TFRecordWriter
+
+---
+# Multi-threaded Reading
+
+- Queues
+- Coordinator
+- QueueRunner
+
+---
+class: center, middle, inverse
+
+.quotation[Rule #4: Keep the first model simple and get the infrastructure right.]
+.quotation-source[http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf]
+
+---
+class: center, middle, inverse
+
+.quotation[Rule #5: Test the infrastructure independently from the machine learning.]
+.quotation-source[http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf]
+
+---
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/scaling.jpg">
+
+---
 # Distribution
+
+- Multiple computing devices
+- Clusters of machines
+
+---
+# Considerations
+
+- Shared memory needs
+- Synchronous/asynchronous updates
+
+---
+# Training example: Gradient Descent
+
+- Compute the gradients for a batch
+- Add the gradients up
+- Update the model parameters
+
+---
+# Quantizing Models
+
+- Models tend to get large
+- Trained off of floating point precision
+- Compression of floating point numbers
+- Can gain storage and inference performance through quantization
+
+---
+# Quantizing Process
+
+- Find min and max values
+- Map min to 0, max to 255
+- TensorFlow provides quantized-aware versions of ops
+
+---
+class: center, middle
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/quantization0.png">
+
+---
+class: center, middle
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/quantization1.png">
+
+---
+class: center, middle
+##https://cloud.google.com/products/machine-learning/
+
+---
+name: ORM-SA-Serving
+class: center, middle, inverse
+# Serving
+
+---
+class: center, middle
+
+# https://www.tensorflow.org/serving/
+
+---
+class: center, middle, inverse
+
+.quotation[Machine-learned models are often parts of complex systems comprising a large number of data sources and interacting components, which are commonly entangled together. This creates large surfaces on which bugs can grow and unexpected interactions can develop, potentially to the detriment of end-user experiences via the degradation of the machine-learned model.]
+.quotation-source[TFX: A TensorFlow-based production scale machine learning platform, Baylor et al., KDD'17]
+---
+class: center, middle
+
+<img style="height: 300px;" src="/bosatsu/data/images/orm-sa/tfx-1.jpg">
+
+---
+class: center, middle, inverse
+
+.quotation[We want the user to treat data errors with the same rigor and care that they deal with bugs in code. To promote this practice, we allow anomalies to be filed just like any software bug where they are documented, tracked, and eventually resolved.]
+.quotation-source[TFX: A TensorFlow-based production scale machine learning platform, Baylor et al., KDD'17]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/orm-sa/tfx-2.jpg">
+
+---
+# Goals
+
+- Validate the models (safe to serve, quality predictions)
+- Testing model evolution
+- Validate the data flowing through
+- Supporting continuous training (warm starting)
+
+
+
+---
+class: center, middle
+
+# http://tinyurl.com/y7rl53xg
+
+---
+class: center, middle
+
+# http://tinyurl.com/ybzv6ydv
+
+---
+class: center, middle
+
+# http://tinyurl.com/ycbphqf5
+
+
+
+
+---
+name: ORM-SA-Books
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/tensorflow.jpg">
+
+---
+class: center, middle
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/deeplearning-arch.png">
+
+---
+class: center, middle
+
+<img style="height: 600px;" src="/bosatsu/data/images/orm-sa/playbook.jpg">
+
+---
+class: center, middle
+
+# https://blog.acolyer.org
 
 $a{meta:bosatsu:common:questions}

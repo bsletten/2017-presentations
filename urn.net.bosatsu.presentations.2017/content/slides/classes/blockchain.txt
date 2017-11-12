@@ -14,7 +14,9 @@ layout: false
 .right-column[
 - Introduction
 
-- Encryption
+- Cryptography
+
+- GPGPU
 
 - Bitcoin
 
@@ -37,11 +39,19 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/intro.txt}
 
 ---
-name: Blockchain-Encryption
+name: Blockchain-Cryptography
 class: center, middle, inverse
-# Encryption
+# Cryptography
 
-$a{res:/bosatsu/data/slides/blockchain/encryption.txt}
+$a{res:/bosatsu/data/slides/blockchain/cryptography.txt}
+
+---
+name: Blockchain-GPU
+class: center, middle, inverse
+# GPGPU
+
+$a{res:/bosatsu/data/slides/blockchain/gpgpu.txt}
+
 
 ---
 name: Blockchain-Bitcoin
@@ -65,6 +75,20 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/ethereum.txt}
 
 ---
+name: Blockchain-Stellar
+class: center, middle, inverse
+# Stellar
+
+$a{res:/bosatsu/data/slides/blockchain/stellar.txt}
+
+---
+name: Blockchain-ZCash
+class: center, middle, inverse
+# ZCash
+
+$a{res:/bosatsu/data/slides/blockchain/zcash.txt}
+
+---
 name: Blockchain-Chain
 class: center, middle, inverse
 # Chain
@@ -79,11 +103,39 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/hyperledger.txt}
 
 ---
+name: Blockchain-Waves
+class: center, middle, inverse
+# Waves
+
+$a{res:/bosatsu/data/slides/blockchain/waves.txt}
+
+---
 name: Blockchain-State-of-Bitcoin
 class: center, middle, inverse
 # State of Bitcoin
 
 $a{res:/bosatsu/data/slides/blockchain/state-of-bitcoin.txt}
+
+---
+name: Blockchain-Books
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/mastering-bc-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/bc-and-crypto-tech-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/ethereum-solidity-book.png">
+
 
 
 $a{meta:bosatsu:common:questions}
