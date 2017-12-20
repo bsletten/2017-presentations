@@ -1,0 +1,80 @@
+---
+class: center, middle
+##[https://www.tensorflow.org/tutorials/image_recognition](https://www.tensorflow.org/tutorials/image_recognition)
+
+---
+```bash
+> git clone https://github.com/tensorflow/models.git tensorflow-models
+> cd tensorflow-models/tutorials/image/imagenet
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/cropped_panda.jpg">
+
+--
+```bash
+> python classify_image.py
+>> Downloading inception-2015-12-05.tgz 100.0%
+Successfully downloaded inception-2015-12-05.tgz 88931400 bytes.
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca (score = 0.88493)
+indri, indris, Indri indri, Indri brevicaudatus (score = 0.00878)
+lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens (score = 0.00317)
+custard apple (score = 0.00149)
+earthstar (score = 0.00127)
+
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/712033765.jpg">
+
+--
+```bash
+> python classify_image.py --image_file 712033765.jpg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+flamingo (score = 0.84379)
+spoonbill (score = 0.00857)
+black swan, Cygnus atratus (score = 0.00188)
+goose (score = 0.00135)
+black stork, Ciconia nigra (score = 0.00132)
+```
+
+---
+<img src="/bosatsu/data/images/tensorflow/pug.jpeg">
+
+--
+```bash
+> python classify_image.py --image_file pug.jpeg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+pug, pug-dog (score = 0.71793)
+Brabancon griffon (score = 0.22177)
+French bulldog (score = 0.01942)
+Pekinese, Pekingese, Peke (score = 0.00133)
+Boston bull, Boston terrier (score = 0.00065)
+```
+
+---
+<img style="height: 450px;" src="/bosatsu/data/images/tensorflow/beggars.jpg">
+
+--
+```bash
+> python classify_image.py --image_file Beggars.jpg
+W tensorflow/core/framework/op_def_util.cc:332] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Norwich terrier (score = 0.86040)
+Norfolk terrier (score = 0.09727)
+Australian terrier (score = 0.01304)
+Lakeland terrier (score = 0.00186)
+cairn, cairn terrier (score = 0.00178)
+```
+
+---
+# Sorting Cucumbers
+
+.center[
+<img src="/bosatsu/data/images/tensorflow/cucumber_classification.jpg">]
+
+.footnote[http://workpiles.com/2016/06/ccb9-prototype2-recognition_system/]
+
+---
+class: center, middle
+##https://youtu.be/oZikw5k_2FM?t=55

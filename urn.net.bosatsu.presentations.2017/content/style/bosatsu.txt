@@ -15,12 +15,15 @@
       .remark-slide-content h3 { font-size: 1.6em; }
       .footnote {
         position: absolute;
-        bottom: 3em;
+        bottom: 1em;
+        width: 100%;
+        left: 0px;
       }
       li p { line-height: 1.25em; }
       .red { color: #fa0000; }
       .green { color: #00fa00; }
       .blue { color: #0000fa; }
+      .white { color: #ffffff; }
       .large { font-size: 2em; }
       a, a > code {
         color: rgb(249, 38, 114);
@@ -34,7 +37,7 @@
          font-family: 'Ubuntu Mono';
          font-size: 20px;
       }
-      .remark-code-line-highlighted     { background-color: #999999; }
+      .remark-code-line-highlighted     { background-color: #CCCCCC; }
       .pull-left {
         float: left;
         width: 47%;
@@ -140,8 +143,10 @@
       }
 
       .quotation-source {
-        color: #777;
+        display: block;
+        color: #999;
         font-style: italic;
+        margin-top: 10px;
       }
 
       .underline {

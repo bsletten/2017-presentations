@@ -1,0 +1,100 @@
+---
+class: center, middle
+
+## https://github.com/webassembly/wabt
+
+---
+class: center, middle
+
+## https://github.com/AndrewScheidecker/WAVM
+
+---
+class: center, middle
+
+## https://gist.github.com/yurydelendik/4eeff8248aeb14ce763e
+
+---
+class: center, middle
+
+## https://github.com/kanaka/wac
+
+---
+```lisp
+(module
+  (func $addTwo (param i32 i32) (result i32)
+    (i32.add
+      (get_local 0)
+      (get_local 1)))
+  (export "addTwo" (func $addTwo)))
+```
+
+--
+```bash
+> wasm-as addTwo.wast > addTwo.wasm
+```
+
+--
+```bash
+./wac examples_wast/addTwo.wasm addTwo 2 3
+0x5:i32
+```
+
+---
+```c
+int fib(int n) {
+  int i, t, a = 0, b = 1;
+  for (i = 0; i < n; i++) {
+    t = a + b; a = b; b = t;
+  }
+  return b;
+}
+```
+
+--
+```bash
+> clang -emit-llvm --target=wasm32 -Oz fib.c -c -o fib.bc
+```
+
+--
+```bash
+> llc -asm-verbose=false -o fib.s fib.bc
+```
+
+--
+```bash
+> s2wasm fib.s > fib.wast
+```
+
+--
+```bash
+> wasm-as fib.wast > fib.wasm
+```
+
+--
+```bash
+> ./wac --repl fib.wasm
+webassembly> fib 2
+0x2:i32
+webassembly> fib 5
+0x8:i32
+```
+
+---
+class: center, middle
+
+## https://github.com/athre0z/wasm
+
+---
+class: center, middle
+
+## http://ast.run
+
+---
+class: center, middle
+
+## https://github.com/dcodeIO/webassembly
+
+---
+class: center, middle
+
+## https://dev.to/gfx/using-webassembly-for-a-nodejs-native-addon-dpf

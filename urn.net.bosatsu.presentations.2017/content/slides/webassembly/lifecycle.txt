@@ -1,0 +1,55 @@
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webassembly/lin-clark-lc-1.png">
+
+.footnote[https://hacks.mozilla.org/2017/07/creating-a-webassembly-module-instance-with-javascript/]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-lc-2.png">
+
+.footnote[https://hacks.mozilla.org/2017/07/creating-a-webassembly-module-instance-with-javascript/]
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/webassembly/lin-clark-lc-3.png">
+
+.footnote[https://hacks.mozilla.org/2017/07/creating-a-webassembly-module-instance-with-javascript/]
+
+---
+class: center, middle
+
+<img  src="/bosatsu/data/images/webassembly/lin-clark-lc-4.png">
+
+.footnote[https://hacks.mozilla.org/2017/07/creating-a-webassembly-module-instance-with-javascript/]
+
+---
+class: center, middle
+
+<img style="height: 450px;" src="/bosatsu/data/images/webassembly/lin-clark-lc-5.png">
+
+.footnote[https://hacks.mozilla.org/2017/07/creating-a-webassembly-module-instance-with-javascript/]
+
+---
+#Invoking WASM Function From Javascript
+.footnote[.red[https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format] ]
+
+```javascript
+fetchAndInstantiate('add.wasm').then(function(instance) {
+   console.log(instance.exports.add(1, 2));  // "3"
+});
+
+// fetchAndInstantiate() found in wasm-utils.js
+function fetchAndInstantiate(url, importObject) {
+  return fetch(url).then(response =>
+    response.arrayBuffer()
+  ).then(bytes =>
+    WebAssembly.instantiate(bytes, importObject)
+  ).then(results =>
+    results.instance
+  );
+}
+```

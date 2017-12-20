@@ -1,0 +1,142 @@
+---
+class: center, middle
+
+## [https://mbebenita.github.io/WasmExplorer/](https://mbebenita.github.io/WasmExplorer/)
+
+---
+class: center, middle
+
+## [https://wasdk.github.io/WasmFiddle/](https://wasdk.github.io/WasmFiddle/)
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webassembly/lin-clark-tool.png">
+
+.footnote[https://www.smashingmagazine.com/2017/05/abridged-cartoon-introduction-webassembly/]
+
+---
+#Building Emscripten w/ WebAssembly Support
+```bash
+$ git clone https://github.com/juj/emsdk.git
+$ cd emsdk
+$ ./emsdk install sdk-incoming-64bit binaryen-master-64bit
+$ ./emsdk activate sdk-incoming-64bit binaryen-master-64bit
+```
+
+--
+
+```bash
+$ source ./emsdk_env.sh
+Adding directories to PATH:
+PATH += /Users/brian/git-others/emsdk/emsdk
+PATH += /Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin
+PATH += /Users/brian/git-others/emsdk/emsdk/node/4.1.1_64bit/bin
+PATH += /Users/brian/git-others/emsdk/emsdk/emscripten/incoming
+
+Setting environment variables:
+EMSDK = /Users/brian/git-others/emsdk/emsdk
+EM_CONFIG = /Users/brian/.emscripten
+EMSCRIPTEN = /Users/brian/git-others/emsdk/emsdk/emscripten/incoming
+```
+
+---
+#Testing the Build
+```bash
+$ emcc -v
+WARNING:root:(Emscripten: system change: 1.37.3|/Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin|3.9 vs 1.37.0|/Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin|3.9, clearing cache)
+INFO:root:(Emscripten: Running sanity checks)
+emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 1.37.3
+clang version 3.9.0 (https://github.com/kripken/emscripten-fastcomp-clang/ 5725e3dd8325570ac9d92924fb1af5db9e879e58) (https://github.com/kripken/emscripten-fastcomp/ 9735be7b8bee9c207f33244fe3c5f85f45094470) (emscripten 1.37.3 : 1.37.3)
+Target: x86_64-apple-darwin16.4.0
+Thread model: posix
+InstalledDir: /Users/brian/git-others/emsdk/emsdk/clang/fastcomp/build_incoming_64/bin
+INFO:root:(Emscripten: Running sanity checks)
+```
+
+---
+#Hello, World!
+```c
+#include <stdio.h>
+
+int main() {
+  printf("hello, world!\n");
+  return 0;
+}
+```
+
+---
+#Compiling to WASM/HTML
+```bash
+$ emcc hello.c -s WASM=1 -o hello.html
+$ ls -alF
+total 960
+drwxr-xr-x   7 brian  staff     238 Feb 19 17:05 ./
+drwxr-xr-x  15 brian  staff     510 Feb 19 17:05 ../
+-rw-r--r--   1 brian  staff  235507 Feb 19 17:05 hello.asm.js
+-rw-r--r--   1 brian  staff      76 Feb 19 17:05 hello.c
+-rw-r--r--   1 brian  staff  103079 Feb 19 17:05 hello.html
+-rw-r--r--   1 brian  staff   90634 Feb 19 17:05 hello.js
+-rw-r--r--   1 brian  staff   47496 Feb 19 17:05 hello.wasm
+```
+
+--
+
+```bash
+$ emrun --no_browser --port 10000 .
+Web server root directory: /Users/brian/src/emscripten/wasm
+Now listening at http://localhost:10000/
+The html page you are running is not emrun-capable. Stdout, stderr and exit(returncode) capture will not work. Recompile the application with the --emrun linker flag to enable this, or pass --no_emrun_detect to emrun to hide this check.
+```
+
+---
+class: center
+
+# WebAssembly-Enabled Browser
+
+<img src="/bosatsu/data/images/webassembly/hello_world_wasm.png">
+
+---
+class: center, middle
+
+## https://play.rust-lang.org/?gist=ffb83a685e4aa842527e38569bf23f36&version=nightly
+
+---
+class: center, middle
+
+## https://www.steveklabnik.com/wasm/demos/semver.html
+
+---
+class: center, middle
+
+## https://www.hellorust.com/demos/add/index.html
+
+---
+class: center, middle
+
+## https://www.hellorust.com/emscripten/wasm-fact/
+
+---
+class: center, middle
+
+## https://github.com/luki/fst-wasm
+
+---
+class: center, middle
+
+# https://github.com/vvanders/wasm_lua
+
+---
+class: center, middle
+
+## https://fossil.e-lehmann.de/wacl/index
+
+---
+class: center, middle
+
+## https://github.com/SteveSanderson/Blazor
+
+---
+class: center, middle
+
+## https://blog.jetbrains.com/kotlin/2017/11/kotlinnative-v0-4-released-objective-c-interop-webassembly-and-more/

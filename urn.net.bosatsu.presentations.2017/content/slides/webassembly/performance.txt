@@ -1,0 +1,38 @@
+---
+class: center, middle, inverse
+
+.quotation[On average, WebAssembly is 33.7% faster than asm.js.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[For SpiderMonkey, WebAssembly validation takes less than 3% of the time of asm.js validation.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+
+---
+class: center, middle, inverse
+
+.quotation[In V8, memory consumption of WebAssembly validation is less than 1% of that for asm.js validation.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[On average, WebAssembly code is 62.5% the size of asm.js and 85.3% of native x86-64 code size.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+class: center, middle
+##[https://takahirox.github.io/WebAssembly-benchmark/](https://takahirox.github.io/WebAssembly-benchmark/)
+
+---
+class: center, middle
+
+## https://blog.figma.com/webassembly-cut-figmas-load-time-by-3x-76f3f2395164
+
+---
+class: center, middle
+
+## https://developer.mozilla.org/en-US/docs/WebAssembly/Caching_modules

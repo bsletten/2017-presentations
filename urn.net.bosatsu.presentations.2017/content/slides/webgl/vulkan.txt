@@ -1,0 +1,69 @@
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/metal.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/vulkan.png">
+
+---
+class: center, middle
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rvCD9FaTKCA" frameborder="0" allowfullscreen></iframe>
+
+---
+class: center, middle
+
+<img style="height: 450px;" src="/bosatsu/data/images/webgl/khronos-ecosystem.jpg">
+
+.footnote[http://tinyurl.com/y6uyerts]
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/opencl-2017.jpg">
+
+.quotation-source["Khronos Group, IWOCL 2017"]
+
+---
+class: center, middle
+
+# https://github.com/KhronosGroup/WebGLNext-Proposals
+
+
+---
+class: center, middle
+
+# http://floooh.github.io/2016/08/13/webgl-next.html
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/webgpu.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/webgl2.png">
+
+---
+class: center, middle
+
+<img height="450" src="/bosatsu/data/images/webgl/vulkan-portable.jpg">
+
+---
+class: center, middle
+
+## https://ogrecave.github.io/ogre/emscripten/
+
+---
+class: center, middle
+
+## http://blog.magnum.graphics/announcements/webassembly-support-and-more/
+
+---
+class: center, middle
+
+## http://s3.amazonaws.com/mozilla-games/tmp/2017-02-21-SunTemple/SunTemple.html

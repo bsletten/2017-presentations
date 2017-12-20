@@ -1,0 +1,14 @@
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/ml-overview/hands-on.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/ml-overview/learning-tensorflow.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/ml-overview/dl-tensorflow.png">

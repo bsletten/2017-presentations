@@ -1,0 +1,9 @@
+---
+class: center, middle
+
+## https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/
+
+---
+class: center, middle
+
+## [http://learningthreejs.com/blog/2013/04/30/closing-the-gap-between-html-and-webgl/](http://learningthreejs.com/blog/2013/04/30/closing-the-gap-between-html-and-webgl/)

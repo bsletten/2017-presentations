@@ -1,0 +1,135 @@
+---
+class: center, middle, inverse
+
+.quotation[Rather than committing to a specific programming model, WebAssembly is an abstraction over modern hardware, making it language, hardware and platform independent with use cases beyond just the Web.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+# Safe
+
+--
+
+- Allow code from new/untrusted sources
+
+--
+
+- Sandboxed execution environment
+
+--
+
+- Enforce same-origin and browser security policies
+
+---
+# Efficient and fast
+
+--
+
+- Stack machine
+
+--
+
+- Size and load-time efficient binary format
+
+--
+
+- Portable with near native execution speeds across the full span of Web platform
+
+--
+
+- Don't fall into the trap of slow, managed code techniques
+
+---
+# Open
+
+- Easy to read textual format
+
+--
+
+- Supports debugging, testing, optimizations, experiments
+
+---
+# Part of the Web
+
+- Maintains versionless, feature-tested, backwards-compatibility of the Web
+
+--
+
+- Modules can interact with Javascript context and browser functionality
+
+--
+
+- Also supports non-web embeddings
+
+---
+# Binary Format
+
+--
+- Gzipped source code compresses very nicely
+
+--
+- Experiments demonstrated a 20-30% size reduction of a binary format vs asm.js code
+
+--
+- Parse times of names is slower than binary indices
+
+--
+- Further optimizations are possible
+
+---
+# Binary Layering
+
+--
+- Layer 0: Simple binary encoding of bytecode and data structures
+
+--
+- Layer 1: Structural compression layer .red[*]
+
+--
+- Layer 2: General compression .red[*]
+
+--
+
+.footnote[.red[*] Future feature]
+
+---
+class: center, middle, inverse
+
+.quotation[Even though WebAssembly is a binary code format, we present it as a language with syntax and structure.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+class: center, middle
+##[http://webassembly.org/docs/mvp/](http://webassembly.org/docs/mvp/)
+
+---
+class: center, middle
+##[http://webassembly.org/docs/use-cases/](http://webassembly.org/docs/use-cases/)
+
+---
+# Modules
+
+Contain definitions for:
+
+--
+* Functions
+
+--
+* Globals
+
+--
+* Tables
+
+--
+* Memories
+
+---
+class: center, middle, inverse
+
+.quotation[While a module corresponds to the static representation of a program, an instance of a module corresponds to a dynamic representation, complete with mutable memory and an execution stack.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[Instantiating a module requires providing definitions for all imports which may be exports from previously created WebAssembly instances.]
+.quotation-source["Bringing the Web up to Speed with WebAssembly", Haas et al.]

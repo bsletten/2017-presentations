@@ -1,0 +1,136 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Taming the Blockchain with Ethereum
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Blockchain
+
+- Ethereum
+
+- Other Platforms
+]
+
+---
+name: Ethereum-Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/slides/blockchain/intro.txt}
+
+---
+name: Ethereum-Blockchain
+class: center, middle, inverse
+# Blockchain
+
+$a{res:/bosatsu/data/slides/blockchain/blockchain.txt}
+
+---
+class: center, middle
+
+# http://www.alexandria.io
+
+---
+class: center, middle
+
+# https://namecoin.org
+
+---
+class: center, middle
+
+# https://storj.io
+
+---
+# Blockchain Ideas
+
+--
+* Car Fax replacement
+
+--
+* Yelp replacement
+
+--
+* Uber/AirBnB replacement
+
+--
+* ErnCoin
+
+---
+class: center, middle
+
+# https://lis.virginia.gov/cgi-bin/legp604.exe?041+ful+SJ152+pdf
+
+---
+class: center, middle
+
+# What are your ideas?
+
+---
+name: Ethereum-Ethereum
+class: center, middle, inverse
+# Ethereum
+
+$a{res:/bosatsu/data/slides/blockchain/ethereum.txt}
+
+---
+name: Ethereum-Stellar
+class: center, middle
+
+# http://stellar.org
+
+---
+name: Ethereum-Chain
+class: center, middle
+
+# http://chain.com
+
+---
+name: Ethereum-Hyperledger
+class: center, middle
+
+# http://hyperledger.org
+
+---
+name: Ethereum-Waves
+class: center, middle
+
+# http://wavesplatform.com
+
+---
+name: Ethereum-Books
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/mastering-bc-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/blockchain-book.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/bc-and-crypto-tech-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/ethereum-solidity-book.png">
+
+
+
+$a{meta:bosatsu:common:questions}

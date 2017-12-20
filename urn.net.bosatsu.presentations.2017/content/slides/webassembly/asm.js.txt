@@ -1,0 +1,187 @@
+---
+class: center, middle, inverse
+
+.quotation[asm.js...an extraordinarily optimizable, low-level subset of JavaScript]
+.quotation-source[http://asm.js]
+
+---
+class: center, middle, inverse
+
+.quotation[This specification defines asm.js, a strict subset of JavaScript that can be used as a low-level, efficient target language for compilers. The asm.js language provides an abstraction similar to the C/C++ virtual machine: a large binary heap with efficient loads and stores, integer and floating-point arithmetic, first-order function definitions, and function pointers.]
+.quotation-source[http://asmjs.org/spec/latest/]
+
+---
+#Programming Model
+
+--
+* JavaScript does not provide constructs for dealing with integers
+
+--
+* Can be emulated
+
+--
+ * Typed array APIs with integer load/store capabilities
+
+--
+ * The composition of JavaScript floating-point arithmetic operators with the integer coercions performed by the bitwise operators
+
+---
+background-image: url(/bosatsu/data/images/webassembly/Wat.jpg)
+class: middle
+
+---
+# You Heard Me
+
+--
+```javascript
+// load the 32-bit integer at byte offset p from Int32Array
+HEAP32[p >> 2]|0
+```
+
+--
+```javascript
+// taking two integer values, adding them with the built-in
+// addition operator, and coercing the result back to an integer
+// via the bitwise or operator
+(x+y)|0
+```
+
+---
+class: middle, center
+
+## http://asmjs.org/spec/latest/
+
+---
+#Emscripten: What is it?
+
+--
+- Open Source LLVM to Javascript compiler
+
+--
+- Compile C/C++ into Javascript
+
+--
+- Convert any LLVM bitcode output into Javascript
+
+--
+- Compile C/C++-based runtimes into Javascript (Python/Lua)
+
+---
+#Emscripten: Why is it?
+
+--
+- JavaScript engines are fast and getting faster
+
+--
+- People are familiar with other tools and languages
+
+--
+- JavaScript kind of sucks
+
+--
+- Code is compiled into LLVM bitcode which unlocks further optimizations
+
+---
+class: center, middle
+##[Compiling other languages to JS](https://github.com/jashkenas/coffeescript/wiki/List-of-languages-that-compile-to-JS)
+
+
+---
+class: center, middle, inverse
+
+.quotation[Emscripten makes native code immediately available on the Web: a platform that is standards-based, has numerous independent compatible implementations, and runs everywhere from PCs to iPads.]
+.quotation-source[
+Source: [http://kripken.github.io/emscripten-site/docs/introducing_emscripten/about_emscripten.html](http://kripken.github.io/emscripten-site/docs/introducing_emscripten/about_emscripten.html)]
+
+---
+class: center, middle, inverse
+
+.quotation[With Emscripten, C/C++ developers don’t have the high cost of porting code manually to JavaScript — or having to learn JavaScript at all. Web developers also benefit, as they can use the many thousands of pre-existing native utilities and libraries in their sites.]
+.quotation-source[
+Source: [http://kripken.github.io/emscripten-site/docs/introducing_emscripten/about_emscripten.html](http://kripken.github.io/emscripten-site/docs/introducing_emscripten/about_emscripten.html)]
+
+---
+#Hello, World!
+```c
+#include <stdio.h>
+
+int main() {
+  printf("hello, world!\n");
+  return 0;
+}
+```
+
+--
+
+```bash
+$ ./emcc hello.c
+```
+
+--
+
+### [a.out.js](http://localhost:8080/bosatsu/data/public/webassembly/a.out.js)
+
+--
+
+```bash
+$ node a.out.js
+hello, world!
+```
+
+
+---
+class: center
+
+# Any Modern Browser
+
+<img src="/bosatsu/data/images/webassembly/hello_world.png">
+
+---
+#File I/O
+```c
+#include <stdio.h>
+int main() {
+  FILE *file = fopen("tests/hello_world_file.txt", "rb");
+  if (!file) {
+    printf("cannot open file\n");
+    return 1;
+  }
+  while (!feof(file)) {
+    char c = fgetc(file);
+    if (c != EOF) {
+      putchar(c);
+    }
+  }
+  fclose (file);
+  return 0;
+}
+```
+
+--
+
+```bash
+$ ./emcc tests/hello_world_file.cpp -o hello.html
+```
+
+---
+class: center
+
+# No Preload of Files
+
+<img src="/bosatsu/data/images/webassembly/hello_world_text_1.png">
+
+---
+
+```bash
+$ ./emcc tests/hello_world_file.cpp -o hello.html
+   --preload-file tests/hello_world_file.txt
+```
+
+--
+
+.center[<img src="/bosatsu/data/images/webassembly/hello_world_text_2.png">]
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/hello_gl_world.png">

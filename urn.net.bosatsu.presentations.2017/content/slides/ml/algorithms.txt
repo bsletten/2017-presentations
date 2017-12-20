@@ -1,0 +1,316 @@
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/data-science-process.png">
+
+.footnote[O'Neil and Schutt, "Doing Data Science"]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/skinner.jpg"/>
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/master-algorithm.jpg">
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/variance-bias.png"/>]
+
+.footnote[Domingos, "Master Algortihm : : How the Quest for the Ultimate Learning Machine Will Remake Our World"]
+
+---
+class: center, middle
+
+| Tribe          | Approach                                                              | Master Algorithm                         |
+|----------------|-----------------------------------------------------------------------|------------------------------------------|
+| Evolutionaries | Natural Selection/Deriving Learning Structure                         | Genetic Programming                      |
+| Connectionists | Reverse engineer the brain                                            | Backpropagation                          |
+| Symbolists     | Symbol manipulation from initial knowledge                            | Inverse Deduction                        |
+| Bayesians      | Managing uncertainty, noisy, incomplete and contradictory information | Probabilistic Inference (Bayes' Theorem) |
+| Analogizers    | Recognizing similarities                                              | Support Vector Machines                  |
+
+---
+# Sample Algorithms
+
+--
+- Linear Regression
+
+--
+- k-Nearest Neighbors
+
+--
+- Naive Bayes
+
+--
+- Decision Trees
+
+--
+- Support Vector Machines
+
+---
+name: ML-LinearRegression
+class: center, middle, inverse
+# Linear Regression
+
+---
+class: center, middle, inverse
+
+.quotation[Linear Regression: In statistics, linear regression is an approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X.]
+.quotation-source[
+Source: https://en.wikipedia.org/wiki/Linear_regression]
+
+---
+# Ordinary Least Squares
+
+--
+- Simple Linear Regression
+
+--
+- Fit a straight line through the observed points
+
+--
+- Minimizes the sum of square residuals of the model
+
+---
+.center[
+<img src="/bosatsu/data/images/ml-overview/linear-regression.png">
+]
+
+.footnote[https://commons.wikimedia.org/wiki/File:Linear_regression.svg]
+
+---
+class: center, middle
+
+# Linear Regression
+
+| Pros                                                                             | Cons                                                   |
+|----------------------------------------------------------------------------------|--------------------------------------------------------|
+| Common approach for numeric data                                                 | Strong assumptions about the data                      |
+| Can handle most modeling tasks                                                   | Model form must be specified in advance                |
+| Estimates the strength and size of the relationships among features and outcomes | Does not handle missing data                           |
+|                                                                                  | Only numeric features                                  |
+|                                                                                  | Requires statistical knowledge to understand the model |
+
+
+---
+name: ML-kNearestNeighbors
+class: center, middle, inverse
+# k-Nearest Neighbors
+
+---
+class: center, middle, inverse
+
+.quotation[ k-Nearest Neighbor: a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression.]
+.quotation-source[
+Source: http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm]
+
+---
+
+.center[<img height="500px" src="/bosatsu/data/images/ml-overview/KnnClassification.svg"/>]
+
+.footnote[http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#/media/File:KnnClassification.svg]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Data3Classes.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Data3classes.png]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Map1NN.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map1NN.png]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/Map5NN.png"/>]
+
+.footnote[http://commons.wikimedia.org/wiki/File:Map5NN.png]
+
+---
+class: center, middle
+
+| Pros                                             | Cons                             |
+|--------------------------------------------------|----------------------------------|
+| Simple and effective                             | Does not produce a model         |
+| Makes no assumptions about the data distribution | Efficacy affected by choice of k |
+| Fast training phase                              | Slow classification phase        |
+
+---
+name: ML-NaiveBayes
+class: center, middle, inverse
+# Naive Bayes
+
+---
+# Naive Bayes
+
+--
+- Family of algorithms to produce probabilistic classifiers based on Bayes Theorem
+
+--
+- Requires relatively little training data
+
+--
+- Often used for text/document classification
+
+--
+- Assumes independence of the features
+
+---
+
+--
+### `$$P(A), P(B)$$`
+
+--
+### `$$P(A \cap B) = P(A) \cdot P(B)$$`
+
+--
+### `$$P(A | B) = \frac { P(A \cap B) }{ P(B) }$$`
+
+--
+### `$$P(A | B) = \frac { P(A \cap B) }{ P(B) } = \frac{P(B|A)P(A)} {P(B)}$$`
+
+--
+### `$$P(spam|Viagra) = \frac { P(Viagra|spam) \cdot P(spam) } { P(Viagra) }$$`
+
+---
+class: center, middle
+
+| Pros                                                      | Cons                                                              |
+|-----------------------------------------------------------|-------------------------------------------------------------------|
+| Simple and effective                                      | Assumption of the independence of features is usually wrong       |
+| Does well with noisy and missing data                     | Doesn't work well with lots of numeric features                   |
+| Works well with arbitrary sizes of training data          | Estimated probabilities aren't as reliable as the classifications |
+| Easy to produce the estimated probability for predictions |                                                                    |
+
+
+---
+name: ML-Decision Trees
+class: center, middle, inverse
+# Decision Trees
+
+---
+# Decision Trees
+
+--
+- Tree structure-based classifier
+
+--
+- Models relationships between features and outputs
+
+--
+- Easy to explain to users
+
+--
+- Can be turned into external representation beyond the classifier
+
+--
+- Supports both classification and regression
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/dt-1.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Decision_tree_learning]
+
+---
+
+| Pros                                       | Cons                                                                      |
+|--------------------------------------------|---------------------------------------------------------------------------|
+| Useful classifier for most problems        | Can be biased toward feature splits with several levels                   |
+| Automated learning process                 | Easy to misfit the model                                                  |
+| Supports numeric, nominal and missing data | Small changes in the training data can have been impact on decision logic |
+| Works with large and small data sets       | Large trees may be hard to interpret                                      |
+| Easily interpreted                         |                                                                           |
+| Efficient                                  |                                                                           |
+
+---
+name: ML-SupportVectorMachines
+class: center, middle, inverse
+# Support Vector Machines
+
+---
+class: center, middle, inverse
+
+.quotation[[a] support vector machine constructs a hyperplane or set of hyperplanes in a high- or infinite-dimensional space, which can be used for classification, regression, or other tasks]
+.quotation-source[
+Source: https://en.wikipedia.org/wiki/Support_vector_machine]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/svm-1.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Support_vector_machine]
+
+---
+
+.center[<img src="/bosatsu/data/images/ml-overview/svm-2.png"/>]
+
+.footnote[https://en.wikipedia.org/wiki/Support_vector_machine]
+
+
+---
+name: NLP-NeuralNetworks
+class: center, middle, inverse
+# Neural Networks
+
+---
+#Modeling Neurons
+
+--
+- Walter Pitts and Warren McCulloch in 1943
+
+--
+
+<img src="/bosatsu/data/images/ml-overview/Artificial_neuron.png"/>
+
+.footnote[CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=125222]
+
+--
+
+### `$$y_k = \phi \left( \sum_{j=0}^m w_{kj}x_j\right)$$`
+
+---
+#Perceptrons
+
+--
+- Frank Rosenblatt in late 1950s
+
+--
+
+<img src="/bosatsu/data/images/ml-overview/perceptron.png"/>
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/perceptrons-1.png"/>
+
+--
+### `$$2x + 3y = 6$$`
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/perceptrons-2.png"/>
+
+---
+
+<img src="/bosatsu/data/images/ml-overview/neural_network_example.png"/>
+
+
+---
+class: center, middle
+## http://neuralnetworksanddeeplearning.com/chap1.html
+
+---
+class: center, middle
+## http://colah.github.io/posts/2015-08-Backprop/
+## http://cs231n.github.io/optimization-2/
+
+
+
+---
+class: center, middle
+##[https://github.com/dennybritz/nn-from-scratch](https://github.com/dennybritz/nn-from-scratch)

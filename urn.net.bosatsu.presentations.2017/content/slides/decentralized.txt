@@ -1,0 +1,438 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#The Decentralized Web
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Linked Data
+
+- WebRTC
+
+- Blockchain
+
+- Decentralized Technology
+]
+
+---
+name: DW-Introduction
+class: center, middle, inverse
+# Introduction
+
+---
+class: center, middle, inverse
+
+.quotation[The way we code the Web will determine the way we live online. So we need to bake our values into our code. Freedom of expression needs to be baked into our code. Privacy should be baked into our code. Universal access to all knowledge. But right now, those values are not embedded in the Web.]
+.quotation-source[Brewster Kahle]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/modular-arch.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/layered-arch.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/relaxed-layered-arch.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/relaxed-layered-portability-arch.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/internet-arch-0.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/internet-arch-1.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/internet-arch-2.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/decentralized/internet-arch-3.png">
+
+
+
+---
+name: DW-LinkedData
+class: center, middle, inverse
+# Linked Data
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2007-05-01.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2007-10-08.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2007-11-07.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2007-11-10.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2008-02-28.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2008-03-31.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2008-09-18.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2009-03-05_colored.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/rdf/lod-datasets_2009-03-27_colored.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/rdf/lod-datasets_2010-09-22_colored.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/rdf/lod-datasets_2011-09-19_colored.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/rdf/lod-datasets_2014_colored.png">
+
+.footnote[http://lod-cloud.net]
+
+---
+class: center, middle
+
+# http://lod-cloud.net
+
+---
+class: center, middle
+
+# https://solid.mit.edu
+
+---
+name: DW-WebRTC
+class: center, middle, inverse
+# WebRTC
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/decentralized/webrtc-trapezoid.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/decentralized/webrtc-triangle.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/decentralized/webrtc-multiparty.png">
+
+---
+class: center, middle
+
+# http://cubeslam.com
+
+---
+class: center, middle
+
+# https://webtorrent.io/
+
+---
+class: center, middle
+
+# https://instant.io/
+
+---
+class: center, middle
+
+# https://fastcast.nz/
+
+---
+class: center, middle
+
+# http://charliehoey.com/threejs-demos/gaia_dr1.html
+
+---
+class: center, middle
+
+# https://blog.printf.net/articles/2015/05/29/announcing-gittorrent-a-decentralized-github/
+
+---
+name: DW-Blockchain
+class: center, middle, inverse
+# Blockchain
+
+$a{res:/bosatsu/data/slides/blockchain/blockchain.txt}
+
+
+---
+class: center, middle
+
+# http://www.ethereum.com
+
+---
+class: center, middle
+
+# http://www.blockstack.org
+
+---
+class: center, middle
+
+# http://hyperledger.org
+
+---
+class: center, middle
+
+# http://www.alexandria.io
+
+---
+class: center, middle
+
+# https://namecoin.org
+
+---
+class: center, middle
+
+# https://storj.io
+
+---
+name: DW-Decentralized Technology
+class: center, middle, inverse
+# Decentralized Technology
+
+---
+class: center, middle
+
+# https://en.wikipedia.org/wiki/Distributed_hash_table
+
+---
+class: center, middle
+
+# https://en.wikipedia.org/wiki/Content-addressable_storage
+
+---
+class: center, middle
+
+# https://datproject.org
+
+---
+class: center, middle
+
+# https://beakerbrowser.com
+
+---
+class: center, middle
+
+# https://ipfs.io
+
+---
+```bash
+brian@petrichor ~> ipfs init
+initializing IPFS node at /Users/brian/.ipfs
+generating 2048-bit RSA keypair...done
+peer identity: QmZoRwJ7YYayf5eNWDweN5GCGJjuRnKGJA3susZqjV8Jcb
+to get started, enter:
+
+	ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme
+```
+
+--
+
+```bash
+brian@petrichor ~> ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme
+Hello and Welcome to IPFS!
+
+██╗██████╗ ███████╗███████╗
+██║██╔══██╗██╔════╝██╔════╝
+██║██████╔╝█████╗  ███████╗
+██║██╔═══╝ ██╔══╝  ╚════██║
+██║██║     ██║     ███████║
+╚═╝╚═╝     ╚═╝     ╚══════╝
+
+If you're seeing this, you have successfully installed
+IPFS and are now interfacing with the ipfs merkledag!
+
+ -------------------------------------------------------
+| Warning:                                              |
+|   This is alpha software. Use at your own discretion! |
+|   Much is missing or lacking polish. There are bugs.  |
+|   Not yet secure. Read the security notes for more.   |
+ -------------------------------------------------------
+
+Check out some of the other files in this directory:
+
+  ./about
+  ./help
+  ./quick-start     <-- usage examples
+  ./readme          <-- this file
+  ./security-notes
+```
+
+---
+```bash
+brian@petrichor ~> ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/quick-start
+# 0.1 - Quick Start
+
+This is a set of short examples with minimal explanation. It is meant as
+a "quick start".
+
+
+Add a file to ipfs:
+
+  echo "hello world" >hello
+  ipfs add hello
+
+
+View it:
+
+  ipfs cat <the-hash-you-got-here>
+
+
+Try a directory:
+
+  mkdir foo
+  mkdir foo/bar
+  echo "baz" > foo/baz
+  echo "baz" > foo/bar/baz
+  ipfs add -r foo
+```
+
+---
+```bash
+brian@petrichor ~> ipfs daemon
+Initializing daemon...
+Swarm listening on /ip4/127.0.0.1/tcp/4001
+Swarm listening on /ip4/172.20.5.204/tcp/4001
+Swarm listening on /ip6/::1/tcp/4001
+Swarm listening on /p2p-circuit/ipfs/QmZoRwJ7YYayf5eNWDweN5GCGJjuRnKGJA3susZqjV8Jcb
+Swarm announcing /ip4/127.0.0.1/tcp/4001
+Swarm announcing /ip4/172.20.5.204/tcp/4001
+Swarm announcing /ip6/::1/tcp/4001
+API server listening on /ip4/127.0.0.1/tcp/5001
+Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
+Daemon is ready
+```
+
+---
+```bash
+brian@petrichor ~> ipfs swarm peers
+/ip4/101.200.176.249/tcp/4001/ipfs/QmWE2Q2D5PR6AZGayZTc3zPv6dzHf8WKCu9yoxD15cF1qx
+/ip4/104.236.179.241/tcp/4001/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM
+/ip4/106.14.194.229/tcp/4001/ipfs/Qmeks8FTvRvVhDNErVMv1nDo5ouTpqvC6PEtNr8aZpPZvM
+/ip4/109.7.235.15/tcp/4001/ipfs/QmamkCTMzJ51sD6tm4DEF4i9znjweNVLDqoC5wo4Arso6x
+/ip4/112.74.197.10/tcp/4001/ipfs/QmQrJv4szQ8e1F3uqPz2vH7g65JTDCFbpqNPL6KPD8FWrH
+/ip4/125.105.98.34/tcp/42568/ipfs/QmSGwNqR6obfAND7aHgv1CFaNJtd11YMBph971yJkMxRib
+/ip4/128.199.200.41/tcp/4001/ipfs/QmTt8KxYeMdjWg2wMHSgctuHE5uHgd8Un7dd52esK75v28
+/ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu
+/ip4/130.229.134.221/tcp/4001/ipfs/QmW1FdU8DqDQ8nGPFyrbVENnQYjcFMxz6B4B3QRfD76e2x
+/ip4/144.76.31.62/tcp/4001/ipfs/QmWxy2ipNU3BpsooLsnkV817p7QKjFkmxwpko3cqphkPPV
+/ip4/145.100.108.115/tcp/4001/ipfs/QmfJ6bZd5P5pqwny7xeT4yok4eneUKmckXEcgEWQ74TbFu
+/ip4/145.100.110.87/tcp/4001/ipfs/QmeERDkuPGtJwFLRSqpDrfrfkvR9isNxHbJXqDFS9WWr6b
+/ip4/145.239.156.163/tcp/4001/ipfs/QmbVciGuSZYkG3c6FA3ZpiMcaBhs3CwZyq3dSLjpFBe3s9
+/ip4/163.172.144.31/tcp/4001/ipfs/QmUhPqyTWCbjyJg6gmfeShbqrGLsUEhVserPwhNAEqaVTj
+/ip4/163.172.223.34/tcp/4001/ipfs/QmY6x7RMscmpcrFitDkyRrC17CMM2uud3j6Gtxf3epQW48
+/ip4/163.172.74.59/tcp/4001/ipfs/QmaUTG12X6sDxdRt17JKTDQktTCVNk5w4qqYmqC7m2UtdC
+/ip4/168.235.149.174/tcp/4001/ipfs/QmbPFhS9YwUxE4rPeaqd7Vn6GEESd1MUUM67ECtYchHyFB
+/ip4/173.164.253.125/tcp/4001/ipfs/QmTfgYcqzT6CjFXJu9aUy2TBQY6LHNiK4L3hPVU56uHtiW
+/ip4/178.62.158.247/tcp/4001/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd
+/ip4/178.62.61.185/tcp/4001/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3
+/ip4/178.79.181.244/tcp/4001/ipfs/QmSxrFXq85asEujMX7HpRRZP98cPsYDCnpTtqBuCh5DBKk
+/ip4/185.21.217.8/tcp/4001/ipfs/QmdhN3bzZDcD54kM4555rmAcjJ1oKMZffyhrqeMLLA3fhj
+/ip4/88.236.214.67/tcp/4001/ipfs/QmPwhwBXsa9pdhRFAkgPd5SSEf8qNxJrtFccTPH8jHN4Vz
+/ip4/95.211.173.105/tcp/4001/ipfs/QmX2EMjpYqSRN6HYLHu4jBnh1oWoGYninjpFYDnvy7JHsD
+```
+
+---
+```bash
+brian@petrichor ~> ipfs cat /ipfs/QmW2WQi..XtFCfLPdsgaTQ/cat.jpg >cat.jpg
+```
+
+--
+
+<img style="height: 400px;" src="/bosatsu/data/images/decentralized/cat.jpg">
+
+---
+```bash
+brian@petrichor ~> echo "I <3 IPFS" (whoami) | ipfs add -q
+QmS27gWCK8b4cEqUbPNP9LUdwY5exC9GRcQ2TQxmaVRed1
+```
+
+--
+
+## http://localhost:5001/webui
+
+---
+class: center, middle
+
+# https://github.com/gdamdam/awesome-decentralized-web
+
+$a{meta:bosatsu:common:questions}

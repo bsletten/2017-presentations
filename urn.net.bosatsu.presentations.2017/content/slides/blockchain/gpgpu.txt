@@ -1,0 +1,378 @@
+---
+background-image: url(/bosatsu/data/images/gpgpu/moore.jpg)
+class: center, middle
+
+.footnote[https://newsroom.intel.com/editorials/moores-law-setting-the-record-straight/]
+
+
+---
+class: center, middle, inverse
+
+.quotation[What Andy giveth, Bill taketh away...]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-02.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-00.png">
+
+.footnote[http://www.gotw.ca/publications/concurrency-ddj.htm]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-01.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/freelunch-03.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/freelunch-04.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/edge-00.jpg">
+
+.footnote[https://www.energomonitor.com/insight/edge-computing-fog-computing-benefits-of-fogging/]
+
+---
+class: center, middle, inverse
+
+.quotation[Mainstream hardware is becoming permanently parallel, heterogeneous, and distributed. These changes are permanent, and so will permanently affect the way we have to write performance-intensive code on mainstream architectures.]
+.quotation-source[https://herbsutter.com/welcome-to-the-jungle/]
+
+---
+class: center, middle, inverse
+
+.quotation[The GPU is being leaned on more heavily than it ever has before. With the right algorithm, you can get 10 times the performance per watt with a GPU on machine learning than you can with a CPU.]
+.quotation-source[Patrick Moorhead, https://www.wired.com/2017/04/apples-making-gpu-control-destiny/]
+
+---
+name: CUDA-OPENCL-CUDA
+class: center, middle, inverse
+# CUDA
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/cuda-architecture.png">
+
+.quotation-source["Professional CUDA C Programming"]
+
+
+
+---
+```cpp
+#include <stdio.h>
+
+__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+  helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+```cpp
+#include <stdio.h>
+
+*__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+  helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+```cpp
+#include <stdio.h>
+
+__global__ void helloFromGPU(void)
+{
+    printf("Hello, World from the GPU!\n");
+}
+
+int main(void)
+{
+  printf("Hello, World from the CPU!\n");
+
+* helloFromGPU <<<1, 10>>>();
+  cudaDeviceReset();
+  return 0;
+}
+```
+
+---
+class: center, middle
+
+```cpp
+  helloFromGPU <<<1, 10>>>();
+```
+
+<img src="/bosatsu/data/images/gpgpu/block-grid-01.png">
+
+---
+```bash
+$ nvcc helloworld.cu -o helloworld
+```
+--
+```bash
+$ ./helloworld
+Hello, World from the CPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+Hello, World from the GPU!
+```
+
+---
+class: center, middle
+
+```cpp
+  helloFromGPU <<<2, 8>>>();
+```
+
+<img src="/bosatsu/data/images/gpgpu/block-grid-02.png">
+
+---
+
+# CUDA Program Structure
+
+1. Allocate GPU memory
+
+--
+2. Copy data from CPU memory to GPU memory
+
+--
+3. Invoke the CUDA kernel
+
+--
+4. Copy data from GPU memory to CPU memory
+
+--
+5. Free GPU memory
+
+---
+
+# Kernel Rules
+
+1. Only access device memory
+
+--
+2. void return type
+
+--
+3. Fixed argument list
+
+--
+4. No static variables
+
+--
+5. No function pointers
+
+--
+6. Asychronous
+
+---
+```cpp
+void sumArraysOnHost(float *A,
+                     float *B,
+                     float *C,
+                     const int N)
+{
+  for( int idx = 0; idx < N; idx++ ) {
+    C[idx] = A[idx] + B[idx];
+  }
+}
+```
+
+--
+```cpp
+__global__ void sumArraysOnGPU(float *A,
+                               float *B,
+                               float *C)
+{
+*  int i = threadIdx.x;
+  C[i] = A[i] + B[i];
+}
+```
+
+---
+```cpp
+int main(int argc, char **argv) {
+   int dev = 0;
+   cudaSetDevice(dev);
+
+   int nElem = 32;
+
+   size_t nBytes = nElem * sizeof(float);
+
+   float *h_A, *h_b, *hostRef, *gpuRef;
+   h_A = (float *) malloc(nBytes);
+   h_B = (float *) malloc(nBytes);
+   gpuRef = (float *) malloc(nBytes);
+   ...
+}
+```
+
+---
+```cpp
+   ...
+   initialData(h_A, nElem);
+   initialData(h_B, nElem);
+
+   memset(gpuRef, 0, nBytes);
+
+   float *d_A, *d_B, *d_c;
+   cudaMalloc((float **) &d_A, nBytes);
+   cudaMalloc((float **) &d_B, nBytes);
+   cudaMalloc((float **) &d_C, nBytes);
+
+   cudaMemcpy(d_A, h_A, nBytes,
+     cudaMemcpyHostToDevice);
+   cudaMemcpy(d_B, h_B, nBytes,
+     cudaMemcpyHostToDevice);
+
+   ...
+```
+
+---
+```cpp
+   ...
+   dim3 block (nElem);
+   dim3 grid (nElem/block.x);
+
+   sumArraysOnGPU<<< grid, block >>>
+      (d_A, d_B, d_C);
+
+   cudaMemcpy(gpuRef, d_C, nBytes,
+     cudaMemcpyDeviceToHost);
+
+   cudaFree(d_A);
+   cudaFree(d_B);
+   cudaFree(d_C);
+
+   free(h_A);
+   free(h_B);
+   free(gpuRef);
+
+   return(0);
+}
+```
+
+
+
+---
+name: CUDA-OPENCL-OPENCL
+class: center, middle, inverse
+# OpenCL
+
+
+---
+class: center, middle
+
+<img height="500" src="/bosatsu/data/images/gpgpu/opencl-logo.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/metal.png">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/vulkan.png">
+
+---
+class: center, middle
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rvCD9FaTKCA" frameborder="0" allowfullscreen></iframe>
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/spir.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/opencl-2017.jpg">
+
+.quotation-source["Khronos Group, IWOCL 2017"]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/gpgpu/webgpu.png">
+
+---
+class: center, middle
+
+<img height="400" src="/bosatsu/data/images/gpgpu/webgl2.png">
+
+
+---
+name: CUDA-OPENCL-STARTED
+class: center, middle, inverse
+# Getting Started
+
+---
+# The Beast
+
+<video height="400px" loop="true" autoplay="true" src="https://d1vhcvzji58n1j.cloudfront.net/assets/products/bonw12/360-7dabd8187b.mp4"/>
+
+.footnote[https://system76.com/laptops/bonobo]
+
+---
+class: center, middle
+# AWS GPU Instances
+
+<img height="500" src="/bosatsu/data/images/gpgpu/aws-gpu.png">
+
+---
+class: center, middle
+# Apple eGPU Developer Kit
+
+<img height="500" src="/bosatsu/data/images/gpgpu/apple-egpu.png">

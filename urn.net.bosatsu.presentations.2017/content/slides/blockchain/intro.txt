@@ -1,2 +1,135 @@
 ---
-# Introduction
+class: center, middle
+
+# [Party like it's 1999](https://www.buzzfeed.com/ariellecalderon/things-that-were-totally-normal-in-1999)
+
+---
+# Parallel Computing Uses
+
+--
+* Gene sequencing algorithms that scaled linearly
+
+--
+* Exhaustive regression search
+
+--
+* Genetic algorithm feature selection
+
+--
+* Monte Carlo-based digital rendering
+
+--
+* Thermospheric simulations
+
+---
+# Parallel Computing Problems
+
+--
+* Usability/developer experience
+
+--
+* Utilization levels
+
+--
+* Transaction costs
+
+--
+* Data size
+
+--
+* Trust
+
+---
+class: center, middle
+
+# [http://parabon.com](http://parabon.com)
+
+---
+class: center, middle, inverse
+
+.quotation[There’s a lot of excitement about Bitcoin and cryptocurrencies. Optimists claim that Bitcoin will fundamentally alter payments, economics, and even politics around the world. Pessimists claim Bitcoin is inherently broken and will suffer an inevitable and spectacular collapse.]
+.quotation-source[Narayanan et al., "Bitcoin and Cryptocurrency Technologies: A Comprehensive Introduction"]
+
+---
+background-image: url(/bosatsu/data/images/blockchain/byzantine-general.jpg)
+layout: false
+class: middle
+
+.footnote[http://tinyurl.com/yc2hxdut]
+
+---
+background-image: url(/bosatsu/data/images/blockchain/barter.jpg)
+layout: false
+class: middle
+
+.footnote[.white[[CC BY 2.0](https://www.flickr.com/photos/jdesilva/5206832945)]]
+
+???
+
+Barter doesn't allocate things well or equally.
+Cash vs Credit.
+Cash has a resource allocation problem but allows us to be precise.
+Credit involves risk but doesn't require allocation.
+We generally engage a blended model.
+
+---
+background-image: url(/bosatsu/data/images/blockchain/credit-card.jpg)
+layout: false
+class: middle
+
+.footnote[.white[[CC BY 2.0](https://www.flickr.com/photos/cafecredit/31192599896)]]
+
+???
+
+Credit cards have high transaction fees. Have to provide your details to each vendor unless you use an intermediary like PayPal. This keeps you from dealing with the merchants directly and requires everyone to have a centralized account.
+
+---
+background-image: url(/bosatsu/data/images/blockchain/cash.jpg)
+layout: false
+class: middle
+
+.footnote[.white[[CC BY-SA 2.0](https://www.flickr.com/photos/68751915@N05/6355816649)]]
+
+???
+
+Cash allows anonymity and offline processing.
+What gives it value? Fiat currencies.
+
+---
+background-image: url(/bosatsu/data/images/blockchain/gold.jpg)
+layout: false
+class: middle
+
+.footnote[.white[[CC BY-SA 2.0](https://www.flickr.com/photos/theredproject/3442925763)]]
+
+???
+
+Scarcity.
+
+---
+class: center, middle, inverse
+
+.quotation[A lot of people automatically dismiss e-currency as a lost cause because of all the companies that failed since the 1990s. I hope it’s obvious it was only the centrally controlled nature of those systems that doomed them. I think this is the first time we’re trying a decentralized, non-trust-based system.]
+.quotation-source[Satoshi Nakamoto]
+
+---
+class: center, middle, inverse
+
+.quotation[Over the decades, mainstream users have given a firm and collective “no” to any system that requires end-user certificates, and such proposals have now been relegated to academic papers.]
+.quotation-source[Jeremy Clark]
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/blockchain/bc-price.png"/>
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/blockchain/bc-price2.png"/>
+
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/blockchain/marketcap.png"/>

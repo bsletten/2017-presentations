@@ -1,0 +1,711 @@
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/webgl/learningwebgl.png">
+
+---
+# index.html
+
+```html
+<html>
+  <script type="text/javascript"
+    src="glMatrix-0.9.5.min.js">
+  </script>
+.
+.
+.
+  <body onload="webGLStart();">
+    <canvas id="lesson01-canvas"
+       style="border: none;" width="500"
+       height="500">
+    </canvas>
+    <br/>
+  </body>
+</html>
+```
+
+---
+# index.html
+
+```html
+.
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+    initGL(canvas);
+    initShaders();
+    initBuffers();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+    drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+```html
+.
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+*   initGL(canvas);
+    initShaders();
+    initBuffers();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+    drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+```javascript
+var gl;
+function initGL(canvas) {
+  try {
+    gl = canvas.getContext("webgl");
+    gl.viewportWidth = canvas.width;
+    gl.viewportHeight = canvas.height;
+  } catch (e) {
+  }
+}
+```
+
+---
+# index.html
+
+```html
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+    initGL(canvas);
+*   initShaders();
+    initBuffers();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+    drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+```javascript
+function initShaders() {
+  var fragmentShader = getShader(gl, "shader-fs");
+  var vertexShader = getShader(gl, "shader-vs");
+  shaderProgram = gl.createProgram();
+  gl.attachShader(shaderProgram, vertexShader);
+  gl.attachShader(shaderProgram, fragmentShader);
+  gl.linkProgram(shaderProgram);
+  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    alert("Could not initialise shaders");
+  }
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function initShaders() {
+* var fragmentShader = getShader(gl, "shader-fs");
+* var vertexShader = getShader(gl, "shader-vs");
+  shaderProgram = gl.createProgram();
+  gl.attachShader(shaderProgram, vertexShader);
+  gl.attachShader(shaderProgram, fragmentShader);
+  gl.linkProgram(shaderProgram);
+  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    alert("Could not initialise shaders");
+  }
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function getShader(gl, id) {
+  var shaderScript = document.getElementById(id);
+  // ... Some Details Removed
+  var shader;
+  if (shaderScript.type == "x-shader/x-fragment") {
+    shader = gl.createShader(gl.FRAGMENT_SHADER);
+  } else if (shaderScript.type == "x-shader/x-vertex") {
+    shader = gl.createShader(gl.VERTEX_SHADER);
+  } else {
+    return null;
+  }
+  gl.shaderSource(shader, str);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    alert(gl.getShaderInfoLog(shader));
+    return null;
+  }
+  return shader;
+}
+```
+
+---
+# index.html
+
+```javascript
+function initShaders() {
+.
+.
+.
+  gl.useProgram(shaderProgram);
+  shaderProgram.vertexPositionAttribute
+    = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+  gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+  shaderProgram.pMatrixUniform
+    = gl.getUniformLocation(shaderProgram, "uPMatrix");
+  shaderProgram.mvMatrixUniform
+    = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+}
+```
+
+---
+# index.html
+
+```html
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+    initGL(canvas);
+    initShaders();
+*   initBuffers();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+    drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+``` javascript
+var triangleVertexPositionBuffer;
+var squareVertexPositionBuffer;
+
+function initBuffers() {
+  triangleVertexPositionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+  var vertices = [
+    0.0,  1.0,  0.0,
+    -1.0, -1.0,  0.0,
+    1.0, -1.0,  0.0
+  ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices),
+     gl.STATIC_DRAW);
+  triangleVertexPositionBuffer.itemSize = 3;
+  triangleVertexPositionBuffer.numItems = 3;
+  .
+  .
+  .
+}
+```
+
+---
+# index.html
+
+```javascript
+var triangleVertexPositionBuffer;
+var squareVertexPositionBuffer;
+function initBuffers() {
+.
+.
+  squareVertexPositionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
+  vertices = [
+    1.0,  1.0,  0.0,
+    -1.0,  1.0,  0.0,
+    1.0, -1.0,  0.0,
+    -1.0, -1.0,  0.0
+  ];
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices),
+    gl.STATIC_DRAW);
+  squareVertexPositionBuffer.itemSize = 3;
+  squareVertexPositionBuffer.numItems = 4;
+}
+```
+
+---
+# index.html
+
+```html
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+    initGL(canvas);
+    initShaders();
+    initBuffers();
+*   gl.clearColor(0.0, 0.0, 0.0, 1.0);
+*   gl.enable(gl.DEPTH_TEST);
+    drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+```html
+.
+<head>
+<script>
+  function webGLStart() {
+    var canvas = document.getElementById("lesson01-canvas");
+    initGL(canvas);
+    initShaders();
+    initBuffers();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
+*   drawScene();
+  }
+</script>
+</head>
+.
+.
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+  gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  mat4.perspective(45, gl.viewportWidth / gl.viewportHeight,
+    0.1, 100.0, pMatrix);
+  mat4.identity(mvMatrix);
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+.
+.
+.
+  mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
+     triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+  setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLES, 0,
+    triangleVertexPositionBuffer.numItems);
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+.
+.
+.
+  mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
+     triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+* setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLES, 0,
+    triangleVertexPositionBuffer.numItems);
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+var mvMatrix = mat4.create();
+var pMatrix = mat4.create();
+
+function setMatrixUniforms() {
+  gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
+  gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+}
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+.
+.
+.
+  mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
+    squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+  setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0,
+    squareVertexPositionBuffer.numItems);
+}
+```
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-1.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-2.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-3.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-4.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-5.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-6.png">
+
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-7.png">
+
+---
+# index.html
+
+```html
+<script id="shader-vs" type="x-shader/x-vertex">
+  attribute vec3 aVertexPosition;
+  uniform mat4 uMVMatrix;
+  uniform mat4 uPMatrix;
+  void main(void) {
+    gl_Position = uPMatrix * uMVMatrix
+       * vec4(aVertexPosition, 1.0);
+  }
+</script>
+```
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-8.png">
+
+---
+# index.html
+
+```html
+<script id="shader-fs" type="x-shader/x-fragment">
+  #ifdef GL_ES
+    precision highp float;
+  #endif
+  void main(void) {
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+  }
+</script>
+```
+
+---
+class: center, middle
+
+# http://learningwebgl.com/lessons/lesson01/index.html
+
+---
+# index.html
+
+```javascript
+*function initShaders() {
+.
+.
+  gl.useProgram(shaderProgram);
+  shaderProgram.vertexPositionAttribute
+    = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+  gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+* shaderProgram.vertexColorAttribute
+*   = gl.getAttribLocation(shaderProgram, "aVertexColor");
+* gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+  shaderProgram.pMatrixUniform
+    = gl.getUniformLocation(shaderProgram, "uPMatrix");
+  shaderProgram.mvMatrixUniform
+    = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+}
+```
+
+---
+# index.html
+
+```javascript
+var triangleVertexPositionBuffer;
+*var triangleVertexColorBuffer;
+var squareVertexPositionBuffer;
+*var squareVertexColorBuffer;
+
+function initBuffers() {
+.
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function initBuffers() {
+.
+.
+*triangleVertexColorBuffer = gl.createBuffer();
+*gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+*var colors = [
+*1.0, 0.0, 0.0, 1.0,
+*0.0, 1.0, 0.0, 1.0,
+*0.0, 0.0, 1.0, 1.0,
+*];
+*gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+*triangleVertexColorBuffer.itemSize = 4;
+*triangleVertexColorBuffer.numItems = 3;
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function initBuffers() {
+.
+.
+*squareVertexColorBuffer = gl.createBuffer();
+*gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
+*colors = []
+*for (var i=0; i < 4; i++) {
+*  colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
+*}
+*gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors),
+*   gl.STATIC_DRAW);
+*squareVertexColorBuffer.itemSize = 4;
+*squareVertexColorBuffer.numItems = 4;
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+.
+.
+  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
+   triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+* gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+* gl.vertexAttribPointer(shaderProgram.vertexColorAttribute,
+*  triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+  setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLES, 0,
+    triangleVertexPositionBuffer.numItems);
+.
+.
+}
+```
+
+---
+# index.html
+
+```javascript
+function drawScene() {
+.
+.
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
+    squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+* gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
+* gl.vertexAttribPointer(shaderProgram.vertexColorAttribute,
+*   squareVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+  setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0,
+    squareVertexPositionBuffer.numItems);
+}
+```
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-7.png">
+
+---
+# index.html
+
+```html
+<script id="shader-vs" type="x-shader/x-vertex">
+  attribute vec3 aVertexPosition;
+  attribute vec4 aVertexColor;
+  uniform mat4 uMVMatrix;
+  uniform mat4 uPMatrix;
+  varying vec4 vColor;
+  void main(void) {
+    gl_Position = uPMatrix * uMVMatrix
+      * vec4(aVertexPosition, 1.0);
+    vColor = aVertexColor;
+  }
+</script>
+```
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/webgl/pipeline-8.png">
+
+---
+# index.html
+
+```html
+<script id="shader-fs" type="x-shader/x-fragment">
+  #ifdef GL_ES
+  precision highp float;
+  #endif
+  varying vec4 vColor;
+  void main(void) {
+    gl_FragColor = vColor;
+  }
+</script>
+```
+
+---
+class: center, middle
+
+# http://learningwebgl.com/lessons/lesson02/index.html
+
+---
+class: center, middle
+
+# https://github.com/tparisi/webgl-lessons/blob/master/lesson03/index.html#L8
+
+---
+class: center, middle
+
+# https://github.com/tparisi/webgl-lessons/blob/master/lesson03/index.html#L117-L132
+
+---
+class: center, middle
+
+# https://github.com/tparisi/webgl-lessons/blob/master/lesson03/index.html#L200-L242
+
+---
+class: center, middle
+
+# https://github.com/tparisi/webgl-lessons/blob/master/lesson03/index.html#L245-L276
+
+---
+class: center, middle
+
+# http://learningwebgl.com/lessons/lesson03/index.html
+
+---
+class: center, middle
+
+# https://github.com/tparisi/webgl-lessons/blob/master/lesson04/index.html#L146-L285
+
+---
+class: center, middle
+
+# http://learningwebgl.com/lessons/lesson04/index.html
+
+---
+class: center, middle
+
+# http://learningwebgl.com/lessons/lesson05/index.html
+
+---
+# Shader School
+
+```bash
+git clone https://github.com/stackgl/shader-school.git
+npm install -g shader-school
+shader-school
+```
+
+---
+# WebGL Workshop
+
+```bash
+git clone https://github.com/stackgl/webgl-workshop.git
+npm install -g webgl-workshop
+webgl-workshop
+```
+
+---
+# WebGL 2
+
+# https://webgl2fundamentals.org/

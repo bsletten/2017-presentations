@@ -1,0 +1,100 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#Machine Learning Workshop
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- Statistics
+
+- Algorithms
+
+- NLP
+
+- TensorFlow Basics
+
+- GPGPU
+
+- Try Tensorflow
+
+- Fun with Tensorflow
+]
+
+---
+name: Arch-Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/slides/ml/introduction.txt}
+$a{res:/bosatsu/data/slides/tensorflow/intro.txt}
+
+---
+name: Arch-Statistics
+class: center, middle, inverse
+# Statistics
+
+$a{res:/bosatsu/data/slides/ml/statistics.txt}
+---
+name: Arch-Algorithms
+class: center, middle, inverse
+# Algorithms
+
+$a{res:/bosatsu/data/slides/ml/curse.txt}
+$a{res:/bosatsu/data/slides/ml/algorithms.txt}
+
+---
+name: Arch-NLP
+class: center, middle, inverse
+# Machine Learning and Natural Language Processing
+
+$a{res:/bosatsu/data/slides/ml/nlp.txt}
+
+---
+name: Arch-Basics
+class: center, middle, inverse
+# Tensorflow Basics
+
+$a{res:/bosatsu/data/slides/tensorflow/basics.txt}
+
+---
+name: Arch-GPGPU
+class: center, middle, inverse
+# GPGPU
+
+$a{res:/bosatsu/data/slides/blockchain/gpgpu.txt}
+
+
+
+---
+name: Arch-Try
+class: center, middle, inverse
+# 'Try Tensorflow'
+
+$a{res:/bosatsu/data/slides/tensorflow/try.txt}
+
+---
+name: Arch-Fun
+class: center, middle, inverse
+# Fun With Tensorflow
+
+$a{res:/bosatsu/data/slides/tensorflow/fun.txt}
+
+---
+name: Arch-Books
+class: center, middle, inverse
+# Books
+
+$a{res:/bosatsu/data/slides/tensorflow/books.txt}
+
+
+
+$a{meta:bosatsu:common:questions}

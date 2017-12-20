@@ -1,0 +1,63 @@
+WebGL-name: inverse
+layout: true
+class: center, middle, inverse
+---
+#WebGL and Vulkan
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- WebGL
+
+- Three.js
+
+- Vulkan and WebGL-Next
+]
+
+---
+name: WebGL-Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/slides/webgl/intro.txt}
+
+---
+name: WebGL-WebGL
+class: center, middle, inverse
+# WebGL
+
+$a{res:/bosatsu/data/slides/webgl/webgl.txt}
+
+
+---
+name: WebGL-ThreeJS
+class: center, middle, inverse
+# Three.js
+
+$a{res:/bosatsu/data/slides/webgl/threejs.txt}
+
+---
+name: WebGL-Vulkan
+class: center, middle, inverse
+# Vulkan and WebGL-Next
+
+$a{res:/bosatsu/data/slides/webgl/vulkan.txt}
+
+---
+name: WebGL-Books
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+# http://webglinsights.com
+
+$a{meta:bosatsu:common:questions}

@@ -14,7 +14,9 @@ layout: false
 .right-column[
 - Introduction
 
-- Encryption
+- Cryptography
+
+- GPGPU
 
 - Bitcoin
 
@@ -22,11 +24,9 @@ layout: false
 
 - Ethereum
 
-- Chain
+- Other Platforms
 
-- Hyperledger
-
-- State of Bitcoin
+- State of Blockchain Systems
 ]
 
 ---
@@ -37,11 +37,19 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/intro.txt}
 
 ---
-name: Blockchain-Encryption
+name: Blockchain-Cryptography
 class: center, middle, inverse
-# Encryption
+# Cryptography
 
-$a{res:/bosatsu/data/slides/blockchain/encryption.txt}
+$a{res:/bosatsu/data/slides/blockchain/cryptography.txt}
+
+---
+name: Blockchain-GPU
+class: center, middle, inverse
+# GPGPU
+
+$a{res:/bosatsu/data/slides/blockchain/gpgpu.txt}
+
 
 ---
 name: Blockchain-Bitcoin
@@ -58,6 +66,46 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/blockchain.txt}
 
 ---
+class: center, middle
+
+# http://www.alexandria.io
+
+---
+class: center, middle
+
+# https://namecoin.org
+
+---
+class: center, middle
+
+# https://storj.io
+
+---
+# Blockchain Ideas
+
+--
+* Car Fax replacement
+
+--
+* Yelp replacement
+
+--
+* Uber/AirBnB replacement
+
+--
+* ErnCoin
+
+---
+class: center, middle
+
+# https://lis.virginia.gov/cgi-bin/legp604.exe?041+ful+SJ152+pdf
+
+---
+class: center, middle
+
+# What are your ideas?
+
+---
 name: Blockchain-Ethereum
 class: center, middle, inverse
 # Ethereum
@@ -65,18 +113,29 @@ class: center, middle, inverse
 $a{res:/bosatsu/data/slides/blockchain/ethereum.txt}
 
 ---
-name: Blockchain-Chain
-class: center, middle, inverse
-# Chain
+name: Blockchain-Stellar
+class: center, middle
 
-$a{res:/bosatsu/data/slides/blockchain/chain.txt}
+# http://stellar.org
+
+---
+name: Blockchain-Chain
+class: center, middle
+
+# http://chain.com
 
 ---
 name: Blockchain-Hyperledger
-class: center, middle, inverse
-# Hyperledger
+class: center, middle
 
-$a{res:/bosatsu/data/slides/blockchain/hyperledger.txt}
+# http://hyperledger.org
+
+---
+name: Blockchain-Waves
+class: center, middle
+
+# http://wavesplatform.com
+
 
 ---
 name: Blockchain-State-of-Bitcoin
@@ -84,6 +143,32 @@ class: center, middle, inverse
 # State of Bitcoin
 
 $a{res:/bosatsu/data/slides/blockchain/state-of-bitcoin.txt}
+
+---
+name: Blockchain-Books
+class: center, middle, inverse
+# Books
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/mastering-bc-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/blockchain-book.jpg">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/bc-and-crypto-tech-book.png">
+
+---
+class: center, middle
+
+<img style="height: 500px;" src="/bosatsu/data/images/blockchain/ethereum-solidity-book.png">
+
 
 
 $a{meta:bosatsu:common:questions}

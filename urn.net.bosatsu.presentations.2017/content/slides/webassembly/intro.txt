@@ -1,0 +1,198 @@
+---
+class: center, middle
+## Web Development vs Software Development
+
+---
+# Safe, fast and portable semantics
+
+.footnote["Bringing the Web up to Speed with WebAssembly"]
+
+--
+* Safe to execute
+
+--
+* Fast to execute
+
+--
+* Language-, hardware- and platform-independent
+
+--
+* Deterministic and easy to reason about
+
+--
+* Simple interoperability with the Web platform
+
+---
+# Safe and efficient representation
+
+.footnote["Bringing the Web up to Speed with WebAssembly"]
+
+--
+* Compact and easy to decode
+
+--
+* Easy to validate and compile
+
+--
+* Easy to generate for producers
+
+--
+* Streamable and parallelizable
+
+---
+# Solutions
+
+--
+* Desktop applications
+
+--
+* Java applets
+
+--
+* ActiveX
+
+--
+* Flash
+
+--
+* Silverlight
+
+--
+* NaCl/PNaCl
+
+---
+class: center, middle
+
+## https://webrtc.github.io/samples/
+
+---
+class: center, middle
+
+## http://cubeslam.com
+
+---
+class: center, middle
+
+## http://webtorrent.io
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-1.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-2.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-3a.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-3b.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-3.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-4.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-5.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-6.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+# Sample code
+
+```javascript
+function arraySum(arr) {
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+}
+```
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-7.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-8.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+
+---
+class: center
+
+<img src="/bosatsu/data/images/webassembly/lin-clark-9.png">
+
+Source: https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
+
+---
+class: center, middle, inverse
+
+.quotation[WebAssembly or wasm is a new portable, size- and load-time-efficient format suitable for compilation to the web.]
+.quotation-source[
+Source: [http://webassembly.org](http://webassembly.org)]
+
+---
+class: center, middle
+##[Qt Wiggly](http://vps2.etotheipiplusone.com:30176/redmine/emscripten-qt-examples/wiggly.html)
+
+---
+class: center, middle
+##[Qt Animated Tiles](http://vps2.etotheipiplusone.com:30176/redmine/emscripten-qt-examples/animatedtiles.html)
+
+
+---
+class: center, middle
+##[http://webassembly.org/demo/](http://webassembly.org/demo/)
+
+---
+class: center, middle
+##[http://lukewagner.github.io/AngryBotsPacked/](http://lukewagner.github.io/AngryBotsPacked/)
+
+---
+class: center, middle
+##[http://lukewagner.github.io/PlatformerGamePacked/](http://lukewagner.github.io/PlatformerGamePacked/)

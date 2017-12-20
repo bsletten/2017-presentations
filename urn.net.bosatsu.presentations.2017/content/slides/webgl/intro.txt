@@ -1,0 +1,37 @@
+---
+class:center, middle
+
+<img src="/bosatsu/data/images/webgl/shirt.jpg">
+
+---
+class:center, middle
+
+<img style="height: 200px;" src="/bosatsu/data/images/webgl/history.jpg">
+
+.footnote[https://nickdesaulniers.github.io/RawWebGL/#/4]
+
+---
+class:center, middle
+
+<img src="/bosatsu/data/images/webgl/webgl-ecosystem.jpg">
+
+.footnote[https://www.slideshare.net/remi_arnaud/collada-webgl]
+
+---
+class: center, middle
+
+# [After the Flood](https://playcanv.as/e/p/44MRmJRU/)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/webgl/graphics_fundamentals_viewport_2dscene.png">
+
+.footnote[http://code.google.com/p/libgdx/wiki/GraphicsFundamentalsViewport]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/webgl/graphics_fundamentals_viewport_3dscene.png">
+
+.footnote[http://code.google.com/p/libgdx/wiki/GraphicsFundamentalsViewport]
