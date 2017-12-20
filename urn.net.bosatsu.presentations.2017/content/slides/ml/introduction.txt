@@ -1,0 +1,86 @@
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/WOPR.jpg">
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/terminator.jpg">
+
+---
+class: center, middle
+##[ https://youtu.be/rVlhMGQgDkY?t=85](https://youtu.be/rVlhMGQgDkY?t=85)
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/watson.jpg">
+
+---
+class: center, middle, inverse
+
+.quotation[The term machine learning refers to the automated detection of meaningful patterns in data.]
+.quotation-source[
+Source: Shavel-Shwartz and Ben-David, "Understanding Machine Learning: From Theory to Algorithms"]
+
+---
+#Advancement of Machine Learning
+
+--
+- Stock market prediction in the 1980s
+
+--
+- Mining corporate databases in the 1990s (direct marketing, CRM, credit scoring, fraud detection)
+
+--
+- E-commerce (personalization, click analysis)
+
+--
+- 9/11 brought interest to applying ML to fighting terror
+
+--
+- Web 2.0 (social networks, sentiment analysis, etc.)
+
+--
+- Science (molecular biologists and astronomers were early adopters)
+
+--
+- Housing bust freed up a lot of talent
+
+--
+- Big Data
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/hume.jpg">
+
+.footnote[David Hume]
+
+---
+#Inductivist Turkey
+
+.center[<img src="/bosatsu/data/images/ml-overview/turkey.jpg">]
+
+.footnote[CC BY 2.0, https://www.flickr.com/photos/29311691@N05/3577002803]
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/tycho-brahe.jpg">
+
+.footnote[Tycho Brahe]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/kepler.jpg">
+
+.footnote[Johannes Kepler]
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/ml-overview/newton.jpg">
+
+.footnote[Isaac Newton]

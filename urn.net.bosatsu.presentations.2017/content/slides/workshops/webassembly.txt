@@ -1,0 +1,93 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#WebAssembly
+
+$a{bosatsu:common:qualifications}
+
+---
+layout: false
+.left-column[
+  ## Agenda
+]
+.right-column[
+- Introduction
+
+- asm.js
+
+- WebAssembly
+
+- Other Languages
+
+- Performance
+
+- Tools
+
+- Examples
+
+- Future
+]
+
+---
+name: WA-Introduction
+class: center, middle, inverse
+# Introduction
+
+$a{res:/bosatsu/data/slides/webassembly/intro.txt}
+
+---
+name: WA-asmjs
+class: center, middle, inverse
+# asm.js
+
+$a{res:/bosatsu/data/slides/webassembly/asm.js.txt}
+
+---
+name: WA-WebAssembly
+class: center, middle, inverse
+# WebAssembly
+
+$a{res:/bosatsu/data/slides/webassembly/webassembly.txt}
+$a{res:/bosatsu/data/slides/webassembly/wast.txt}
+$a{res:/bosatsu/data/slides/webassembly/lifecycle.txt}
+$a{res:/bosatsu/data/slides/webassembly/modules.txt}
+
+---
+name: WA-Other Languages
+class: center, middle, inverse
+# Other Languages
+
+$a{res:/bosatsu/data/slides/webassembly/other.txt}
+
+---
+name: WA-Performance
+class: center, middle, inverse
+# Performance
+
+$a{res:/bosatsu/data/slides/webassembly/performance.txt}
+
+---
+name: WA-Tools
+class: center, middle, inverse
+# Tools
+
+$a{res:/bosatsu/data/slides/webassembly/tools.txt}
+
+---
+name: WA-Examples
+class: center, middle, inverse
+# Examples
+
+$a{res:/bosatsu/data/slides/webassembly/example.txt}
+
+
+---
+name: WA-Future
+class: center, middle, inverse
+# Future
+
+$a{res:/bosatsu/data/slides/webassembly/future.txt}
+
+
+$a{meta:bosatsu:common:questions}

@@ -1,0 +1,207 @@
+---
+class: center, middle
+
+# What was the degree with the highest average starting salary at the University of North Carolina in the 1980's?
+---
+class: center, middle
+# Geography!
+
+<img src="/bosatsu/data/images/ml-overview/map.jpg"/>
+
+
+
+---
+# Let's Make Some Data
+
+--
+```python
+>>> ages = range(20,60)
+```
+
+--
+```python
+>>> random_ages = [random.choice(ages) for _ in range(100)]
+```
+--
+```python
+>>> random_ages
+[27, 21, 20, 22, 21, 27, 25, 52, 56, 43, 33, 28, 31, 30, 41, 29, 38, 52,
+ 48, 24, 50, 31, 29, 56, 45, 54, 37, 33, 22, 33, 23, 40, 37, 23, 28, 38,
+ 41, 34, 35, 40, 25, 57, 32, 48, 56, 54, 39, 25, 57, 24, 26, 52, 26, 35,
+ 57, 39, 26, 32, 50, 52, 54, 53, 30, 53, 56, 25, 43, 38, 53, 46, 51, 51,
+ 35, 38, 20, 52, 47, 53, 45, 27, 22, 26, 25, 47, 36, 52, 54, 58, 31, 42,
+ 46, 46, 43, 33, 35, 48, 49, 55, 36, 36]
+```
+
+--
+```python
+>>> max(random_ages)
+58
+```
+
+--
+```python
+>>> min(random_ages)
+20
+```
+
+---
+# Range
+
+--
+```python
+>>> def range(x):
+...   return max(x) - min(x)
+...
+```
+
+--
+```python
+>>> range(random_ages)
+38
+```
+
+--
+```python
+>>> nums = [10, 10, 100, 100]
+>>> range(nums)
+90
+```
+
+--
+```python
+>>> nums = [10, 50, 50, 50, 50, 100]
+>>> range(nums)
+90
+```
+
+--
+```python
+>>> numpy.ptp(random_ages)
+38
+```
+
+---
+# Mean
+
+--
+```python
+>>> import numpy
+>>> numpy.mean(random_ages)
+38.990000000000002
+```
+
+--
+```python
+>>> def mean(x):
+...   return sum(x) / len(x)
+...
+```
+
+--
+```python
+>>> mean(random_ages)
+38.99
+```
+
+---
+# Median
+
+--
+```python
+>>> numpy.median(random_ages)
+38.0
+```
+
+--
+```python
+def median(x) :
+  n = len(x)
+  sorted_x = sorted(x)
+  mid = n // 2
+
+  if n % 2 == 0:
+      return (sorted_x[mid - 1] + sorted_x[mid]) / 2
+  else:
+      return (sorted_x[mid])
+```
+
+--
+```python
+>>> median(random_ages)
+38
+```
+
+---
+# Percentile
+
+```python
+>>> numpy.percentile(random_ages, 33)
+32.0
+```
+--
+```python
+>>> numpy.percentile(random_ages, 80)
+52.0
+```
+
+--
+```python
+>>> numpy.percentile(random_ages, 50)
+38.0
+```
+
+---
+# Interquartile Range (IQR)
+
+--
+#### `$$ IQR = Q_3 - Q_1 $$`
+
+--
+```python
+>>> from scipy import stats
+>>> stats.iqr(random_ages)
+21.5
+```
+
+
+---
+# Mode
+
+--
+```python
+>>> from scipy import stats
+>>> stats.mode(random_ages)
+ModeResult(mode=array([52]), count=array([6]))
+```
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/ml-overview/skew-2.png">
+
+
+---
+# Variance
+
+--
+### `$$Var(X) = \frac{1}{n} \sum_{i=1}^n ( a_i - \bar x)^2$$`
+
+--
+```python
+>>> numpy.var(random_ages)
+131.82989999999998
+```
+
+
+---
+# Standard Deviation
+
+--
+### `$$\sqrt {Var(X)}$$`
+
+--
+```python
+>>> numpy.std(random_ages)
+11.481720254386969
+```

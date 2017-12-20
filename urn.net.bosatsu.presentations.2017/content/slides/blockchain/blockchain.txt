@@ -22,9 +22,35 @@ class: center, middle, inverse
 .quotation[[it’s] the first native digital medium for value, just as the internet was the first native digital medium for information.]
 .quotation-source[Blockchain Revolution]
 
+---
 class: center, middle, inverse
 
 .quotation[The blockchain is fundamentally a new paradigm for organizing activity with less friction and more efficiency, and at a much greater scale than current paradigms.]
+.quotation-source[Blockchain]
+
+---
+class: center, middle, inverse
+
+.quotation[More important, blockchain technology could become the seamless embedded economic layer the Web has never had, serving as the technological underlay for payments, decentralized exchange, token earning and spending, digital asset invocation and transfer, and smart contract issuance and execution. Bitcoin and blockchain technology, as a mode of decentralization, could be the next major disruptive technology and worldwide computing paradigm (following the mainframe, PC, Internet, and social networking/ mobile phones), with the potential for reconfiguring all human activity as pervasively as did the Web.]
+
+.quotation-source[Blockchain]
+
+---
+class: center, middle, inverse
+
+.quotation[The blockchain as the architecture for a new system of decentralized trustless transactions is the key innovation. The blockchain allows the disintermediation and decentralization of all transactions of any type between all parties on a global basis.]
+.quotation-source[Blockchain]
+
+---
+class: center, middle, inverse
+
+.quotation[The economy that the blockchain enables is not merely the movement of money, however; it is the transfer of information and the effective allocation of resources that money has enabled in the human- and corporate-scale economy.]
+.quotation-source[Blockchain]
+
+---
+class: center, middle, inverse
+
+.quotation[Whereas Blockchain 1.0 is for the decentralization of money and payments, Blockchain 2.0 is for the decentralization of markets more generally, and contemplates the transfer of many other kinds of assets beyond currency using the blockchain, from the creation of a unit of value through every time it is transferred or divided.]
 .quotation-source[Blockchain]
 
 ---
@@ -112,3 +138,19 @@ class: center, middle, inverse
 
 --
 7. Inclusion
+
+
+---
+class: middle, center
+
+| Class          | Examples                                                              |
+|----------------|-----------------------------------------------------------------------|
+|General         | Escrow transactions, bonded contracts, third-party arbitration, multiparty signature transactions |
+|Public records  | Land and property titles, vehicle registrations, business licenses, marriage certificates, death certificates |
+|Identification  | Driver’s licenses, identity cards, passports, voter registrations |
+|Private records | IOUs, loans, contracts, bets, signatures, wills, trusts, escrows |
+|Attestation     | Proof of insurance, proof of ownership, notarized documents|
+|Physical asset keys |Home, hotel rooms, rental cars, automobile access|
+|Intangible assets | Patents, trademarks, copyrights, reservations |
+
+.footnote[Blockchain]

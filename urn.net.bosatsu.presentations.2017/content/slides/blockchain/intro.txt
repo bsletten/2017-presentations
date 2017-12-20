@@ -133,7 +133,3 @@ class: center, middle
 class: center, middle
 
 <img style="height: 400px;" src="/bosatsu/data/images/blockchain/marketcap.png"/>
-
-
----
-# Fiat Currency

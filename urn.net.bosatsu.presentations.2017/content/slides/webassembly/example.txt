@@ -1,0 +1,74 @@
+---
+class: middle, center
+
+## https://github.com/ChrisZieba/holdem
+
+---
+class: center, middle
+
+## http://chriszieba.com/2017/11/26/holdem
+
+---
+class: center, middle
+
+## http://shi-yan.github.io/AssortedWidgets/
+
+---
+class: center, middle
+
+## [WASMSobel](file:///Users/brian/git-others/WASMSobel/index.html)
+
+---
+class: center, middle
+
+## https://maierfelix.github.io/wasm-particles/static/
+
+---
+class: center, middle
+
+## https://ogrecave.github.io/ogre/emscripten/
+
+---
+class: center, middle
+
+## http://blog.magnum.graphics/announcements/webassembly-support-and-more/
+
+---
+class: center, middle
+
+## http://s3.amazonaws.com/mozilla-games/tmp/2017-02-21-SunTemple/SunTemple.html
+
+---
+class: center, middle
+
+## https://s3.amazonaws.com/mozilla-games/ZenGarden/EpicZenGarden.html
+
+---
+class: center, middle
+
+##[https://mil-tokyo.github.io/webdnn/](https://mil-tokyo.github.io/webdnn/)
+
+---
+class: center, middle
+
+## https://github.com/shamadee/web-dsp
+
+---
+class: center, middle
+
+## https://github.com/jedisct1/libsodium.js
+
+---
+class: center, middle
+
+## http://demo.tombo.io
+
+---
+class: center, middle
+
+## https://floooh.github.io/oryol/
+
+---
+class: center, middle
+
+## https://www.websightjs.com/

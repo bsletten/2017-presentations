@@ -309,6 +309,7 @@ name: CUDA-OPENCL-OPENCL
 class: center, middle, inverse
 # OpenCL
 
+
 ---
 class: center, middle
 

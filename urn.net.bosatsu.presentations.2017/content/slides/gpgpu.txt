@@ -66,6 +66,12 @@ class: center, middle
 
 .footnote[https://herbsutter.com/welcome-to-the-jungle/]
 
+---
+class: center, middle
+
+<img style="height:450px;" src="/bosatsu/data/images/gpgpu/freelunch-05.png">
+
+.footnote[https://herbsutter.com/welcome-to-the-jungle/]
 
 ---
 class: center, middle
@@ -73,6 +79,8 @@ class: center, middle
 <img src="/bosatsu/data/images/gpgpu/freelunch-04.png">
 
 .footnote[https://herbsutter.com/welcome-to-the-jungle/]
+
+
 
 
 
@@ -338,9 +346,128 @@ class: center, middle, inverse
 # OpenCL
 
 ---
+class: center, middle, inverse
+
+.quotation[Traditionally, when evaluating hardware platforms for acceleration, one must inevitably consider the trade-off between flexibility and performance.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[On one end of the spectrum, general purpose processors (GPP) provide a high degree of flexibility and ease of use, but perform relatively inefficiently. These platforms tend to be more readily accessible, can be produced cheaply, and are appropriate for a wide variety of uses and reuses.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[On the other end of the spectrum, application specific integrated circuits (ASIC) provide high performance at the cost of being inflexible and more difficult to produce. These circuits are dedicated to a specific application, and are expensive and time consuming to produce.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[FPGAs serve as a compromise between these two extremes. They belong to a more general class of programmable logic devices (PLD) and are, in the most simple sense, a reconfigurable integrated circuit. As such, they provide the performance benefits of integrated circuits, with the reconfigurable flexibility of GPPs.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+# CPUs vs GPUs vs FPGAs vs ASICs
+
+--
+## Bitcoin mining
+
+--
+* High-end CPU might get you 20,000,000 H/s
+
+--
+ * Several hundred thousand years to find a solution
+
+--
+* GPUs can get you 200,000,000 H/s
+
+--
+ * Hundreds of years to find a solution
+
+--
+* Run them in parallel, but they generate heat and are more optimized for floating point numbers
+
+--
+* Availability of a Verilog design for Bitcoin mining offered FPGA solutions
+
+--
+ * Better use of transistors, ran cooler, good at bit twiddling
+
+--
+ * Offered 1,000,000,000 H/s
+
+--
+ * Chaining 100 of these would allow you to find a solution... in 100 years
+
+--
+* Application-specific integrated circuits (ASICs)
+
+---
+class: center, middle
+
+<img style="height: 400px;" src="/bosatsu/data/images/blockchain/bitfury.png"/>
+
+.footnote[Marco Krohn]
+
+---
+# Von Neumann Architecture
+
+.center[.middle[<img style="height: 400px;" src="/bosatsu/data/images/gpgpu/von-neumann.png">]]
+
+.center[.footnote[https://en.wikipedia.org/wiki/Von_Neumann_architecture]]
+
+---
+class: center, middle, inverse
+
+.quotation[In comparison, the programmable logic cells on FPGAs can be used to implement the data and control path found in common logic functions, which do not rely on the Von Neumann architecture. They are also capable of exploiting distributed on-chip memory, as well as large degrees of pipeline parallelism, which fit naturally with the feed-forward nature deep learning methods.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[Modern FPGAs also support partial dynamic reconfiguration, where part of the FPGA can be reprogrammed while another part of the FPGA is being used. This can have implications for large deep learning models, where individual layers could be reconfigured on the FPGA while not disrupting ongoing computation in other layers.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[With GPUs and other fixed architectures, a software execution model is followed, and structured around executing tasks in parallel on independent compute units. As such, the goal in developing deep learning techniques for GPUs is to adapt algorithms to follow this model, where computation is done in parallel, and data interdependence is ensured.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[In contrast, FPGA architecture is tailored for the application. When developing deep learning techniques for FPGAs, there is less emphasis on adapting algorithms for a fixed computational structure, allowing more freedom to explore algorithm level optimizations.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
+class: center, middle, inverse
+
+.quotation[Techniques which require many complex low-level hardware control operations which cannot be easily implemented in high-level software languages are especially attractive for FPGA implementations.]
+.quotation-source["Deep Learning on FPGAs: Past, Present, and Future", Lacey et al.]
+
+---
 class: center, middle
 
 <img height="500" src="/bosatsu/data/images/gpgpu/opencl-logo.png">
+
+---
+# OpenCL Support
+
+--
+* GPPs
+
+--
+* GPUs
+
+--
+* DSPs
+
+--
+* FPGAs
 
 ---
 class: center, middle

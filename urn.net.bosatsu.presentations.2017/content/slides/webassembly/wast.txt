@@ -1,0 +1,51 @@
+---
+#WAST
+
+.footnote[.red[https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format] ]
+
+--
+```lisp
+(module)
+```
+
+--
+```asm
+0000000: 0061 736d ; WASM_BINARY_MAGIC
+0000004: 0d00 0000 ; WASM_BINARY_VERSION
+```
+
+--
+```lisp
+( func <signature> <locals> <body> )
+```
+
+---
+#Parameters and Variables
+```lisp
+(func (param i32) (param f32) (local f64)
+  get_local 0
+  get_local 1
+  get_local 2)
+```
+
+--
+```lisp
+(func (param $p1 i32) (param $p2 f32) (local $loc f64)
+  get_local $p1
+  get_local $p2
+  get_local $loc )
+```
+
+---
+#Stack Machine
+.footnote[.red[https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format] ]
+
+```lisp
+(module
+  (func $add (param $lhs i32) (param $rhs i32) (result i32)
+    get_local $lhs
+    get_local $rhs
+    i32.add)
+  (export "add" (func $add))
+)
+```

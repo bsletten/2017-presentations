@@ -1,0 +1,396 @@
+---
+# Importing functions
+
+--
+```lisp
+// simple.wast
+(module
+  (func $i (import "imports" "imported_func") (param i32))
+  (func (export "exported_func")
+    i32.const 42
+    call $i))
+```
+
+--
+```javascript
+// From Embedder host
+var importObject = {
+  imports: {
+      imported_func: function(arg) {
+        console.log(arg);
+      }
+    }
+  };
+
+fetchAndInstantiate('simple.wasm', importObject)
+  .then(function(instance) {
+    instance.exports.exported_func();
+  });
+```
+
+---
+class: center, middle
+
+## https://mdn.github.io/webassembly-examples/js-api-examples/index.html
+
+---
+# Firefox 58+
+
+```javascript
+var importObject = {
+  imports: {
+    imported_func: arg => console.log(arg)
+  }
+};
+
+WebAssembly.compileStreaming(fetch('simple.wasm'))
+  .then(module => WebAssembly.instantiate(module, importObject))
+  .then(instance => instance.exports.exported_func());
+```
+
+--
+
+### https://mdn.github.io/webassembly-examples/js-api-examples/compile-streaming.html
+
+---
+# Multiple Functions
+
+```lisp
+(module
+  (func $getAnswer (result i32)
+    i32.const 42)
+  (func (export "getAnswerPlus1") (result i32)
+    call $getAnswer
+    i32.const 1
+    i32.add))
+```
+
+--
+
+```javascript
+fetchAndInstantiate('call.wasm').then(function(instance) {
+  console.log(instance.exports.getAnswerPlus1());  // "43"
+});
+```
+
+---
+class: middle, center
+
+## https://mdn.github.io/webassembly-examples/understanding-text-format/call.html
+
+---
+# Memory
+
+--
+* Linear memory is a contiguous range of untyped bytes
+
+--
+* Load and store operations give read/write access
+
+--
+* Much narrower range of accessible memory
+
+--
+* Can only access the memory in shared Memory object instances
+
+--
+* Can create as many of these as you have room for
+
+--
+* JavaScript can fetch/fill memory independent of module compilation
+
+--
+* Multiple modules can have their own isolated Memory instances
+
+--
+* Memory objects can be shared between modules
+
+---
+
+```javascript
+var memory = new WebAssembly.Memory({initial:10, maximum:100});
+```
+
+--
+
+```javascript
+new Uint32Array(memory.buffer)[0] = 42;
+```
+
+--
+```javascript
+new Uint32Array(memory.buffer)[0]
+```
+
+--
+```javascript
+memory.grow(1);
+```
+
+---
+```lisp
+// memory.wat
+
+(module
+  (memory (export "mem") 1)
+  (func (export "accumulate") (param $ptr i32) (param $len i32)
+       (result i32)
+    (local $end i32)
+    (local $sum i32)
+    (set_local $end (i32.add (get_local $ptr)
+        (i32.mul (get_local $len) (i32.const 4))))
+    (block $break (loop $top
+      (br_if $break (i32.eq (get_local $ptr) (get_local $end)))
+      (set_local $sum (i32.add (get_local $sum)
+                               (i32.load (get_local $ptr))))
+        (set_local $ptr (i32.add (get_local $ptr) (i32.const 4)))
+        (br $top)
+    ))
+    (get_local $sum)
+  )
+)
+```
+
+--
+```javascript
+var i32 = new Uint32Array(results.instance.exports.mem.buffer);
+for (var i = 0; i < 10; i++) {
+  i32[i] = i;
+}
+
+var sum = results.instance.exports.accumulate(0, 10);
+console.log(sum);
+```
+
+---
+class: center, middle
+
+## https://mdn.github.io/webassembly-examples/js-api-examples/memory.html
+
+---
+# Tables
+
+--
+* Shared typed collection of references accessible to both JavaScript and WebAssembly modules
+
+--
+* Memory is shared raw bytes (constrained to Memory object boundaries)
+
+--
+* References cannot be directly accessed for safety and stability reasons
+
+--
+* Currently only function references can be stored in tables
+
+--
+* Callers provide reference index to make call
+
+
+---
+```lisp
+// table.wat
+(module
+  (func $thirteen (result i32) (i32.const 13))
+  (func $fourtytwo (result i32) (i32.const 42))
+  (table (export "tbl") anyfunc (elem $thirteen $fourtytwo))
+)
+```
+
+--
+```javascript
+var tbl = results.instance.exports.tbl;
+console.log(tbl.get(0)());  // 13
+console.log(tbl.get(1)());  // 42
+```
+
+---
+class: middle, center
+
+## https://mdn.github.io/webassembly-examples/js-api-examples/table.html
+
+---
+```javascript
+function() {
+  // table section
+  var tbl = new WebAssembly.Table({initial:2, element:"anyfunc"});
+
+  // function sections:
+  var f1 = function() { … }
+  var f2 = function() { … }
+
+  // elem section
+  tbl.set(0, f1);
+  tbl.set(1, f2);
+};
+```
+
+---
+```lisp
+// wasm-table.wasm
+
+(module
+  (table 2 anyfunc)
+  (func $f1 (result i32)
+    i32.const 42)
+  (func $f2 (result i32)
+    i32.const 13)
+  (elem (i32.const 0) $f1 $f2)
+  (type $return_i32 (func (result i32)))
+  (func (export "callByIndex") (param $i i32) (result i32)
+    get_local $i
+    call_indirect $return_i32)
+)
+```
+
+--
+
+```javascript
+fetchAndInstantiate('wasm-table.wasm').then(function(instance) {
+  console.log(instance.exports.callByIndex(0)); // returns 42
+  console.log(instance.exports.callByIndex(1)); // returns 13
+  console.log(instance.exports.callByIndex(2));
+  // returns an error, because there is no index position 2
+});
+```
+
+---
+class: middle, center
+
+## https://mdn.github.io/webassembly-examples/understanding-text-format/wasm-table.html
+
+---
+# Revisiting Logging
+
+--
+
+```lisp
+// logger.wat
+
+(module
+  (import "console" "log" (func $log (param i32)))
+  (func (export "logIt")
+    i32.const 13
+    call $log))
+```
+
+--
+```javascript
+var importObject = {
+  console: {
+    log: function(arg) {
+      console.log(arg);
+    }
+  }
+};
+
+fetchAndInstantiate('logger.wasm', importObject)
+  .then(function(instance) {
+    instance.exports.logIt();
+});
+```
+
+---
+class: middle, center
+
+## https://mdn.github.io/webassembly-examples/understanding-text-format/logger.html
+
+---
+# Logging Strings
+
+```lisp
+(module
+  (import "console" "log" (func $log (param i32 i32)))
+  (import "js" "mem" (memory 1))
+  (data (i32.const 0) "Hi")
+  (func (export "writeHi")
+    i32.const 0  ;; pass offset 0 to log
+    i32.const 2  ;; pass length 2 to log
+    call $log))
+```
+
+--
+```javascript
+consoleLogString(offset, length) {
+  var bytes = new Uint8Array(memory.buffer, offset, length);
+  var string = new TextDecoder('utf8').decode(bytes);
+  console.log(string);
+}
+```
+---
+
+```javascript
+var memory = new WebAssembly.Memory({initial:1});
+
+var importObj = {
+  console: { log: consoleLogString },
+  js: { mem: memory }
+};
+
+fetchAndInstantiate('logger2.wasm', importObj)
+  .then(function(instance) {
+  instance.exports.writeHi();
+});
+```
+
+--
+
+### https://mdn.github.io/webassembly-examples/understanding-text-format/logger2.html
+
+
+---
+# Dynamic Linking
+
+--
+```lisp
+// shared0.wat
+(module
+  (import "js" "memory" (memory 1))
+  (import "js" "table" (table 1 anyfunc))
+  (elem (i32.const 0) $shared0func)
+  (func $shared0func (result i32)
+   i32.const 0
+   i32.load)
+)
+```
+
+--
+```lisp
+// shared1.wat
+(module
+  (import "js" "memory" (memory 1))
+  (import "js" "table" (table 1 anyfunc))
+  (type $void_to_i32 (func (result i32)))
+  (func (export “doIt”) (result i32)
+   i32.const 0
+   i32.const 42
+   i32.store  ;; store 42 at address 0
+   i32.const 0
+   call_indirect $void_to_i32)
+)
+```
+
+---
+```javascript
+var importObj = {
+  js: {
+    memory : new WebAssembly.Memory({ initial: 1 }),
+    table : new WebAssembly.Table({ initial: 1, element: "anyfunc" })
+  }
+};
+
+Promise.all([
+  fetchAndInstantiate('shared0.wasm', importObj),
+  fetchAndInstantiate('shared1.wasm', importObj)
+]).then(function(results) {
+  console.log(results[1].exports.doIt());  // prints 42
+});
+```
+
+--
+
+### https://mdn.github.io/webassembly-examples/understanding-text-format/shared-address-space.html
+
+---
+class: center, middle
+
+## https://wasdk.github.io/wasmcodeexplorer/

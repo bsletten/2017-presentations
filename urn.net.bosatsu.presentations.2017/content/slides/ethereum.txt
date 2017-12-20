@@ -2,7 +2,7 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#Blockchain
+#Taming the Blockchain with Ethereum
 
 $a{bosatsu:common:qualifications}
 
@@ -14,52 +14,22 @@ layout: false
 .right-column[
 - Introduction
 
-- Cryptography
-
-- GPGPU
-
-- Bitcoin
-
 - Blockchain
 
 - Ethereum
 
 - Other Platforms
-
-- State of Blockchain Systems
 ]
 
 ---
-name: Blockchain-Introduction
+name: Ethereum-Introduction
 class: center, middle, inverse
 # Introduction
 
 $a{res:/bosatsu/data/slides/blockchain/intro.txt}
 
 ---
-name: Blockchain-Cryptography
-class: center, middle, inverse
-# Cryptography
-
-$a{res:/bosatsu/data/slides/blockchain/cryptography.txt}
-
----
-name: Blockchain-GPU
-class: center, middle, inverse
-# GPGPU
-
-$a{res:/bosatsu/data/slides/blockchain/gpgpu.txt}
-
-
----
-name: Blockchain-Bitcoin
-class: center, middle, inverse
-# Bitcoin
-
-$a{res:/bosatsu/data/slides/blockchain/bitcoin.txt}
-
----
-name: Blockchain-Blockchain
+name: Ethereum-Blockchain
 class: center, middle, inverse
 # Blockchain
 
@@ -106,46 +76,38 @@ class: center, middle
 # What are your ideas?
 
 ---
-name: Blockchain-Ethereum
+name: Ethereum-Ethereum
 class: center, middle, inverse
 # Ethereum
 
 $a{res:/bosatsu/data/slides/blockchain/ethereum.txt}
 
 ---
-name: Blockchain-Stellar
+name: Ethereum-Stellar
 class: center, middle
 
 # http://stellar.org
 
 ---
-name: Blockchain-Chain
+name: Ethereum-Chain
 class: center, middle
 
 # http://chain.com
 
 ---
-name: Blockchain-Hyperledger
+name: Ethereum-Hyperledger
 class: center, middle
 
 # http://hyperledger.org
 
 ---
-name: Blockchain-Waves
+name: Ethereum-Waves
 class: center, middle
 
 # http://wavesplatform.com
 
-
 ---
-name: Blockchain-State-of-Bitcoin
-class: center, middle, inverse
-# State of Bitcoin
-
-$a{res:/bosatsu/data/slides/blockchain/state-of-bitcoin.txt}
-
----
-name: Blockchain-Books
+name: Ethereum-Books
 class: center, middle, inverse
 # Books
 

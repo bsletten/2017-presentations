@@ -1,0 +1,250 @@
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+--
+```bash
+$ python
+Python 2.7.12 (default, Nov 19 2016, 06:48:10)
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+```
+
+--
+```python
+>>> import tensorflow as tf
+```
+
+--
+```python
+>>> node1 = tf.constant(3.0, tf.float32)
+>>> node2 = tf.constant(4.0)
+>>> print(node1, node2)
+(<tf.Tensor 'Const:0' shape=() dtype=float32>,
+ <tf.Tensor 'Const_1:0' shape=() dtype=float32>)
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> sess = tf.Session()
+2017-03-02 19:16:33.627295: I tensorflow/core/common_runtime/gpu/gpu_device.cc:885]
+Found device 0 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.01GiB
+2017-03-02 19:16:33.627417: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x29d89f0
+2017-03-02 19:16:33.749592: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-03-02 19:16:33.749891: I tensorflow/core/common_runtime/gpu/gpu_device.cc:885]
+Found device 1 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.771
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.00GiB
+2017-03-02 19:16:33.752272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 1
+2017-03-02 19:16:33.752282: I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y Y
+2017-03-02 19:16:33.752285: I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 1:   Y Y
+2017-03-02 19:16:33.752675: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975]
+Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080,
+pci bus id: 0000:01:00.0)
+2017-03-02 19:16:33.752682: I tensorflow/core/common_runtime/gpu/gpu_device.cc:975]
+Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080,
+pci bus id: 0000:02:00.0)
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> print(sess.run([node1, node2]))
+[3.0, 4.0]
+```
+
+--
+```python
+>>> node3 = tf.add(node1, node2)
+>>> print("node3: ", node3)
+('node3: ', <tf.Tensor 'Add:0' shape=() dtype=float32>)
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_add.png">
+
+--
+```python
+>>> print("sess.run(node3): ",sess.run(node3))
+('sess.run(node3): ', 7.0)
+```
+
+--
+```python
+>>> print("sess.run(node1 + node2): ", sess.run(node1+node2))
+('sess.run(node1 + node2): ', 7.0)
+```
+
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> a = tf.placeholder(tf.float32)
+>>> b = tf.placeholder(tf.float32)
+>>> adder_node = a + b
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_adder.png">
+
+--
+```python
+>>> print(sess.run(adder_node, {a: 3, b:4.5}))
+7.5
+>>> print(sess.run(adder_node, {a: [1,3], b: [2, 4]}))
+[ 3.  7.]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> add_and_triple = adder_node * 3.
+```
+
+--
+<img src="/bosatsu/data/images/tensorflow/getting_started_triple.png">
+
+--
+```python
+>>> print(sess.run(add_and_triple, {a: 3, b:4.5}))
+22.5
+```
+
+---
+#TensorBoard!
+
+```python
+>>> import tensorflow as tf
+>>> a = tf.constant(5, name="input_a")
+>>> b = tf.constant(3, name="input_b")
+>>> c = tf.multiply(a, b, name="multiply_c")
+>>> d = tf.add(a,b, name="add_d")
+>>> e = tf.add(c,d, name="add_e")
+>>> sess = tf.Session()
+>>> output = sess.run(e)
+>>> writer = tf.train.SummaryWriter('./my_graph', sess.graph)
+>>> writer.close()
+>>> sess.close()
+```
+
+--
+```bash
+> tensorboard --logdir=my_graph/
+Starting TensorBoard 39 on port 6006
+(You can navigate to http://127.0.0.1:6006)
+```
+
+---
+class: center
+
+<img src="/bosatsu/data/images/tensorflow/tensorboard.png">
+
+---
+# TensorFlow Data Types
+
+| Type       | Description           | Type         | Description                                                |
+|------------|-----------------------|--------------|------------------------------------------------------------|
+| tf.float32 | 32-bit floating point | tf.uint8     | 8-bit unsigned integer                                     |
+| tf.float64 | 64-bit floating point | tf.string    | String                                                     |
+| tf.int8    | 8-bit signed integer  | tf.bool      | Boolean                                                    |
+| tf.int16   | 16-bit signed integer | tf.complex64 | 32-bit floating point real 32-bit floating point imaginary |
+| tf.int32   | 32-bit signed integer | tf.qint8     | 8-bit signed integer                                       |
+| tf.int64   | 64-bit signed integer | tf.qint32    | 32-bit signed integer                                      |
+---
+```python
+>>> a = tf.placeholder(tf.int16)
+>>> b = tf.placeholder(tf.int16)
+>>> add = tf.add(a, b)
+>>> mul = tf.multiply(a, b)
+>>> sess.run(add, feed_dict={a: 2, b: 3})
+5
+>>> sess.run(mul, feed_dict={a: 2, b: 3})
+6
+```
+
+--
+```python
+>>> matrix1 = tf.constant([[3., 3.]])
+>>> matrix2 = tf.constant([[2.],[2.]])
+>>> product = tf.matmul(matrix1, matrix2)
+>>> result = sess.run(product)
+>>> print(result)
+[[ 12.]]
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> W = tf.Variable([.3], tf.float32)
+>>> b = tf.Variable([-.3], tf.float32)
+>>> x = tf.placeholder(tf.float32)
+>>> linear_model = W * x + b
+```
+
+--
+```python
+>>> init = tf.global_variables_initializer()
+>>> sess.run(init)
+```
+
+--
+```python
+>>> print(sess.run(linear_model, {x:[1,2,3,4]}))
+[ 0.          0.30000001  0.60000002  0.90000004]
+```
+
+--
+```python
+>>> y = tf.placeholder(tf.float32)
+>>> squared_deltas = tf.square(linear_model - y)
+>>> loss = tf.reduce_sum(squared_deltas)
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+23.66
+```
+
+--
+```python
+>>> fixW = tf.assign(W, [-1.])
+>>> fixb = tf.assign(b, [1.])
+>>> sess.run([fixW, fixb])
+[array([-1.], dtype=float32), array([ 1.], dtype=float32)]
+>>> print(sess.run(loss, {x:[1,2,3,4], y:[0,-1,-2,-3]}))
+0.0
+```
+
+---
+.footnote[https://www.tensorflow.org/get_started/get_started]
+
+```python
+>>> optimizer = tf.train.GradientDescentOptimizer(0.01)
+>>> train = optimizer.minimize(loss)
+```
+
+--
+```python
+>>> sess.run(init) # reset values to incorrect defaults.
+>>> for i in range(1000):
+...   sess.run(train, {x:[1,2,3,4], y:[0,-1,-2,-3]})
+...
+
+>>> print(sess.run([W, b]))
+[array([-0.9999969], dtype=float32), array([ 0.99999082], dtype=float32)]
+```
+
+---
+class: center, middle
+
+<img src="/bosatsu/data/images/tensorflow/getting_started_final.png">
